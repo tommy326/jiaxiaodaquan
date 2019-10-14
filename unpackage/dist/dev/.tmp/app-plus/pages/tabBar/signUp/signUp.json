@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "报名",
+  "enablePullDownRefresh": true,
+  "titleNView": false,
+  "pullToRefresh": {
+    "support": true,
+    "color": "#317ceb",
+    "style": "circle",
+    "offset": "6%"
+  },
+  "usingComponents": {}
+}

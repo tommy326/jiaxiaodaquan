@@ -1,0 +1,402 @@
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+/* 配色 */
+.uni_container {
+  background-color: #f6f6f6;
+}
+.search_module {
+  display: block;
+  width: 100%;
+  height: 80rpx;
+  position: fixed;
+  top: var(--status-bar-height);
+  left: 0;
+  z-index: 9;
+  background: #ffffff;
+  padding: 8rpx 32rpx 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.search_warp {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 686rpx;
+  height: 72rpx;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: #ffffff;
+}
+.search_warp .location {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  height: 72rpx;
+  max-width: 122rpx;
+  font-size: 28rpx;
+  line-height: 72rpx;
+  color: #1d212d;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAOCAYAAAA1+Nx+AAABWElEQVQ4ja3TvUvVcRQG8M+9vrU2tvbXSBAiIiKhLSk0SIio4GAaBQU31CFKRBFEcBAncRCHcAgHcXDsH2hyKCJCCuXAufDjcv15fXmW73DOeZ5zvuc5lVqtNoeHmMS5+0EnFvGjHUN4jEcYxP87SnRgC734XkU/fua7hrY7kEftRpKfBWcInKAbvzCML6jcgjxqVjGQDQfnaTWDR3iKP3iBpVuQL+M5fuMJjiNQLSQdogd/MYbaDQQWMJINRqPf6oFqQ+IB+tJNE5hvgfwDXmVN/P3XYrBRILCXbvqHWcyUkIfFp5I8GttvTGgmENhJ+4Zl32G8Sc40XmfOM+w2I7pKQHo5Fn6Bj3hZiMWXvE/yWOz2VSTtJQKBdXThMz6lATpyqSE8is0ygusEAmG/B3n6K4Wpw2lxmKUo+6Ii4i7e5KWG52P5MdG1aGWCOmKhMUm4621LFbgErUZD9PVjO74AAAAASUVORK5CYII=) no-repeat right center;
+  background-size: 24rpx 14rpx;
+  padding-right: 30rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  margin-right: 10rpx;
+}
+.search_warp .search_input {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  width: 554rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  background: #f7f7f7 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAcCAYAAACUJBTQAAACM0lEQVRIibWWO0xUQRSGv0XUxlixiSSCmABBF6wsbbaiI+IDQWmp1cJVsPaxZhdCT6PBBFCBmNhYCDV0BBIKEhUlkmAnlQiXnM0/5O7l7iLscJLJ7J6Z+b85c2fOTCKXy1HG6oG7QBq4DCSBLeAn8B2YBcaBr+VEqkv4Tfwl0AWciLSdBlpU2oFnAj0BVuPEqmJ8HcAi0ANsA++BXuCiAGeBS/JZ2z/1XVJ9YCT3gUHBp4FHwEqkz19gWeUt0Ai8Ajr1/xwwVCqSO2oMgMcaFAXEmfW5oTE7QF5a+yD2DUaABDCgmR3WbMxTaYxIswjyAjgDTB4R4CwLfJBWNgy5AHRrrR9UAHD2UFpd0i5AulXbTvnhAWIa70LahR9pNU57ADhzWmkHaZVjziNkXnWrg9TIse4R8kt1ksg5OeURUmQG+S1HrUddp7WBIEtyXPEIuap60UG+yHHdI6RT9YyDjCvn3AbqPADOS2tH2gXIN2BCH37QA2RIWhPS3ttdlkE3gVtApgJARhqb0iQMsRutT2n++RFBGY0NpLV3S4bPyZiSWyKUTRv/Q9z6LGhMlS66sXCH6PU7rJ3xRxeRbe9R4CbQAJxUaZBvVH3aNH4NeBOdRdxD4qNyTlbp+p5KKbNdNAWkgGZt27Q7iHGROFvVo8AeD/3AZ81yS2VNPmtrUtTXFFVKoKQTO+jddVhLCpASsBBRIgiCilTzeXs3FNk+UKnlqsTsW1gEbuleHwckDPoEzOwCgO9/GU9nN24AAAAASUVORK5CYII=) no-repeat left 30rpx center;
+  border-radius: 36rpx;
+  background-size: 25rpx 28rpx;
+  text-indent: 72rpx;
+  font-size: 30rpx;
+  color: #c1c1c1;
+}
+.main_wrap {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding-top: 80rpx;
+}
+.banner_box {
+  display: block;
+  width: 100%;
+  height: 350rpx;
+  padding: 40rpx 32rpx;
+  background: #ffffff;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.banner_box .pic {
+  display: block;
+  width: 100%;
+  height: 266rpx;
+  background-color: #656565;
+  border-radius: 16rpx;
+}
+.column_list {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 192rpx;
+  background: #ffffff;
+  border-radius: 0 0 70rpx 70rpx;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 0 20rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.column_list .item {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  width: 25%;
+  height: 160rpx;
+  padding-top: 4rpx;
+}
+.column_list .item .pic {
+  display: block;
+  width: 92rpx;
+  height: 92rpx;
+  margin: 0 auto;
+}
+.column_list .item .text {
+  display: block;
+  font-size: 26rpx;
+  color: #555555;
+  line-height: 1;
+  margin-top: 22rpx;
+  text-align: center;
+}
+.screen_list {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 104rpx;
+  padding: 20rpx 32rpx 0;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.screen_list .item_box {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  width: 200rpx;
+  height: 84rpx;
+  line-height: 84rpx;
+  text-indent: 30rpx;
+  color: #3860ff;
+  font-size: 30rpx;
+}
+.screen_list .item {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  color: #999999;
+  font-size: 30rpx;
+  text-indent: 20rpx;
+  height: 84rpx;
+  line-height: 84rpx;
+}
+.screen_list .item:nth-child(2) {
+  width: 180rpx;
+}
+.screen_list .item:nth-child(3) {
+  width: 120rpx;
+}
+.screen_list .item:nth-child(4) {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  width: auto;
+  text-indent: 60rpx;
+  position: relative;
+}
+.screen_list .item:nth-child(4):after {
+  content: '';
+  display: block;
+  width: 2rpx;
+  height: 28rpx;
+  background-color: #999999;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -14rpx;
+}
+.data_list {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding: 0 32rpx 1rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.item_wrap {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: auto;
+  min-height: 286rpx;
+  background-color: #ffffff;
+  border-radius: 20rpx;
+  padding: 32rpx 20rpx 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: relative;
+  margin-bottom: 24rpx;
+}
+.left_box {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  width: 170rpx;
+  margin-right: 20rpx;
+}
+.left_box .pic {
+  display: block;
+  width: 170rpx;
+  height: 170rpx;
+  background-color: #5c5c5c;
+  border-radius: 10rpx;
+}
+.right_box {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+}
+.right_box .name {
+  color: #202020;
+  font-size: 34rpx;
+  font-weight: bold;
+  line-height: 1;
+  padding-top: 6rpx;
+}
+.right_box .comment_box {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 20rpx;
+}
+.right_box .comment_box .comment_stars {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.right_box .comment_box .comment_stars image {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  width: 23rpx;
+  height: 22rpx;
+  margin: 8rpx;
+}
+.right_box .comment_box .comment_num {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  color: #333333;
+  font-size: 28rpx;
+  margin-left: 12rpx;
+  margin-right: 20rpx;
+}
+.right_box .comment_box .comment_hit {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  color: #3860ff;
+  font-size: 28rpx;
+  padding-left: 20rpx;
+  border-left: 2rpx solid #d9d9d9;
+}
+.right_box .range_box {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 10rpx;
+}
+.right_box .range_box .range_num {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  font-size: 28rpx;
+  line-height: 1;
+  color: #666666;
+  border: solid 1px #3860ff;
+  padding: 5rpx 8rpx;
+  border-radius: 4rpx;
+  margin-right: 11rpx;
+}
+.right_box .range_box .range_seat {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  font-size: 28rpx;
+  color: #666666;
+}
+.right_box .cost_box {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 32rpx;
+}
+.right_box .cost_box .cost_num {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  font-size: 28rpx;
+  color: #666666;
+  margin-right: 28rpx;
+}
+.right_box .cost_box .cost_num text {
+  color: #fe8c00;
+  font-size: 38rpx;
+  line-height: 1;
+}
+.right_box .cost_box .cost_text {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  color: #666666;
+  font-size: 28rpx;
+}
+.consult_btn {
+  position: absolute;
+  display: block;
+  width: 160rpx;
+  height: 56rpx;
+  background-color: #3860ff;
+  border-radius: 6rpx 28rpx 28rpx 28rpx;
+  line-height: 56rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #ffffff;
+  bottom: 32rpx;
+  right: 20rpx;
+}
+

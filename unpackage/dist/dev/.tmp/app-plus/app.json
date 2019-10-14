@@ -1,0 +1,55 @@
+{
+  "pages": [
+    "pages/tabBar/signUp/signUp",
+    "pages/tabBar/examination/examination",
+    "pages/tabBar/buyCar/buyCar",
+    "pages/tabBar/my/my"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "驾考大全",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F6F6F6"
+  },
+  "tabBar": {
+    "color": "#929292",
+    "selectedColor": "#3860ff",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/tabBar/signUp/signUp",
+        "iconPath": "static/tabBar/signUp.png",
+        "selectedIconPath": "static/tabBar/signUp-on.png",
+        "text": "报名"
+      },
+      {
+        "pagePath": "pages/tabBar/examination/examination",
+        "iconPath": "static/tabBar/examination.png",
+        "selectedIconPath": "static/tabBar/examination-on.png",
+        "text": "考试"
+      },
+      {
+        "pagePath": "pages/tabBar/buyCar/buyCar",
+        "iconPath": "static/tabBar/buyCar.png",
+        "selectedIconPath": "static/tabBar/buyCar-on.png",
+        "text": "买车"
+      },
+      {
+        "pagePath": "pages/tabBar/my/my",
+        "iconPath": "static/tabBar/my.png",
+        "selectedIconPath": "static/tabBar/my-on.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "nvueCompiler": "weex",
+  "renderer": "auto",
+  "splashscreen": {
+    "alwaysShowBeforeRender": false,
+    "autoclose": true
+  },
+  "appname": "驾考大全",
+  "compilerVersion": "2.3.3",
+  "usingComponents": {}
+}
