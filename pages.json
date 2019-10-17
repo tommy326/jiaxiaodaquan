@@ -1,9 +1,9 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		//报名-tabBar
-        {
-            "path" : "pages/tabBar/signUp/signUp",
-            "style" : {
+	"pages": [
+		/* 报名-tabBar */
+		{
+			"path": "pages/tabBar/signUp/signUp",
+			"style": {
 				"navigationBarTitleText": "报名",
 				"app-plus": {
 					"titleNView": false,
@@ -16,47 +16,62 @@
 				},
 				"enablePullDownRefresh": true
 			}
-        }
-		//考试-tabBar
-        ,{
-            "path" : "pages/tabBar/examination/examination",
-            "style" : {
+		}
+		/* 考试-tabBar */
+		, {
+			"path": "pages/tabBar/examination/examination",
+			"style": {
 				"navigationBarTitleText": "考试"
 			}
-        }
-		//买车-tabBar
-        ,{
+		}
+		/* 买车-tabBar */
+		/* ,{
             "path" : "pages/tabBar/buyCar/buyCar",
             "style" : {
-				"navigationBarTitleText": "买车"
+				"navigationBarTitleText": "买车",
+				"app-plus": {
+					"titleNView": false
+				}
 			}
-        }
-		//我的-tabBar
-        ,{
-            "path" : "pages/tabBar/my/my",
-            "style" : {
+        } */
+		/* 我的-tabBar */
+		, {
+			"path": "pages/tabBar/my/my",
+			"style": {
 				"navigationBarTitleText": "我的"
 			}
-        }
-		//驾校详情
-        ,{
-            "path" : "pages/signUp/school-details/school-details",
-            "style" : {
+		}
+		/* 驾校详情 */
+		, {
+			"path": "pages/signUp/school-details/school-details",
+			"style": {
 				"navigationBarTitleText": "驾校详情",
 				"app-plus": {
-					"bounce": "none", //关闭窗口回弹效果
+					"bounce": "none",
 					"titleNView": {
-						"type": "transparent",//透明渐变导航栏
-						"buttons": [ //原生标题栏按钮配置,
-							{
-								"type": "menu" //原生标题栏增加分享按钮，点击事件可通过页面的 onNavigationBarButtonTap 函数进行监听
-							}
-						]
+						"type": "transparent",
+						"buttons": [{
+							"type": "menu"
+						}]
 					}
 				}
 			}
-        }
-    ],
+		}
+		/* 登录 */
+		, {
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		}
+		/* 注册 */
+		, {
+			"path": "pages/register/register",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		}
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "驾考大全",
@@ -65,7 +80,7 @@
 	},
 	"tabBar": {
 		"color": "#929292",
-		"selectedColor": "#3860ff",
+		"selectedColor": "#1c76ee",
 		"borderStyle": "black",
 		"backgroundColor": "#ffffff",
 		"list": [{
@@ -78,14 +93,14 @@
 				"pagePath": "pages/tabBar/examination/examination",
 				"iconPath": "static/tabBar/examination.png",
 				"selectedIconPath": "static/tabBar/examination-on.png",
-				"text": "考试"	
+				"text": "考试"
 			},
-			{
+			/* {
 				"pagePath": "pages/tabBar/buyCar/buyCar",
 				"iconPath": "static/tabBar/buyCar.png",
 				"selectedIconPath": "static/tabBar/buyCar-on.png",
 				"text": "买车"
-			},
+			}, */
 			{
 				"pagePath": "pages/tabBar/my/my",
 				"iconPath": "static/tabBar/my.png",

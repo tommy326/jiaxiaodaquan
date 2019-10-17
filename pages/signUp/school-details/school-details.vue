@@ -37,19 +37,12 @@
 
 			<!-- tabs选项卡 -->
 			<view class="tabs_box">
-				<view class="item" :class="tabs ==0 ?'active':''" @click="tapTabs" data-idx='0'>
-					班型
-				</view>
-				<view class="item" :class="tabs ==1 ?'active':''" @click="tapTabs" data-idx='1'>
-					教练
-				</view>
-				<view class="item" :class="tabs ==2 ?'active':''" @click="tapTabs" data-idx='2'>
-					场地
-				</view>
-				<view class="item discuss" :class="tabs ==3 ?'active':''" @click="tapTabs" data-idx='3'>
-					评价
-					<text>2425</text>
-				</view>
+				<block v-for="(item,idx) in tabsData" :key='idx'>
+					<view class="item" :class="tabs == idx ?'active':''" @click="tapTabs" :data-idx='idx'>
+						{{item}}
+						<block v-if="idx == 3"><text>{{num}}</text></block>
+					</view>
+				</block>
 			</view>
 
 			<!-- 选项卡内容 -->
@@ -170,7 +163,7 @@
 						</view>
 						<view class="atte">
 							<text class="text">24小时内活跃</text>
-							<img src="http://iph.href.lu/90x90?text=头像" class="img" alt="">
+							<img src="http://iph.href.lu/90x90?text=教练认证" class="img" alt="">
 						</view>
 					</view>
 				</view>
@@ -309,6 +302,8 @@
 		data() {
 			return {
 				tabs: 0,
+				tabsData:['班型','教练','场地','评价'],
+				num:'2324',
 				collect:true
 			}
 		},
@@ -555,12 +550,12 @@
 		bottom: -10upx;
 	}
 
-	.tabs_box .discuss {
+	.tabs_box .item:last-child {
 		display: flex;
 		align-items: flex-end;
 	}
 
-	.tabs_box .discuss text {
+	.tabs_box .item:last-child text {
 		flex: 0 0 auto;
 		color: #929292;
 		font-size: 18upx;

@@ -11,6 +11,15 @@
 				
 			}
 		},
+		onLoad: function(){
+			console.log('onLoad');
+			uni.navigateTo({
+			    url: '../../login/login'
+			});
+		},
+		onShow: function() {
+			
+		},
 		methods: {
 			
 		}

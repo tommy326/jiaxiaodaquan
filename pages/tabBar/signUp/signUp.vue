@@ -23,22 +23,12 @@
 
 			<!-- 金刚区 -->
 			<view class="column_list">
-				<navigator url="" class="item" hover-class="none">
-					<image src="../../../static/images/item/jkph.png" class="pic" mode=""></image>
-					<text class="text">驾校排行</text>
-				</navigator>
-				<navigator url="" class="item" hover-class="none">
-					<image src="../../../static/images/item/jlph.png" class="pic" mode=""></image>
-					<text class="text">教练排行</text>
-				</navigator>
-				<navigator url="" class="item" hover-class="none">
-					<image src="../../../static/images/item/plfw.png" class="pic" mode=""></image>
-					<text class="text">陪练服务</text>
-				</navigator>
-				<navigator url="" class="item" hover-class="none">
-					<image src="../../../static/images/item/jkzn.png" class="pic" mode=""></image>
-					<text class="text">驾考指南</text>
-				</navigator>
+				<block v-for="(item,idx) in columnData" :key='idx'>
+					<navigator url="" class="item" hover-class="none">
+						<image :src="'../../../static/images/item/'+item.src+'.png'" class="pic" mode=""></image>
+						<text class="text">{{item.title}}</text>
+					</navigator>
+				</block>
 			</view>
 
 			<!-- 筛选列表 -->
@@ -112,6 +102,7 @@
 		data() {
 			return {
 				city: '定位中',
+				columnData:[{url:'',src:'jkph',title:'驾校排行'},{url:'',src:'jlph',title:'教练排行'},{url:'',src:'plfw',title:'陪练服务'},{url:'',src:'jkzn',title:'驾考指南'},],
 				listData: []
 			}
 		},

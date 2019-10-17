@@ -80,5 +80,10 @@
     },
     "mp-toutiao" : {
         "usingComponents" : true
+    },
+    "h5" : {
+        "devServer" : {
+            "https" : false
+        }
     }
 }
