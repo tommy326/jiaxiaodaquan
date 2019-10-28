@@ -111,7 +111,7 @@
 						duration: 1000
 					});
 					uni.request({
-						url: 'https://m.baiche.com.cn/v1/sms?mobile='+this.tel,
+						url: this.$Url+'/api/user/register?mobile='+this.tel,
 						method: 'GET',
 						data: {},
 						header: {
@@ -222,22 +222,22 @@
 	.back{
 		display: flex;
 		width: 100%;
-		height: 80upx;
+		height: 80rpx;
 	}
 	
 	.back .btn{
 		flex: 0 0auto;
-		width: 80upx;
-		height: 80upx;
+		width: 80rpx;
+		height: 80rpx;
 		background: url(../../static/images/icon/back.png) no-repeat center;
-		background-size: 31upx 31upx;
-		margin-left: 20upx;
+		background-size: 31rpx 31rpx;
+		margin-left: 20rpx;
 	}
 	
 	.title {
 		display: block;
-		font-size: 64upx;
-		padding: 60upx 60upx 40upx;
+		font-size: 64rpx;
+		padding: 60rpx 60rpx 40rpx;
 		letter-spacing: 2px;
 		line-height: 1;
 		color: #1f1f1f;
@@ -246,14 +246,14 @@
 	.login_wrap {
 		display: block;
 		width: 100%;
-		padding: 0 60upx;
+		padding: 0 60rpx;
 		box-sizing: border-box;
 	}
 
 	.form_item {
 		display: flex;
 		width: 100%;
-		height: 92upx;
+		height: 92rpx;
 		border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 		align-items: center;
 		margin-top: 28px;
@@ -265,40 +265,40 @@
 
 	.form_input {
 		flex: 1 1 auto;
-		font-size: 30upx;
+		font-size: 30rpx;
 		color: #262626;
 	}
 
 	.input_clear {
 		flex: 0 0 auto;
-		width: 40upx;
-		height: 40upx;
+		width: 40rpx;
+		height: 40rpx;
 		background: url(../../static/images/icon/clear.png) no-repeat center;
-		background-size: 28upx 28upx;
-		margin: 0 16upx;
+		background-size: 28rpx 28rpx;
+		margin: 0 16rpx;
 	}
 	
 	.input_see {
 		flex: 0 0 auto;
-		width: 40upx;
-		height: 40upx;
-		margin: 0 16upx;
+		width: 40rpx;
+		height: 40rpx;
+		margin: 0 16rpx;
 		background: url(../../static/images/icon/see-off.png) no-repeat center;
-		background-size: 28upx 21upx;
+		background-size: 28rpx 21rpx;
 	}
 	
 	.see_on {
 		background: url(../../static/images/icon/see-on.png) no-repeat center;
-		background-size: 28upx 21upx;
+		background-size: 28rpx 21rpx;
 	}
 
 	.input_code {
 		flex: 0 0 auto;
-		width: 160upx;
+		width: 160rpx;
 		text-align: center;
-		font-size: 30upx;
+		font-size: 30rpx;
 		color: #317ceb;
-		margin: 0 16upx;
+		margin: 0 16rpx;
 		padding: 0;
 		line-height: 0;
 		border-radius: 0;
@@ -313,9 +313,9 @@
 
 	.state {
 		display: flex;
-		font-size: 24upx;
+		font-size: 24rpx;
 		color: #949494;
-		margin: 22upx 0 74upx;
+		margin: 22rpx 0 74rpx;
 	}
 
 	.link {
@@ -326,35 +326,35 @@
 
 	.btn_submit button {
 		display: flex;
-		height: 90upx;
+		height: 90rpx;
 		background-color: #1c76ee;
-		box-shadow: 0px 4upx 16upx 0px rgba(0, 0, 0, 0.12),
-			inset 0px 1upx 1upx 0px rgba(255, 255, 255, 0.2);
-		border-radius: 45upx;
+		box-shadow: 0px 4rpx 16rpx 0px rgba(0, 0, 0, 0.12),
+			inset 0px 1rpx 1rpx 0px rgba(255, 255, 255, 0.2);
+		border-radius: 45rpx;
 		align-items: center;
 		justify-content: center;
-		font-size: 36upx;
+		font-size: 36rpx;
 	}
 
 	.btn_link {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		margin-top: 55upx;
+		margin-top: 55rpx;
 	}
 
 	.btn_link .text {
 		flex: 0 0 auto;
-		font-size: 32upx;
+		font-size: 32rpx;
 		color: #262626;
 		letter-spacing: 1px;
 	}
 
 	.pic {
 		flex: 0 0 auto;
-		width: 9upx;
-		height: 20upx;
-		margin-left: 12upx;
+		width: 9rpx;
+		height: 20rpx;
+		margin-left: 12rpx;
 	}
 
 	.textColor {

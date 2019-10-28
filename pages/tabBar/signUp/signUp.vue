@@ -24,7 +24,7 @@
 			<!-- 金刚区 -->
 			<view class="column_list">
 				<block v-for="(item,idx) in columnData" :key='idx'>
-					<navigator url="" class="item" hover-class="none">
+					<navigator :url="item.url" class="item" hover-class="none">
 						<image :src="'../../../static/images/item/'+item.src+'.png'" class="pic" mode=""></image>
 						<text class="text">{{item.title}}</text>
 					</navigator>
@@ -101,8 +101,8 @@
 	export default {
 		data() {
 			return {
-				city: '定位中',
-				columnData:[{url:'',src:'jkph',title:'驾校排行'},{url:'',src:'jlph',title:'教练排行'},{url:'',src:'plfw',title:'陪练服务'},{url:'',src:'jkzn',title:'驾考指南'},],
+				city: '武汉市',
+				columnData:[{url:'',src:'jkph',title:'驾校排行'},{url:'../../signUp/Coach-ranking/Coach-ranking',src:'jlph',title:'教练排行'},{url:'../../signUp/Partner-service/Partner-service',src:'plfw',title:'陪练服务'},{url:'',src:'jkzn',title:'驾考指南'},],
 				listData: []
 			}
 		},
@@ -203,20 +203,20 @@
 	.search_module {
 		display: block;
 		width: 100%;
-		height: 80upx;
+		height: 88rpx;
 		position: fixed;
 		top: var(--status-bar-height);
 		left: 0;
 		z-index: 9;
 		background: #ffffff;
-		padding: 8upx 32upx 0;
+		padding: 8rpx 32rpx 8rpx;
 		box-sizing: border-box;
 	}
 
 	.search_warp {
 		display: flex;
-		width: 686upx;
-		height: 72upx;
+		width: 686rpx;
+		height: 72rpx;
 		align-items: center;
 		justify-content: space-between;
 		background-color: #ffffff;
@@ -224,32 +224,32 @@
 
 	.search_warp .location {
 		flex: 0 0 auto;
-		height: 72upx;
-		max-width: 122upx;
-		font-size: 28upx;
-		line-height: 72upx;
+		height: 72rpx;
+		max-width: 122rpx;
+		font-size: 28rpx;
+		line-height: 72rpx;
 		color: #1d212d;
 		background: url(../../../static/images/icon/icon-down.png) no-repeat right center;
-		background-size: 24upx 14upx;
-		padding-right: 30upx;
+		background-size: 24rpx 14rpx;
+		padding-right: 30rpx;
 		box-sizing: border-box;
 		overflow: hidden;
 		white-space: nowrap;
 		text-overflow: ellipsis;
 		-o-text-overflow: ellipsis;
-		margin-right: 10upx;
+		margin-right: 10rpx;
 	}
 
 	.search_warp .search_input {
 		flex: 0 0 auto;
-		width: 554upx;
-		height: 72upx;
-		line-height: 72upx;
-		background: #f7f7f7 url(../../../static/images/icon/icon-search.png) no-repeat left 30upx center;
-		border-radius: 36upx;
-		background-size: 25upx 28upx;
-		text-indent: 72upx;
-		font-size: 30upx;
+		width: 554rpx;
+		height: 72rpx;
+		line-height: 72rpx;
+		background: #f7f7f7 url(../../../static/images/icon/icon-search.png) no-repeat left 30rpx center;
+		border-radius: 36rpx;
+		background-size: 25rpx 28rpx;
+		text-indent: 72rpx;
+		font-size: 30rpx;
 		color: #c1c1c1;
 	}
 
@@ -257,14 +257,14 @@
 		display: block;
 		width: 100%;
 		height: auto;
-		padding-top: 80upx;
+		padding-top: 80rpx;
 	}
 
 	.banner_box {
 		display: block;
 		width: 100%;
-		height: 350upx;
-		padding: 40upx 32upx;
+		height: 350rpx;
+		padding: 40rpx 32rpx;
 		background: #ffffff;
 		box-sizing: border-box;
 	}
@@ -272,105 +272,105 @@
 	.banner_box .pic {
 		display: block;
 		width: 100%;
-		height: 266upx;
+		height: 266rpx;
 		background-color: #656565;
-		border-radius: 16upx;
+		border-radius: 16rpx;
 	}
 
 	.column_list {
 		display: flex;
 		width: 100%;
-		height: 192upx;
+		height: 192rpx;
 		background: #ffffff;
-		border-radius: 0 0 70upx 70upx;
+		border-radius: 0 0 70rpx 70rpx;
 		justify-content: center;
-		padding: 0 20upx;
+		padding: 0 20rpx;
 		box-sizing: border-box;
 	}
 
 	.column_list .item {
 		flex: 0 0 auto;
 		width: 25%;
-		height: 160upx;
-		padding-top: 4upx;
+		height: 160rpx;
+		padding-top: 4rpx;
 	}
 
 	.column_list .item .pic {
 		display: block;
-		width: 92upx;
-		height: 92upx;
+		width: 92rpx;
+		height: 92rpx;
 		margin: 0 auto;
 	}
 
 	.column_list .item .text {
 		display: block;
-		font-size: 26upx;
+		font-size: 26rpx;
 		color: #555555;
 		line-height: 1;
-		margin-top: 22upx;
+		margin-top: 22rpx;
 		text-align: center;
 	}
 
 	.screen_list {
 		display: flex;
 		width: 100%;
-		height: 104upx;
-		padding: 20upx 32upx 0;
+		height: 104rpx;
+		padding: 20rpx 32rpx 0;
 		align-items: center;
 		box-sizing: border-box;
 	}
 
 	.screen_list .item_box {
 		flex: 0 0 auto;
-		width: 200upx;
-		height: 84upx;
-		line-height: 84upx;
-		text-indent: 30upx;
+		width: 200rpx;
+		height: 84rpx;
+		line-height: 84rpx;
+		text-indent: 30rpx;
 		color: #3860ff;
-		font-size: 30upx;
+		font-size: 30rpx;
 	}
 
 	.screen_list .item {
 		flex: 0 0 auto;
 		color: #999999;
-		font-size: 30upx;
-		text-indent: 20upx;
-		height: 84upx;
-		line-height: 84upx;
+		font-size: 30rpx;
+		text-indent: 20rpx;
+		height: 84rpx;
+		line-height: 84rpx;
 	}
 
 	.screen_list .item:nth-child(2) {
-		width: 180upx;
+		width: 180rpx;
 	}
 
 	.screen_list .item:nth-child(3) {
-		width: 120upx;
+		width: 120rpx;
 	}
 
 	.screen_list .item:nth-child(4) {
 		flex: 1 1 auto;
 		width: auto;
-		text-indent: 60upx;
+		text-indent: 60rpx;
 		position: relative;
 	}
 
 	.screen_list .item:nth-child(4):after {
 		content: '';
 		display: block;
-		width: 2upx;
-		height: 28upx;
+		width: 2rpx;
+		height: 28rpx;
 		background-color: #999999;
 		position: absolute;
 		left: 0;
 		top: 50%;
-		margin-top: -14upx;
+		margin-top: -14rpx;
 	}
 
 	.data_list {
 		display: block;
 		width: 100%;
 		height: auto;
-		padding: 0 32upx 1upx;
+		padding: 0 32rpx 1rpx;
 		box-sizing: border-box;
 	}
 
@@ -378,27 +378,27 @@
 		display: flex;
 		width: 100%;
 		height: auto;
-		min-height: 286upx;
+		min-height: 286rpx;
 		background-color: #ffffff;
-		border-radius: 20upx;
-		padding: 32upx 20upx 0;
+		border-radius: 20rpx;
+		padding: 32rpx 20rpx 0;
 		box-sizing: border-box;
 		position: relative;
-		margin-bottom: 24upx;
+		margin-bottom: 24rpx;
 	}
 
 	.left_box {
 		flex: 0 0 auto;
-		width: 170upx;
-		margin-right: 20upx;
+		width: 170rpx;
+		margin-right: 20rpx;
 	}
 
 	.left_box .pic {
 		display: block;
-		width: 170upx;
-		height: 170upx;
+		width: 170rpx;
+		height: 170rpx;
 		background-color: #5c5c5c;
-		border-radius: 10upx;
+		border-radius: 10rpx;
 	}
 
 	.right_box {
@@ -407,17 +407,17 @@
 
 	.right_box .name {
 		color: #202020;
-		font-size: 34upx;
+		font-size: 34rpx;
 		font-weight: bold;
 		line-height: 1;
-		padding-top: 6upx;
+		padding-top: 6rpx;
 	}
 
 	.right_box .comment_box {
 		display: flex;
 		width: 100%;
 		align-items: center;
-		margin-top: 20upx;
+		margin-top: 20rpx;
 	}
 
 	.right_box .comment_box .comment_stars {
@@ -426,47 +426,47 @@
 
 	.right_box .comment_box .comment_stars image {
 		flex: 0 0 auto;
-		width: 23upx;
-		height: 22upx;
-		margin: 8upx;
+		width: 23rpx;
+		height: 22rpx;
+		margin: 8rpx;
 	}
 
 	.right_box .comment_box .comment_num {
 		flex: 0 0 auto;
 		color: #333333;
-		font-size: 28upx;
-		margin-left: 12upx;
-		margin-right: 20upx;
+		font-size: 28rpx;
+		margin-left: 12rpx;
+		margin-right: 20rpx;
 	}
 
 	.right_box .comment_box .comment_hit {
 		flex: 0 0 auto;
 		color: #3860ff;
-		font-size: 28upx;
-		padding-left: 20upx;
-		border-left: 2upx solid #d9d9d9;
+		font-size: 28rpx;
+		padding-left: 20rpx;
+		border-left: 2rpx solid #d9d9d9;
 	}
 
 	.right_box .range_box {
 		display: flex;
 		align-items: center;
-		margin-top: 10upx;
+		margin-top: 10rpx;
 	}
 
 	.right_box .range_box .range_num {
 		flex: 0 0 auto;
-		font-size: 28upx;
+		font-size: 28rpx;
 		line-height: 1;
 		color: #666666;
 		border: solid 1px #3860ff;
-		padding: 5upx 8upx;
-		border-radius: 4upx;
-		margin-right: 11upx;
+		padding: 5rpx 8rpx;
+		border-radius: 4rpx;
+		margin-right: 11rpx;
 	}
 
 	.right_box .range_box .range_seat {
 		flex: 0 0 auto;
-		font-size: 28upx;
+		font-size: 28rpx;
 		color: #666666;
 	}
 
@@ -474,40 +474,40 @@
 		display: flex;
 		width: 100%;
 		align-items: center;
-		margin-top: 32upx;
+		margin-top: 32rpx;
 	}
 
 	.right_box .cost_box .cost_num {
 		flex: 0 0 auto;
-		font-size: 28upx;
+		font-size: 28rpx;
 		color: #666666;
-		margin-right: 28upx;
+		margin-right: 28rpx;
 	}
 
 	.right_box .cost_box .cost_num text {
 		color: #fe8c00;
-		font-size: 38upx;
+		font-size: 38rpx;
 		line-height: 1;
 	}
 
 	.right_box .cost_box .cost_text {
 		flex: 0 0 auto;
 		color: #666666;
-		font-size: 28upx;
+		font-size: 28rpx;
 	}
 
 	.consult_btn {
 		position: absolute;
 		display: block;
-		width: 160upx;
-		height: 56upx;
+		width: 160rpx;
+		height: 56rpx;
 		background-color: #3860ff;
-		border-radius: 6upx 28upx 28upx 28upx;
-		line-height: 56upx;
+		border-radius: 6rpx 28rpx 28rpx 28rpx;
+		line-height: 56rpx;
 		text-align: center;
-		font-size: 28upx;
+		font-size: 28rpx;
 		color: #ffffff;
-		bottom: 32upx;
-		right: 20upx;
+		bottom: 32rpx;
+		right: 20rpx;
 	}
 </style>

@@ -27,7 +27,7 @@
 			</view>
 			
 			<view class="mid_box">
-				<navigator url="" class="link_box" hover-class="none">
+				<navigator url="../../examination/Random-practice/Random-practice" class="link_box" hover-class="none">
 					<view class="info">
 						顺序练习
 					</view>
@@ -35,7 +35,7 @@
 						1/1000
 					</view>
 				</navigator>
-				<navigator url="" class="link_box" hover-class="none">
+				<navigator url="../../examination/Mock-exam/Mock-exam" class="link_box" hover-class="none">
 					<view class="info">
 						模拟考试
 					</view>
@@ -100,7 +100,7 @@
 		data() {
 			return {
 				tabs: 0,
-				tabsData:['科一','科二','科三','科四']
+				tabsData:['科一','科四']
 			}
 		},
 		methods: {
@@ -115,20 +115,21 @@
 	.tabs_box {
 		display: flex;
 		width: 100%;
-		height: 80upx;
-		padding: 0 32upx;
+		height: 80rpx;
+		padding: 0 32rpx;
+		box-sizing: border-box;
 		align-items: center;
 	}
 
 	.tabs_box .item {
 		flex: 0 0 auto;
-		width: 92upx;
-		height: 80upx;
+		width: 92rpx;
+		height: 80rpx;
 		color: #909090;
-		font-size: 36upx;
-		margin-right: 60upx;
+		font-size: 36rpx;
+		margin-right: 60rpx;
 		text-align: center;
-		line-height: 80upx;
+		line-height: 80rpx;
 	}
 
 	.tabs_box .active {
@@ -140,36 +141,36 @@
 	.tabs_box .active:after {
 		content: '';
 		display: block;
-		width: 32upx;
-		height: 6upx;
+		width: 32rpx;
+		height: 6rpx;
 		background-color: #3860ff;
-		border-radius: 3upx;
+		border-radius: 3rpx;
 		position: absolute;
 		left: 50%;
-		margin-left: -16upx;
-		bottom: 2upx;
+		margin-left: -16rpx;
+		bottom: 2rpx;
 	}
 
 	.banner_box {
 		display: block;
-		width: 686upx;
-		height: 194upx;
+		width: 686rpx;
+		height: 194rpx;
 		background-color: #101014;
-		border-radius: 12upx;
-		margin: 32upx auto 40upx;
+		border-radius: 12rpx;
+		margin: 32rpx auto 40rpx;
 	}
 
 	.main_wrap {
 		display: flex;
 		width: 100%;
-		padding: 0 60upx;
+		padding: 0 60rpx;
 		justify-content: space-between;
 		box-sizing: border-box;
 	}
 
 	.main_wrap .side_box {
 		flex: 0 0 auto;
-		width: 132upx;
+		width: 132rpx;
 	}
 
 	.main_wrap .mid_box {
@@ -178,36 +179,36 @@
 
 	.main_wrap .side_box .link_box {
 		display: flex;
-		width: 136upx;
-		height: 136upx;
+		width: 136rpx;
+		height: 136rpx;
 		align-items: center;
 		justify-content: center;
 		flex-direction: column;
-		margin-bottom: 60upx;
+		margin-bottom: 60rpx;
 	}
 
 	.main_wrap .side_box .link_box:last-child {
-		margin-bottom: 40upx;
+		margin-bottom: 40rpx;
 	}
 
 	.main_wrap .side_box .link_box .img {
 		flex: 0 0 auto;
-		width: 80upx;
-		height: 80upx;
+		width: 80rpx;
+		height: 80rpx;
 	}
 
 	.main_wrap .side_box .link_box .text {
 		flex: 0 0 auto;
 		color: #333333;
-		font-size: 30upx;
-		margin-top: 15upx;
+		font-size: 30rpx;
+		margin-top: 15rpx;
 		line-height: 1;
 	}
 
 	.main_wrap .mid_box .link_box {
 		display: flex;
-		width: 200upx;
-		height: 200upx;
+		width: 200rpx;
+		height: 200rpx;
 		border-radius: 50%;
 		background-color: #333333;
 		color: #ffffff;
@@ -218,40 +219,40 @@
 	}
 
 	.main_wrap .mid_box .link_box:first-child {
-		margin-top: 7upx;
+		margin-top: 7rpx;
 	}
 
 	.main_wrap .mid_box .link_box:last-child {
-		margin-top: 120upx;
+		margin-top: 120rpx;
 	}
 
 	.main_wrap .mid_box .link_box .info {
 		flex: 0 0 auto;
-		font-size: 32upx;
+		font-size: 32rpx;
 		line-height: 1;
 	}
 
 	.main_wrap .mid_box .link_box .text {
 		flex: 0 0 auto;
-		font-size: 32upx;
+		font-size: 32rpx;
 		color: #ffffff;
 		opacity: 0.8;
-		margin-top: 20upx;
+		margin-top: 20rpx;
 		line-height: 1;
-		font-size: 26upx
+		font-size: 26rpx
 	}
 
 	.line {
 		display: block;
 		width: 100%;
-		height: 16upx;
+		height: 16rpx;
 		background-color: #f8f8f8;
 	}
 
 	.comment_box {
 		display: block;
 		width: 100%;
-		padding: 40upx 0 20upx;
+		padding: 40rpx 0 20rpx;
 	}
 
 	.comment_box .top_box {
@@ -259,14 +260,14 @@
 		width: 100%;
 		align-items: flex-end;
 		justify-content: space-between;
-		padding: 0 32upx 36upx;
+		padding: 0 32rpx 36rpx;
 		box-sizing: border-box;
 	}
 
 	.comment_box .top_box .info_title {
 		flex: 0 0 auto;
 		color: #333333;
-		font-size: 36upx;
+		font-size: 36rpx;
 		font-weight: bold;
 		line-height: 1;
 	}
@@ -274,31 +275,31 @@
 	.comment_box .top_box .link {
 		flex: 0 0 auto;
 		color: #3860ff;
-		font-size: 30upx;
+		font-size: 30rpx;
 		line-height: 1;
-		padding-right: 30upx;
+		padding-right: 30rpx;
 		background: url(../../../static/images/icon/icon-more-2.png) no-repeat right center;
-		background-size: 13upx 22upx;
+		background-size: 13rpx 22rpx;
 	}
 
 	.ask_list {
 		display: block;
 		width: 100%;
-		padding: 0 32upx;
+		padding: 0 32rpx;
 		box-sizing: border-box;
 	}
 
 	.ask_list .item {
 		display: flex;
 		width: 100%;
-		height: 54upx;
+		height: 54rpx;
 		align-items: center;
 		justify-content: space-between;
-		padding-left: 40upx;
-		font-size: 28upx;
+		padding-left: 40rpx;
+		font-size: 28rpx;
 		box-sizing: border-box;
 		background: url(../../../static/images/icon/icon-ask.png) no-repeat left center;
-		background-size: 28upx 28upx;
+		background-size: 28rpx 28rpx;
 	}
 
 	.ask_list .item .info {
@@ -306,13 +307,13 @@
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
-		margin-right: 10upx;
+		margin-right: 10rpx;
 	}
 
 	.ask_list .item .text {
 		flex: 0 0 auto;
 		text-align: right;
-		font-size: 26upx;
+		font-size: 26rpx;
 		color: #929292;
 	}
 </style>

@@ -11,7 +11,7 @@
     "code": "100"
   },
   "description": "",
-  "launch_path": "__uniapptabbar.html",
+  "launch_path": "__uniappview.html",
   "developer": {
     "name": "",
     "email": "",
@@ -27,7 +27,7 @@
   },
   "plus": {
     "useragent": {
-      "value": "uni-app appservice",
+      "value": "uni-app",
       "concatenate": true
     },
     "splashscreen": {
@@ -36,11 +36,15 @@
       "delay": 0
     },
     "popGesture": "close",
-    "launchwebview": {},
+    "launchwebview": {
+      "id": "1",
+      "kernel": "WKWebview",
+      "uni-app": "auto"
+    },
     "statusbar": {
       "immersed": "supportedDevice",
       "style": "dark",
-      "background": "#F8F8F8"
+      "background": "#ffffff"
     },
     "usingComponents": true,
     "distribute": {
@@ -95,18 +99,41 @@
       }
     },
     "uni-app": {
-      "compilerVersion": "2.3.3",
+      "compilerVersion": "2.3.7",
       "control": "v8",
       "nvueCompiler": "weex",
       "renderer": "auto"
     },
-    "secondwebview": {
-      "id": "1",
-      "launch_path": "__uniappview.html",
-      "kernel": "WKWebview",
-      "mode": "child",
-      "top": 0,
-      "bottom": 56
+    "tabBar": {
+      "color": "#929292",
+      "selectedColor": "#1c76ee",
+      "borderStyle": "rgba(0,0,0,0.4)",
+      "backgroundColor": "#ffffff",
+      "list": [
+        {
+          "pagePath": "pages/tabBar/signUp/signUp",
+          "iconPath": "static/tabBar/signUp.png",
+          "selectedIconPath": "static/tabBar/signUp-on.png",
+          "text": "报名"
+        },
+        {
+          "pagePath": "pages/tabBar/examination/examination",
+          "iconPath": "static/tabBar/examination.png",
+          "selectedIconPath": "static/tabBar/examination-on.png",
+          "text": "考试"
+        },
+        {
+          "pagePath": "pages/tabBar/my/my",
+          "iconPath": "static/tabBar/my.png",
+          "selectedIconPath": "static/tabBar/my-on.png",
+          "text": "我的"
+        }
+      ],
+      "height": "50px",
+      "child": [
+        "lauchwebview"
+      ],
+      "selected": 0
     }
   }
 }

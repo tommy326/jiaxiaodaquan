@@ -359,7 +359,7 @@
 	.content_box {
 		display: block;
 		width: 100%;
-		padding-bottom: 120upx;
+		padding-bottom: 120rpx;
 	}
 
 	.footer_box {
@@ -368,52 +368,52 @@
 		bottom: 0;
 		display: flex;
 		width: 100%;
-		height: 120upx;
+		height: 120rpx;
 		background-color: #ffffff;
-		box-shadow: 0px -1upx 1upx 0px rgba(0, 0, 0, 0.08);
+		box-shadow: 0px -1rpx 1rpx 0px rgba(0, 0, 0, 0.08);
 		justify-content: space-between;
 		align-items: center;
 	}
 
 	.footer_box .collect_box {
 		flex: 0 0 auto;
-		width: 102upx;
-		padding-top: 20upx;
-		margin-left: 120upx;
+		width: 102rpx;
+		padding-top: 20rpx;
+		margin-left: 120rpx;
 	}
 
 	.footer_box .collect_box .img {
 		display: block;
-		width: 50upx;
-		height: 46upx;
+		width: 50rpx;
+		height: 46rpx;
 		margin: 0 auto;
 	}
 
 	.footer_box .collect_box .text {
 		display: block;
 		color: #333333;
-		font-size: 20upx;
+		font-size: 20rpx;
 		text-align: center;
-		margin-top: 5upx;
+		margin-top: 5rpx;
 	}
 
 	.footer_box .consult_btn {
 		flex: 0 0 auto;
-		width: 300upx;
-		height: 88upx;
+		width: 300rpx;
+		height: 88rpx;
 		background-color: #3860ff;
 		color: #f4f4f4;
-		font-size: 34upx;
-		line-height: 88upx;
+		font-size: 34rpx;
+		line-height: 88rpx;
 		text-align: center;
-		margin-right: 28upx;
-		border-radius: 44upx;
+		margin-right: 28rpx;
+		border-radius: 44rpx;
 	}
 
 	.photo_box {
 		display: block;
 		width: 100%;
-		height: 404upx;
+		height: 404rpx;
 		position: relative;
 		overflow: hidden;
 	}
@@ -425,28 +425,28 @@
 
 	.photo_box .photo_num {
 		position: absolute;
-		right: 50upx;
-		top: 300upx;
+		right: 50rpx;
+		top: 300rpx;
 		z-index: 9;
 		color: #ffffff;
-		font-size: 30upx
+		font-size: 30rpx
 	}
 
 	.school_box {
 		display: block;
 		width: 100%;
 		background-color: #ffffff;
-		border-radius: 40upx 40upx 0 0;
+		border-radius: 40rpx 40rpx 0 0;
 		position: relative;
-		margin-top: -40upx;
-		padding: 40upx 30upx;
+		margin-top: -40rpx;
+		padding: 40rpx 30rpx;
 		box-sizing: border-box;
-		border-bottom: 2upx solid rgba(0, 0, 0, 0.08);
+		border-bottom: 2rpx solid rgba(0, 0, 0, 0.08);
 	}
 
 	.school_box .school_name {
 		color: #3860ff;
-		font-size: 40upx;
+		font-size: 40rpx;
 		font-weight: bold;
 	}
 
@@ -454,40 +454,40 @@
 		display: flex;
 		align-items: center;
 		flex-wrap: wrap;
-		margin-top: 20upx;
+		margin-top: 20rpx;
 	}
 
 	.school_box .label_list .item {
 		flex: 0 0 auto;
-		height: 40upx;
+		height: 40rpx;
 		background-color: #e8f1fd;
-		border-radius: 2upx;
-		padding: 0 12upx;
-		line-height: 40upx;
+		border-radius: 2rpx;
+		padding: 0 12rpx;
+		line-height: 40rpx;
 		color: #3860ff;
-		font-size: 26upx;
-		margin-right: 16upx;
+		font-size: 26rpx;
+		margin-right: 16rpx;
 	}
 
 	.school_box .introduce {
 		display: flex;
 		align-items: center;
 		flex-wrap: wrap;
-		margin-top: 28upx;
-		font-size: 26upx;
+		margin-top: 28rpx;
+		font-size: 26rpx;
 		line-height: 1;
 	}
 
 	.school_box .introduce .stars {
 		flex: 0 0 auto;
-		width: 23upx;
-		height: 22upx;
-		margin-right: 10upx;
+		width: 23rpx;
+		height: 22rpx;
+		margin-right: 10rpx;
 	}
 
 	.school_box .introduce .score {
 		color: #333333;
-		margin-left: 12upx;
+		margin-left: 12rpx;
 	}
 
 	.school_box .introduce .score b {
@@ -496,41 +496,41 @@
 
 	.school_box .introduce .price {
 		color: #666666;
-		margin-left: 72upx;
+		margin-left: 72rpx;
 	}
 
 	.school_box .introduce .class {
 		color: #666666;
-		margin-left: 18upx;
+		margin-left: 18rpx;
 	}
 
 	.school_box .address {
 		display: block;
-		width: 542upx;
-		font-size: 28upx;
+		width: 542rpx;
+		font-size: 28rpx;
 		color: #333333;
-		padding-right: 30upx;
+		padding-right: 30rpx;
 		background: url(../../../static/images/icon/icon-more.png) no-repeat right center;
-		background-size: 11upx;
-		margin-top: 28upx;
+		background-size: 11rpx;
+		margin-top: 28rpx;
 		line-height: 1;
 	}
 
 	.tabs_box {
 		display: flex;
 		width: 100%;
-		height: 80upx;
+		height: 80rpx;
 		align-items: center;
-		padding-left: 32upx;
+		padding-left: 32rpx;
 		box-sizing: border-box;
-		font-size: 34upx;
-		margin-top: 20upx;
+		font-size: 34rpx;
+		margin-top: 20rpx;
 		color: #909090;
 	}
 
 	.tabs_box .item {
 		flex: 0 0 auto;
-		min-width: 136upx;
+		min-width: 136rpx;
 	}
 
 	.tabs_box .active {
@@ -542,12 +542,12 @@
 		content: '';
 		display: block;
 		position: absolute;
-		width: 40upx;
-		height: 6upx;
+		width: 40rpx;
+		height: 6rpx;
 		background-color: #3860ff;
-		border-radius: 3upx;
-		left: 14upx;
-		bottom: -10upx;
+		border-radius: 3rpx;
+		left: 14rpx;
+		bottom: -10rpx;
 	}
 
 	.tabs_box .item:last-child {
@@ -558,32 +558,32 @@
 	.tabs_box .item:last-child text {
 		flex: 0 0 auto;
 		color: #929292;
-		font-size: 18upx;
-		margin-left: 10upx;
+		font-size: 18rpx;
+		margin-left: 10rpx;
 	}
 
 	.class_list {
-		margin-top: 20upx;
+		margin-top: 20rpx;
 	}
 
 	.class_list .item {
 		display: flex;
 		width: 100%;
-		height: 128upx;
-		padding: 0 32upx;
+		height: 128rpx;
+		padding: 0 32rpx;
 		box-sizing: border-box;
 		align-items: center;
 	}
 
 	.class_list .item .level {
 		flex: 0 0 auto;
-		width: 80upx;
-		height: 80upx;
-		border-radius: 10upx;
+		width: 80rpx;
+		height: 80rpx;
+		border-radius: 10rpx;
 		background: #007AFF;
 		color: #ffffff;
-		font-size: 44upx;
-		line-height: 80upx;
+		font-size: 44rpx;
+		line-height: 80rpx;
 		text-align: center;
 	}
 
@@ -619,27 +619,27 @@
 
 	.class_list .item .class_info {
 		flex: 1 1 auto;
-		font-size: 36upx;
-		margin: 0 20upx;
+		font-size: 36rpx;
+		margin: 0 20rpx;
 	}
 
 	.class_list .item .call_btn {
 		flex: 0 0 auto;
-		width: 96upx;
+		width: 96rpx;
 	}
 
 	.class_list .item .call_btn .img {
 		display: block;
-		width: 34upx;
-		height: 34upx;
+		width: 34rpx;
+		height: 34rpx;
 		margin: 0 auto;
 	}
 
 	.class_list .item .call_btn .text {
 		display: block;
-		font-size: 24upx;
+		font-size: 24rpx;
 		color: #909090;
-		margin-top: 14upx;
+		margin-top: 14rpx;
 	}
 
 	.class_list .item .class_info .class_name {
@@ -648,31 +648,31 @@
 
 	.class_list .item .class_info .class_data {
 		display: flex;
-		font-size: 28upx;
+		font-size: 28rpx;
 		align-items: center;
 		color: #808080;
 	}
 
 	.class_list .item .class_info .class_data .label {
 		flex: 0 0 auto;
-		font-size: 22upx;
-		padding: 4upx 8upx;
-		border-radius: 4upx;
-		border: solid 2upx #3860ff;
+		font-size: 22rpx;
+		padding: 4rpx 8rpx;
+		border-radius: 4rpx;
+		border: solid 2rpx #3860ff;
 		line-height: 1;
 		color: #3860ff;
-		margin-right: 10upx;
+		margin-right: 10rpx;
 	}
 
 	.coach_list {
-		margin-top: 20upx;
+		margin-top: 20rpx;
 	}
 
 	.coach_list .item {
 		display: flex;
 		width: 100;
-		height: 188upx;
-		padding: 0 30upx;
+		height: 188rpx;
+		padding: 0 30rpx;
 		box-sizing: border-box;
 		align-items: center;
 	}
@@ -680,25 +680,25 @@
 	.coach_list .item .rank {
 		flex: 0 0 auto;
 		color: #3860ff;
-		font-size: 72upx;
+		font-size: 72rpx;
 	}
 
 	.coach_list .item .head_sculpture {
 		flex: 0 0 auto;
-		width: 100upx;
-		height: 100upx;
+		width: 100rpx;
+		height: 100rpx;
 		border-radius: 50%;
-		margin-left: 20upx;
+		margin-left: 20rpx;
 	}
 
 	.coach_list .item .coach_info {
 		flex: 1 1 auto;
-		margin: 0 20upx;
+		margin: 0 20rpx;
 	}
 
 	.coach_list .item .coach_info .name {
 		color: #202020;
-		font-size: 34upx;
+		font-size: 34rpx;
 	}
 
 	.coach_list .item .coach_info .score_box {
@@ -708,27 +708,27 @@
 
 	.coach_list .item .coach_info .score_box .img {
 		flex: 0 0 auto;
-		width: 23upx;
-		height: 22upx;
-		margin-right: 10upx;
+		width: 23rpx;
+		height: 22rpx;
+		margin-right: 10rpx;
 	}
 
 	.coach_list .item .coach_info .score_box .text {
 		flex: 0 0 auto;
 		color: #929292;
-		font-size: 22upx;
+		font-size: 22rpx;
 	}
 
 	.coach_list .item .coach_info .score_data {
 		display: flex;
-		font-size: 26upx;
+		font-size: 26rpx;
 		align-items: center;
 	}
 
 	.coach_list .item .coach_info .score_data .sort {
 		flex: 0 0 auto;
 		color: #909090;
-		margin-right: 12upx;
+		margin-right: 12rpx;
 	}
 
 	.coach_list .item .coach_info .score_data .text {
@@ -738,59 +738,59 @@
 
 	.coach_list .item .coach_info .score_data .line {
 		flex: 0 0 auto;
-		width: 2upx;
-		height: 26upx;
+		width: 2rpx;
+		height: 26rpx;
 		background-color: #d9d9d9;
-		margin: 0 24upx;
+		margin: 0 24rpx;
 	}
 
 	.coach_list .item .atte {
 		flex: 0 0 auto;
-		width: 160upx;
+		width: 160rpx;
 		color: #929292;
-		font-size: 24upx;
+		font-size: 24rpx;
 		text-align: right;
 	}
 
 	.coach_list .item .atte .img {
 		display: inline-block;
-		width: 90upx;
-		height: 90upx;
+		width: 90rpx;
+		height: 90rpx;
 	}
 
 	.area_list {
-		margin-top: 20upx;
+		margin-top: 20rpx;
 	}
 
 	.area_list .item {
 		display: flex;
 		width: 100%;
-		height: 160upx;
-		padding: 0 30upx;
+		height: 160rpx;
+		padding: 0 30rpx;
 		box-sizing: border-box;
 		align-items: center;
 	}
 
 	.area_list .item .img {
 		flex: 0 0 auto;
-		width: 180upx;
-		height: 112upx;
-		border-radius: 12upx;
+		width: 180rpx;
+		height: 112rpx;
+		border-radius: 12rpx;
 	}
 
 	.area_list .item .area_info {
 		flex: 1 1 auto;
-		margin: 0 20upx;
+		margin: 0 20rpx;
 	}
 
 	.area_list .item .area_info .name {
 		color: #202020;
-		font-size: 34upx;
+		font-size: 34rpx;
 	}
 
 	.area_list .item .area_info .address {
 		color: #808080;
-		font-size: 28upx;
+		font-size: 28rpx;
 	}
 
 	.area_list .item .area_sort {
@@ -800,45 +800,45 @@
 
 	.area_list .item .area_sort .sort_text {
 		display: inline-block;
-		width: 64upx;
-		height: 32upx;
+		width: 64rpx;
+		height: 32rpx;
 		background-color: #fff3e5;
 		border-radius: 4px;
-		line-height: 32upx;
+		line-height: 32rpx;
 		text-align: center;
 		color: #fe8c00;
-		font-size: 24upx
+		font-size: 24rpx
 	}
 
 	.area_list .item .area_sort .gap {
 		display: block;
 		text-align: right;
 		color: #808080;
-		font-size: 28upx
+		font-size: 28rpx
 	}
 
 	.assess_list {
-		margin-top: 20upx;
+		margin-top: 20rpx;
 	}
 
 	.assess_list .menu_tabs {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		font-size: 24upx;
+		font-size: 24rpx;
 		color: #666666;
-		padding: 0 30upx;
-		margin-bottom: 60upx;
+		padding: 0 30rpx;
+		margin-bottom: 60rpx;
 	}
 
 	.assess_list .menu_tabs .item {
 		flex: 0 0 auto;
-		height: 54upx;
-		border-radius: 27upx;
+		height: 54rpx;
+		border-radius: 27rpx;
 		border: solid 1px #dddddd;
-		line-height: 54upx;
+		line-height: 54rpx;
 		text-align: center;
-		padding: 0 20upx;
+		padding: 0 20rpx;
 	}
 
 	.assess_list .menu_tabs .active {
@@ -847,32 +847,32 @@
 	}
 
 	.assess_list .assess_wrap .item {
-		margin: 0 0 60upx;
+		margin: 0 0 60rpx;
 	}
 
 	.assess_list .assess_wrap .item .top_box {
 		display: flex;
 		width: 100%;
-		padding: 0 30upx;
+		padding: 0 30rpx;
 		box-sizing: border-box;
 	}
 
 	.assess_list .assess_wrap .item .top_box .user_photo {
 		flex: 0 0 auto;
-		width: 64upx;
-		height: 64upx;
+		width: 64rpx;
+		height: 64rpx;
 		background-color: #333333;
 		border-radius: 50%;
 	}
 
 	.assess_list .assess_wrap .item .top_box .user_box {
 		flex: 1 1 auto;
-		margin: 0 20upx;
+		margin: 0 20rpx;
 	}
 
 	.assess_list .assess_wrap .item .top_box .user_box .name {
 		color: #333333;
-		font-size: 28upx;
+		font-size: 28rpx;
 	}
 
 	.assess_list .assess_wrap .item .top_box .score_box {
@@ -882,43 +882,43 @@
 
 	.assess_list .assess_wrap .item .top_box .score_box .img {
 		flex: 0 0 auto;
-		width: 23upx;
-		height: 22upx;
-		margin-right: 10upx;
+		width: 23rpx;
+		height: 22rpx;
+		margin-right: 10rpx;
 	}
 
 	.assess_list .assess_wrap .item .top_box .score_box .text {
 		flex: 0 0 auto;
-		font-size: 22upx;
+		font-size: 22rpx;
 		color: #929292;
 	}
 
 	.assess_list .assess_wrap .item .top_box .time {
 		flex: 0 0 auto;
 		color: #929292;
-		font-size: 22upx;
+		font-size: 22rpx;
 	}
 
 	.assess_list .assess_wrap .mid_box {
 		display: block;
 		width: 100%;
-		padding-left: 117upx;
+		padding-left: 117rpx;
 		box-sizing: border-box;
 		color: #333333;
-		font-size: 26upx;
-		margin-top: 20upx;
-		padding-right: 44upx;
+		font-size: 26rpx;
+		margin-top: 20rpx;
+		padding-right: 44rpx;
 		position: relative;
 	}
 
 	.assess_list .assess_wrap .mid_box:after {
 		content: '';
 		display: block;
-		width: 634upx;
-		height: 2upx;
+		width: 634rpx;
+		height: 2rpx;
 		background-color: #ebebeb;
 		position: absolute;
 		right: 0;
-		bottom: -24upx;
+		bottom: -24rpx;
 	}
 </style>

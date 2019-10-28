@@ -2,18 +2,27 @@
   "pages": [
     "pages/tabBar/signUp/signUp",
     "pages/tabBar/examination/examination",
-    "pages/tabBar/buyCar/buyCar",
-    "pages/tabBar/my/my"
+    "pages/tabBar/my/my",
+    "pages/signUp/school-details/school-details",
+    "pages/login/login",
+    "pages/register/register",
+    "pages/examination/Random-practice/Random-practice",
+    "pages/examination/Mock-exam/Mock-exam",
+    "pages/examination/exam/exam",
+    "pages/signUp/Partner-service/Partner-service",
+    "pages/signUp/Coach-ranking/Coach-ranking",
+    "pages/my/My-mistake/My-mistake",
+    "pages/my/My-grades/My-grades"
   ],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "驾考大全",
-    "navigationBarBackgroundColor": "#F8F8F8",
+    "navigationBarBackgroundColor": "#ffffff",
     "backgroundColor": "#F6F6F6"
   },
   "tabBar": {
     "color": "#929292",
-    "selectedColor": "#3860ff",
+    "selectedColor": "#1c76ee",
     "borderStyle": "black",
     "backgroundColor": "#ffffff",
     "list": [
@@ -30,12 +39,6 @@
         "text": "考试"
       },
       {
-        "pagePath": "pages/tabBar/buyCar/buyCar",
-        "iconPath": "static/tabBar/buyCar.png",
-        "selectedIconPath": "static/tabBar/buyCar-on.png",
-        "text": "买车"
-      },
-      {
         "pagePath": "pages/tabBar/my/my",
         "iconPath": "static/tabBar/my.png",
         "selectedIconPath": "static/tabBar/my-on.png",
@@ -50,6 +53,6 @@
     "autoclose": true
   },
   "appname": "驾考大全",
-  "compilerVersion": "2.3.3",
+  "compilerVersion": "2.3.7",
   "usingComponents": {}
 }
