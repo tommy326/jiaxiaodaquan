@@ -12,7 +12,7 @@
 						VIP课程
 					</view>
 				</navigator>
-				<navigator url="" class="link_box" hover-class="none">
+				<navigator url="../../my/My-mistake/My-mistake" class="link_box" hover-class="none">
 					<image src="../../../static/images/item/dct.png" class="img" mode=""></image>
 					<view class="text">
 						错题本
@@ -57,7 +57,7 @@
 						专项练习
 					</view>
 				</navigator>
-				<navigator url="" class="link_box" hover-class="none">
+				<navigator url="../../my/My-grades/My-grades" class="link_box" hover-class="none">
 					<image src="../../../static/images/item/wdcj.png" class="img" mode=""></image>
 					<view class="text">
 						我的成绩

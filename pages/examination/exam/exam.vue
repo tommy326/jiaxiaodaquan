@@ -152,7 +152,7 @@
 			</swiper>
 		</view>
 		<view class="footer_box">
-			<view class="item scantron">
+			<view class="item scantron" @click="tapAnswer">
 				<text class="text">{{current+1}}/100</text>
 			</view>
 			<view class="item collect_off" :class="collect?'collect_on':''" @click="tapCollect">
@@ -165,11 +165,41 @@
 				<text class="text">交卷</text>
 			</view>
 		</view>
-		<!-- <view class="make">
-			
-		</view> -->
+
+		<view class="baffle_wrap" :class="open?'baffle_wrap_open':''">
+			<view class="Close_Answer" @click="CloseAnswer"></view>
+			<view class="Answer_card" :class="open?'Answer_card_open':''">
+				<view class="oper_list">
+					<view class="item yes">
+						<text class="text">2000</text>
+					</view>
+					<view class="item wrong">
+						<text class="text">1000</text>
+					</view>
+					<view class="item card" @click="CloseAnswer">
+						<text class="text">{{current+1}}/100</text>
+					</view>
+					<view class="item collect_off" :class="collect?'collect_on':''" @click="tapCollect">
+						<text class="text">{{collect?'已收藏':'收藏'}}</text>
+					</view>
+					<view class="btn_wrap">
+						<text class="text">交卷</text>
+					</view>
+				</view>
+				<scroll-view class="opt_wrap" scroll-y>
+					<view class="opt_wrap_list">
+						<block v-for="n in 100" :key='n'>
+							<view class="item" :class="n==10?'on':''">
+								{{n}}
+							</view>
+						</block>
+					</view>
+				</scroll-view>
+			</view>
+
+		</view>
 	</view>
-	
+
 </template>
 
 <script>
@@ -186,7 +216,8 @@
 				radioSelect: '5',
 				judgeSelect: '2',
 				maxTime: 2700,
-				timer: ''
+				timer: '',
+				open: false
 			}
 		},
 		onLoad() {
@@ -209,7 +240,7 @@
 			this.openCountDown()
 
 		},
-		onBackPress() {   
+		onBackPress() {
 			clearInterval(this.timer)
 		},
 		onNavigationBarButtonTap: function(e) {
@@ -276,6 +307,12 @@
 						break;
 					}
 				}
+			},
+			tapAnswer: function(e) {
+				this.open = !this.open
+			},
+			CloseAnswer: function(e) {
+				this.open = !this.open
 			}
 		}
 	}
@@ -371,7 +408,7 @@
 		line-height: 80rpx;
 	}
 
-	.sub_title {
+	.main_wrap .sub_title {
 		display: block;
 		width: 100%;
 		padding: 0 32rpx;
@@ -380,7 +417,7 @@
 		margin: 12upx 0 30upx;
 	}
 
-	.sub_title .title_type {
+	.main_wrap .sub_title .title_type {
 		display: inline-block;
 		width: 68rpx;
 		height: 36rpx;
@@ -393,12 +430,12 @@
 		margin-right: 20rpx;
 	}
 
-	.sub_title .title_text {
+	.main_wrap .sub_title .title_text {
 		font-size: 34rpx;
 		color: #333333;
 	}
 
-	.radio_list {
+	.main_wrap .radio_list {
 		display: flex;
 		padding: 22rpx 32rpx;
 		box-sizing: border-box;
@@ -408,7 +445,7 @@
 		justify-content: center;
 	}
 
-	.radio_list .radio_icon {
+	.main_wrap .radio_list .radio_icon {
 		flex: 0 0 auto;
 		width: 56rpx;
 		height: 56rpx;
@@ -421,22 +458,190 @@
 		border-radius: 50%;
 	}
 
-	.radio_list .radio_icon_on {
+	.main_wrap .radio_list .radio_icon_on {
 		background-color: #3860ff;
 		color: #ffffff;
 	}
 
-	.radio_list .radio_text {
+	.main_wrap .radio_list .radio_text {
 		flex: 1 1 auto;
 	}
-	
-	.make{
+
+	.baffle_wrap {
+		display: none;
+		width: 100%;
+		height: calc(100% - 44px);
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		background: rgba(0, 0, 0, 0.5);
+		opacity: 0;
+		transition: opacity 1s, display 1s;
+		-webkit-transition: opacity 1s, display 1s;
+	}
+
+	.baffle_wrap_open {
+		display: block;
+		opacity: 1;
+	}
+
+	.Close_Answer {
 		display: block;
 		width: 100%;
-		height: 100vh;
-		background: rgba(0,0,0,.5);
-		position: fixed;
-		top: 0;
+		height: 120rpx;
+	}
+
+	.Answer_card {
+		display: block;
+		width: 100%;
+		height: calc(100% - 120rpx);
+		background: #ffffff;
+		position: absolute;
 		left: 0;
+		top: 100%;
+		border-radius: 40rpx 40rpx 0 0;
+		transition: top 2s;
+		-webkit-transition: top 2s;
+	}
+
+	.Answer_card_open {
+		top: 120rpx;
+	}
+
+	.Answer_card .oper_list {
+		display: flex;
+		width: 100%;
+		height: 132rpx;
+	}
+
+	.Answer_card .oper_list .item {
+		flex: 0 0 auto;
+		width: 16%;
+		position: relative;
+		color: #929292;
+	}
+
+	.Answer_card .oper_list .item .text {
+		display: block;
+		width: 100%;
+		line-height: 1;
+		text-align: center;
+		font-size: 20rpx;
+		position: absolute;
+		bottom: 27rpx;
+		left: 0;
+	}
+
+	.Answer_card .oper_list .yes {
+		background: url(../../../static/images/icon/9.png) no-repeat top 34rpx center;
+		background-size: 32rpx 32rpx;
+	}
+
+	.Answer_card .oper_list .yes .text {
+		color: #3860ff;
+		font-size: 30rpx;
+		bottom: 31rpx;
+	}
+
+	.Answer_card .oper_list .wrong {
+		background: url(../../../static/images/icon/10.png) no-repeat top 34rpx center;
+		background-size: 32rpx 32rpx;
+	}
+
+	.Answer_card .oper_list .wrong .text {
+		font-size: 30rpx;
+		bottom: 31rpx;
+	}
+
+	.Answer_card .oper_list .card {
+		background: url(../../../static/images/icon/6.png) no-repeat top 28rpx center;
+		background-size: 40rpx 46rpx;
+	}
+
+	.Answer_card .oper_list .collect_off {
+		background: url(../../../static/images/icon/3.png) no-repeat top 28rpx center;
+		background-size: 50rpx 46rpx;
+	}
+
+	.Answer_card .oper_list .collect_on {
+		background: url(../../../static/images/icon/4.png) no-repeat top 28rpx center;
+		background-size: 50rpx 46rpx;
+		color: #fe8c00;
+	}
+
+	.Answer_card .oper_list .empty {
+		background: url(../../../static/images/icon/8.png) no-repeat top 28rpx center;
+		background-size: 42rpx 46rpx;
+	}
+
+	.Answer_card .opt_wrap {
+		display: block;
+		width: 100%;
+		height: calc(100% - 132rpx);
+	}
+
+	.Answer_card .opt_wrap .sub_title {
+		display: flex;
+		width: 100%;
+		height: 80rpx;
+		background-color: #f6f6f6;
+		color: #333333;
+		font-size: 28rpx;
+		text-indent: 33rpx;
+		align-items: center;
+	}
+
+	.Answer_card .opt_wrap_list {
+		display: flex;
+		width: 100%;
+		align-items: center;
+		flex-wrap: wrap;
+		padding: 15rpx;
+		box-sizing: border-box;
+	}
+
+	.Answer_card .opt_wrap_list .item {
+		flex: 0 0 auto;
+		width: 92rpx;
+		height: 92rpx;
+		border: solid 1px #d9d9d9;
+		border-radius: 50%;
+		line-height: 92rpx;
+		text-align: center;
+		margin: 16rpx 13rpx;
+		color: #929292;
+		font-size: 28rpx;
+	}
+
+	.Answer_card .opt_wrap_list .on {
+		background: rgba(235, 239, 255);
+		color: #3860ff;
+		border-color: rgba(235, 239, 255);
+	}
+
+	.Answer_card .opt_wrap_list .off {
+		background: rgba(255, 238, 237);
+		color: #ff564e;
+		border-color: rgba(255, 238, 237);
+	}
+
+	.Answer_card .btn_wrap {
+		display: flex;
+		width: 100%;
+		height: 132rpx;
+		align-items: center;
+		padding: 0 20rpx;
+	}
+
+	.Answer_card .btn_wrap .text {
+		flex: 0 0 auto;
+		width: 100%;
+		height: 40px;
+		background-color: #3860ff;
+		border-radius: 20px;
+		color: #f4f4f4;
+		font-size: 17px;
+		text-align: center;
+		line-height: 40px;
 	}
 </style>

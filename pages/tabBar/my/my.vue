@@ -94,6 +94,10 @@
 						uni.navigateTo({
 						    url: '../../my/My-mistake/My-mistake'
 						});
+					}else if(idx == 1){
+						uni.navigateTo({
+						    url: '../../signUp/Partner-service/Partner-service'
+						});
 					}else if(idx == 2){
 						uni.navigateTo({
 						    url: '../../my/My-grades/My-grades'
