@@ -89,7 +89,7 @@
 			tapNav:function(e){
 				console.log(uni.getStorageSync('logon_status'))
 				let idx = e.currentTarget.dataset.idx
-				if(uni.getStorageSync('logon_status') == 0){
+				if(uni.getStorageSync('logon_status') != 0){
 					if(idx == 0){
 						uni.navigateTo({
 						    url: '../../my/My-mistake/My-mistake'

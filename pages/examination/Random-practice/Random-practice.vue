@@ -2,50 +2,102 @@
 	<view>
 		<view class="main_wrap">
 			<scroll-view scroll-y="true" class="scroll_box">
-				<block v-if="type == 0">
-					<view class="sub_title">
-						<text class="title_type">单选</text>
-						<text class="title_text">驾驶机动车在道路上违反道路交通安全法的行为，属于什么行为？</text>
-					</view>
-					<radio-group @change="radioChange">
-						<label class="radio_list" v-for="(item, index) in radioData" :key="index">
-							<radio :value="item" style="display: none;" />
-							<view class="radio_icon" :class="radioSelect == index?'radio_icon_on':''">
-								{{index == 0?'A':''}}{{index == 1?'B':''}}{{index == 2?'C':''}}{{index == 3?'D':''}}
-							</view>
-							<view class="radio_text">{{item}}</view>
-						</label>
-					</radio-group>
-				</block>
-				<block v-if="type == 1">
-					<view class="sub_title">
-						<text class="title_type">多选</text>
-						<text class="title_text">驾驶机动车在道路上违反道路交通安全法的行为，属于什么行为？</text>
-					</view>
-					<checkbox-group @change="checkboxChange">
-						<label class="radio_list" v-for="(item,index) in checkboxData" :key="item.value">
-							<checkbox :value="item.value" :checked="item.checked" style="display: none;" />
-							<view class="radio_icon" :class="item.checked ?'radio_icon_on':''">
-								{{index == 0?'A':''}}{{index == 1?'B':''}}{{index == 2?'C':''}}{{index == 3?'D':''}}
-							</view>
-							<view class="radio_text">{{item.name}}</view>
-						</label>
-					</checkbox-group>
-				</block>
-				<block v-if="type == 2">
-					<view class="sub_title">
-						<text class="title_type">判断</text>
-						<text class="title_text">驾驶机动车在道路上违反道路交通安全法的行为，属于什么行为？</text>
-					</view>
-					<radio-group @change="judgeChange">
-						<label class="radio_list" v-for="(item, index) in judgeData" :key="index">
-							<radio :value="item" style="display: none;" />
-							<view class="radio_icon" :class="judgeSelect == index?'radio_icon_on':''">
-								{{index == 0?'A':''}}{{index == 1?'B':''}}
-							</view>
-							<view class="radio_text">{{item}}</view>
-						</label>
-					</radio-group>
+				<block v-for="(item,idx) in listData" :key='idx'>
+					<block v-if="item.item3 != ''">
+						<view class="sub_title">
+							<text class="title_type">单选</text>
+							<text class="title_text">{{item.question}}</text>
+						</view>
+						<radio-group @change="radioChange">
+							<label class="radio_list">
+								<radio value="0" style="display: none;" />
+								<view class="radio_icon" :class="radioSelect == 0?'radio_icon_on':''">
+									A
+								</view>
+								<view class="radio_text">{{item.item1}}</view>
+							</label>
+							<label class="radio_list">
+								<radio value="1" style="display: none;" />
+								<view class="radio_icon" :class="radioSelect == 1?'radio_icon_on':''">
+									B
+								</view>
+								<view class="radio_text">{{item.item2}}</view>
+							</label>
+							<label class="radio_list">
+								<radio value="2" style="display: none;" />
+								<view class="radio_icon" :class="radioSelect == 2?'radio_icon_on':''">
+									C
+								</view>
+								<view class="radio_text">{{item.item3}}</view>
+							</label>
+							<label class="radio_list">
+								<radio value="3" style="display: none;" />
+								<view class="radio_icon" :class="radioSelect == 3?'radio_icon_on':''">
+									D
+								</view>
+								<view class="radio_text">{{item.item4}}</view>
+							</label>
+						</radio-group>
+					</block>
+					<block v-if="item.item3 == ''">
+						<view class="sub_title">
+							<text class="title_type">判断</text>
+							<text class="title_text">{{item.question}}</text>
+						</view>
+						<radio-group @change="judgeChange">
+							<label class="radio_list">
+								<radio value="0" style="display: none;" />
+								<view class="radio_icon" :class="judgeSelect == 0?'radio_icon_on':''">
+									A
+								</view>
+								<view class="radio_text">{{item.item1}}</view>
+							</label>
+							<label class="radio_list">
+								<radio value="1" style="display: none;" />
+								<view class="radio_icon" :class="judgeSelect == 1?'radio_icon_on':''">
+									B
+								</view>
+								<view class="radio_text">{{item.item2}}</view>
+							</label>
+						</radio-group>
+					</block>
+					<block v-if="item.subject == 2">
+						<view class="sub_title">
+							<text class="title_type">多选</text>
+							<text class="title_text">{{item.question}}</text>
+						</view>
+						<checkbox-group @change="checkboxChange">
+							<label class="radio_list">
+								<checkbox value="0" checked="" style="display: none;" />
+								<view class="radio_icon" :class="item.checked ?'radio_icon_on':''">
+									A
+								</view>
+								<view class="radio_text">{{item.item1}}</view>
+							</label>
+							<label class="radio_list">
+								<checkbox value="1" checked="" style="display: none;" />
+								<view class="radio_icon" :class="item.checked ?'radio_icon_on':''">
+									B
+								</view>
+								<view class="radio_text">{{item.item2}}</view>
+							</label>
+							<label class="radio_list">
+								<checkbox value="2" checked="" style="display: none;" />
+								<view class="radio_icon" :class="item.checked ?'radio_icon_on':''">
+									C
+								</view>
+								<view class="radio_text">{{item.item3}}</view>
+							</label>
+							<label class="radio_list">
+								<checkbox value="3" checked="" style="display: none;" />
+								<view class="radio_icon" :class="item.checked ?'radio_icon_on':''">
+									D
+								</view>
+								<view class="radio_text">{{item.item4}}</view>
+							</label>
+						</checkbox-group>
+					</block>
+
 				</block>
 			</scroll-view>
 		</view>
@@ -78,7 +130,7 @@
 						<text class="text">1000</text>
 					</view>
 					<view class="item card" @click="CloseAnswer">
-						<text class="text">1000/1344</text>
+						<text class="text">{{questionId}}/1344</text>
 					</view>
 					<view class="item collect_off" :class="collect?'collect_on':''" @click="tapCollect">
 						<text class="text">{{collect?'已收藏':'收藏'}}</text>
@@ -88,9 +140,6 @@
 					</view>
 				</view>
 				<scroll-view class="opt_wrap" scroll-y>
-					<view class="sub_title">
-						第1章 道路交通安全法律、法规和规章（1200题）
-					</view>
 					<view class="opt_wrap_list">
 						<block v-for="n in 100" :key='n'>
 							<view class="item" :class="n==10?'on':''">
@@ -112,31 +161,45 @@
 				collect: false,
 				type: 0,
 				current: 0,
-				radioData: [],
-				checkboxData: [],
-				judgeData: [],
+				listData: [],
 				radioSelect: '5',
 				judgeSelect: '2',
-				open: false
+				open: false,
+				questionId:0
 			}
 		},
 		onLoad() {
-			this.radioData = ['违章行为', '违法行为', '过失行为', '违规行为']
-			this.checkboxData = [{
-					value: '0',
-					name: '违章行为'
-				}, {
-					value: '1',
-					name: '违法行为'
-				}, {
-					value: '2',
-					name: '过失行为'
-				}, {
-					value: '3',
-					name: '违规行为'
-				}],
-
-				this.judgeData = ['正确', '错误']
+			// 考题
+			uni.showToast({
+				icon:'loading',
+			    title: 'loading...',
+			    duration: 2000
+			});
+			uni.request({
+				url: this.$Url + '/api/exam/study/one',
+				method: 'GET',
+				data: {
+					
+				},
+				header: {
+					'content-type': 'application/x-www-form-urlencoded'
+				},
+				success: (res) => {
+					
+					uni.hideToast();
+					if (res.data.code == 200) {
+						this.listData = res.data.msg
+						this.questionId = res.data.msg[0].questionId
+						console.log(res.data.msg)
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: '网络不给力，请稍后重试',
+							duration: 2000
+						});
+					}
+				}
+			});
 
 		},
 		methods: {
@@ -144,12 +207,35 @@
 				this.collect = !this.collect
 			},
 			radioChange: function(e) {
-				for (let i = 0; i < this.radioData.length; i++) {
-					if (this.radioData[i] === e.target.value) {
-						this.radioSelect = i
-						console.log(i)
-						break;
-					}
+				this.radioSelect = e.target.value
+				if (this.listData[0].answer -1 == e.target.value) {
+					uni.showModal({
+						title: '温馨提示',
+						content: '恭喜您答对了',
+						cancelText: '解析',
+						confirmText: '下一题',
+						success: function(res) {
+							if (res.confirm) {
+								console.log('用户点击确定');
+							} else if (res.cancel) {
+								console.log('用户点击取消');
+							}
+						}
+					});
+				} else {
+					uni.showModal({
+						title: '温馨提示',
+						content: '很抱歉您答错了',
+						cancelText: '解析',
+						confirmText: '下一题',
+						success: function(res) {
+							if (res.confirm) {
+								console.log('用户点击确定');
+							} else if (res.cancel) {
+								console.log('用户点击取消');
+							}
+						}
+					});
 				}
 			},
 			checkboxChange: function(e) {
@@ -168,12 +254,35 @@
 				console.log(arr)
 			},
 			judgeChange: function(e) {
-				for (let i = 0; i < this.judgeData.length; i++) {
-					if (this.judgeData[i] === e.target.value) {
-						this.judgeSelect = i
-						console.log(i)
-						break;
-					}
+				this.judgeSelect = e.target.value
+				if (this.listData[0].answer != e.target.value) {
+					uni.showModal({
+						title: '温馨提示',
+						content: '恭喜您答对了',
+						cancelText: '解析',
+						confirmText: '下一题',
+						success: function(res) {
+							if (res.confirm) {
+								console.log('用户点击确定');
+							} else if (res.cancel) {
+								console.log('用户点击取消');
+							}
+						}
+					});
+				} else {
+					uni.showModal({
+						title: '温馨提示',
+						content: '很抱歉您答错了',
+						cancelText: '解析',
+						confirmText: '下一题',
+						success: function(res) {
+							if (res.confirm) {
+								console.log('用户点击确定');
+							} else if (res.cancel) {
+								console.log('用户点击取消');
+							}
+						}
+					});
 				}
 			},
 			tapPrev: function(e) {
@@ -332,6 +441,12 @@
 	.main_wrap .radio_list .radio_icon_on {
 		background-color: #3860ff;
 		color: #ffffff;
+	}
+	
+	.main_wrap .radio_list .radio_icon_off {
+		background-color: red;
+		color: #ffffff;
+		border: solid 1px red;
 	}
 
 	.main_wrap .radio_list .radio_text {
