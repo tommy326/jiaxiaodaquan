@@ -152,6 +152,14 @@
 				"navigationBarTextStyle":"white"
 			}
         }
+        ,{
+            "path" : "pages/my/Item-bank-selection/Item-bank-selection",
+            "style" : {
+				"navigationBarTitleText": "题库选择",
+				"navigationBarBackgroundColor":"#3860fe",
+				"navigationBarTextStyle":"white"
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

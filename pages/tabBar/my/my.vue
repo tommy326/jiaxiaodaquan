@@ -89,7 +89,7 @@
 			tapNav:function(e){
 				console.log(uni.getStorageSync('logon_status'))
 				let idx = e.currentTarget.dataset.idx
-				if(uni.getStorageSync('logon_status') != 0){
+				if(uni.getStorageSync('logon_status') == 0){
 					if(idx == 0){
 						uni.navigateTo({
 						    url: '../../my/My-mistake/My-mistake'
@@ -101,6 +101,10 @@
 					}else if(idx == 2){
 						uni.navigateTo({
 						    url: '../../my/My-grades/My-grades'
+						});
+					}else if(idx == 3){
+						uni.navigateTo({
+						    url: '../../my/Item-bank-selection/Item-bank-selection'
 						});
 					}
 				}else{
@@ -118,7 +122,7 @@
 	.top_line {
 		display: block;
 		width: 100%;
-		height: 80rpx;
+		height: 40rpx;
 	}
 
 	.user_box {
@@ -272,5 +276,9 @@
 		color: #2b2b2b;
 		font-size: 32rpx;
 		border-bottom: 2rpx solid rgba(0, 0, 0, 0.08);
+	}
+	
+	.set_two{
+		padding-bottom: 10rpx;
 	}
 </style>
