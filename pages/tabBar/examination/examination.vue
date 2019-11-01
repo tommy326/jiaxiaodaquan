@@ -27,7 +27,7 @@
 			</view>
 			
 			<view class="mid_box">
-				<navigator url="../../examination/Random-practice/Random-practice" class="link_box" hover-class="none">
+				<navigator :url="'../../examination/Random-practice/Random-practice?tabs='+tabs" class="link_box" hover-class="none">
 					<view class="info">
 						顺序练习
 					</view>
@@ -35,7 +35,7 @@
 						1/1000
 					</view>
 				</navigator>
-				<navigator url="../../examination/Mock-exam/Mock-exam" class="link_box" hover-class="none">
+				<navigator :url="'../../examination/Mock-exam/Mock-exam?tabs='+tabs" class="link_box" hover-class="none">
 					<view class="info">
 						模拟考试
 					</view>

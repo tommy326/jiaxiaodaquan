@@ -12,7 +12,9 @@
     "pages/signUp/Partner-service/Partner-service",
     "pages/signUp/Coach-ranking/Coach-ranking",
     "pages/my/My-mistake/My-mistake",
-    "pages/my/My-grades/My-grades"
+    "pages/my/My-grades/My-grades",
+    "pages/my/Item-bank-selection/Item-bank-selection",
+    "pages/signUp/Driving-test-guide/Driving-test-guide"
   ],
   "window": {
     "navigationBarTextStyle": "black",

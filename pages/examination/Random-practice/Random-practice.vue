@@ -50,14 +50,14 @@
 								<view class="radio_icon" :class="judgeSelect == 0?'radio_icon_on':''">
 									A
 								</view>
-								<view class="radio_text">{{item.item1}}</view>
+								<view class="radio_text">{{item.item1 != ''?item.item1:'正确'}}</view>
 							</label>
 							<label class="radio_list">
 								<radio value="1" style="display: none;" />
 								<view class="radio_icon" :class="judgeSelect == 1?'radio_icon_on':''">
 									B
 								</view>
-								<view class="radio_text">{{item.item2}}</view>
+								<view class="radio_text">{{item.item2 != ''?item.item2:'错误'}}</view>
 							</label>
 						</radio-group>
 					</block>
@@ -142,8 +142,8 @@
 				<scroll-view class="opt_wrap" scroll-y>
 					<view class="opt_wrap_list">
 						<block v-for="n in 100" :key='n'>
-							<view class="item" :class="n==10?'on':''">
-								{{n}}
+							<view class="item">
+								{{n+1}}
 							</view>
 						</block>
 					</view>
@@ -168,15 +168,17 @@
 				questionId:0
 			}
 		},
-		onLoad() {
+		onLoad(options) {
+			console.log(options.tabs)
 			// 考题
 			uni.showToast({
 				icon:'loading',
 			    title: 'loading...',
 			    duration: 2000
 			});
+			var tabs = options.tabs == 0 ?'one':'four'
 			uni.request({
-				url: this.$Url + '/api/exam/study/one',
+				url: this.$Url + '/api/exam/study/' + tabs,
 				method: 'GET',
 				data: {
 					
@@ -456,7 +458,12 @@
 	.baffle_wrap {
 		display: none;
 		width: 100%;
+		/* #ifdef H5 */
 		height: calc(100% - 44px);
+		/* #endif */
+		/* #ifdef APP-PLUS */
+		height: 100%;
+		/* #endif */
 		position: fixed;
 		left: 0;
 		bottom: 0;
@@ -594,7 +601,7 @@
 		border-radius: 50%;
 		line-height: 92rpx;
 		text-align: center;
-		margin: 16rpx 13rpx;
+		margin: 16rpx 12rpx;
 		color: #929292;
 		font-size: 28rpx;
 	}

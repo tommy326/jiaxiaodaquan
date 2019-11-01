@@ -1,289 +1,244 @@
 <template>
 	<view>
 		<scroll-view class="content_box" scroll-y="true">
-			<!-- 驾校照片 -->
-			<view class="photo_box">
-				<image src="http://iph.href.lu/750x404?text=750x404&fg=666666&bg=cccccc" mode="" class="school_photo"></image>
-				<view class="photo_num">1/80</view>
-			</view>
-			<!-- 驾校简介 -->
-			<view class="school_box">
-				<view class="school_name">
-					五星五号驾校
+			<block v-for="(item,idx) in listData" :key='idx'>
+				<!-- 驾校照片 -->
+				<view class="photo_box">
+					<image src="http://iph.href.lu/750x404?text=750x404&fg=666666&bg=cccccc" mode="" class="school_photo"></image>
+					<view class="photo_num">1/80</view>
 				</view>
-				<view class="label_list">
-					<view class="item">
-						拿本快
+				<!-- 驾校简介 -->
+				<view class="school_box">
+					<view class="school_name">
+						{{item.schoolName}}
 					</view>
-					<view class="item">
-						有接送
+					<view class="label_list">
+						<view class="item">
+							拿本快
+						</view>
+						<view class="item">
+							有接送
+						</view>
+						<view class="item">
+							自由考场
+						</view>
 					</view>
-					<view class="item">
-						自由考场
+					<view class="introduce">
+						<block v-for="n in 5" :key='n'>
+							<image src="../../../static/images/icon/icon-stars-1.png" class="stars" mode=""></image>
+						</block>
+						<view class="score">5.0分 <text class="b">(1023人评）</text></view>
+						<view class="price">￥2100</view>
+						<view class="class">C1班</view>
 					</view>
+					<navigator url="" class="address" hover-class="none">{{item.address}}</navigator>
 				</view>
-				<view class="introduce">
-					<image src="../../../static/images/icon/icon-stars-1.png" class="stars" mode=""></image>
-					<image src="../../../static/images/icon/icon-stars-1.png" class="stars" mode=""></image>
-					<image src="../../../static/images/icon/icon-stars-1.png" class="stars" mode=""></image>
-					<image src="../../../static/images/icon/icon-stars-1.png" class="stars" mode=""></image>
-					<image src="../../../static/images/icon/icon-stars-1.png" class="stars" mode=""></image>
-					<view class="score">5.0分 <text class="b">(1023人评）</text></view>
-					<view class="price">￥2100</view>
-					<view class="class">C1班</view>
-				</view>
-				<navigator url="" class="address" hover-class="none">武昌区武汉大道东湖国贸中心内距您步...</navigator>
-			</view>
 
-			<!-- tabs选项卡 -->
-			<view class="tabs_box">
-				<block v-for="(item,idx) in tabsData" :key='idx'>
-					<view class="item" :class="tabs == idx ?'active':''" @click="tapTabs" :data-idx='idx'>
-						{{item}}
-						<block v-if="idx == 3"><text>{{num}}</text></block>
-					</view>
-				</block>
-			</view>
+				<!-- tabs选项卡 -->
+				<view class="tabs_box">
+					<block v-for="(item,idx) in tabsData" :key='idx'>
+						<view class="item" :class="tabs == idx ?'active':''" @click="tapTabs" :data-idx='idx'>
+							{{item}}
+							<block v-if="idx == 3"><text>{{num}}</text></block>
+						</view>
+					</block>
+				</view>
 
-			<!-- 选项卡内容 -->
-			<view class="tabs_content">
-				<!-- 班型 -->
-				<view class="class_list" v-if="tabs == 0">
-					<view class="item">
-						<view class="level c">
-							C1
-						</view>
-						<view class="class_info">
-							<view class="class_name">
-								特价班
+				<!-- 选项卡内容 -->
+				<view class="tabs_content">
+					<!-- 班型 -->
+					<view class="class_list" v-if="tabs == 0">
+						<view class="item">
+							<view class="level c">
+								C1
 							</view>
-							<view class="class_data">
-								<view class="label">
-									自行前往
+							<view class="class_info">
+								<view class="class_name">
+									特价班
 								</view>
-								<view class="label">
-									多人一车
-								</view>
-								<view class="time">
-									周一到周日训练
-								</view>
-							</view>
-						</view>
-						<view class="call_btn">
-							<image src="../../../static/images/icon/icon-hotline-1.png" class="img" mode=""></image>
-							<text class="text">免费咨询</text>
-						</view>
-					</view>
-					<view class="item">
-						<view class="level a">
-							A1
-						</view>
-						<view class="class_info">
-							<view class="class_name">
-								特价班
-							</view>
-							<view class="class_data">
-								<view class="label">
-									自行前往
-								</view>
-								<view class="label">
-									多人一车
-								</view>
-								<view class="time">
-									周一到周日训练
+								<view class="class_data">
+									<view class="label">
+										自行前往
+									</view>
+									<view class="label">
+										多人一车
+									</view>
+									<view class="time">
+										周一到周日训练
+									</view>
 								</view>
 							</view>
-						</view>
-						<view class="call_btn">
-							<image src="../../../static/images/icon/icon-hotline-1.png" class="img" mode=""></image>
-							<text class="text">免费咨询</text>
-						</view>
-					</view>
-					<view class="item">
-						<view class="level b">
-							B1
-						</view>
-						<view class="class_info">
-							<view class="class_name">
-								特价班
+							<view class="call_btn">
+								<image src="../../../static/images/icon/icon-hotline-1.png" class="img" mode=""></image>
+								<text class="text">免费咨询</text>
 							</view>
-							<view class="class_data">
-								<view class="label">
-									自行前往
-								</view>
-								<view class="label">
-									多人一车
-								</view>
-								<view class="time">
-									周一到周日训练
-								</view>
-							</view>
-						</view>
-						<view class="call_btn">
-							<image src="../../../static/images/icon/icon-hotline-1.png" class="img" mode=""></image>
-							<text class="text">免费咨询</text>
-						</view>
-					</view>
-				</view>
-				<!-- 教练 -->
-				<view class="coach_list" v-else-if="tabs == 1">
-					<view class="item">
-						<view class="rank">
-							1
-						</view>
-						<image src="http://iph.href.lu/100x100?text=头像" class="head_sculpture" mode=""></image>
-						<view class="coach_info">
-							<view class="name">
-								周卫
-							</view>
-							<view class="score_box">
-								<image src="../../../static/images/icon/icon-stars-1.png" class="img" mode=""></image>
-								<image src="../../../static/images/icon/icon-stars-1.png" class="img" mode=""></image>
-								<image src="../../../static/images/icon/icon-stars-1.png" class="img" mode=""></image>
-								<image src="../../../static/images/icon/icon-stars-1.png" class="img" mode=""></image>
-								<image src="../../../static/images/icon/icon-stars-1.png" class="img" mode=""></image>
-								<text class="text">5.0分</text>
-							</view>
-							<view class="score_data">
-								<view class="sort">
-									学员
-								</view>
-								<view class="text">
-									462
-								</view>
-								<view class="line"></view>
-								<view class="sort">
-									教龄
-								</view>
-								<view class="text">
-									8
-								</view>
-							</view>
-
-						</view>
-						<view class="atte">
-							<text class="text">24小时内活跃</text>
-							<img src="http://iph.href.lu/90x90?text=教练认证" class="img" alt="">
-						</view>
-					</view>
-				</view>
-				<!-- 场地 -->
-				<view class="area_list" v-else-if="tabs == 2">
-					<view class="item">
-						<image src="http://iph.href.lu/181x112?text=181x112" class="img" mode=""></image>
-						<view class="area_info">
-							<view class="name">
-								蓝星驾校宗关训练基地
-							</view>
-							<view class="address">
-								岳家嘴柴林花园
-							</view>
-						</view>
-						<view class="area_sort">
-							<view class="sort_text">
-								科二
-							</view>
-							<view class="gap">
-								300m
-							</view>
-						</view>
-					</view>
-				</view>
-				<!-- 评价 -->
-				<view class="assess_list" v-else-if="tabs == 3">
-					<view class="menu_tabs">
-						<view class="item active">
-							全部
 						</view>
 						<view class="item">
-							最新
+							<view class="level a">
+								A1
+							</view>
+							<view class="class_info">
+								<view class="class_name">
+									特价班
+								</view>
+								<view class="class_data">
+									<view class="label">
+										自行前往
+									</view>
+									<view class="label">
+										多人一车
+									</view>
+									<view class="time">
+										周一到周日训练
+									</view>
+								</view>
+							</view>
+							<view class="call_btn">
+								<image src="../../../static/images/icon/icon-hotline-1.png" class="img" mode=""></image>
+								<text class="text">免费咨询</text>
+							</view>
 						</view>
 						<view class="item">
-							好评(1001)
-						</view>
-						<view class="item">
-							中评(5201)
-						</view>
-						<view class="item">
-							差评(11)
+							<view class="level b">
+								B1
+							</view>
+							<view class="class_info">
+								<view class="class_name">
+									特价班
+								</view>
+								<view class="class_data">
+									<view class="label">
+										自行前往
+									</view>
+									<view class="label">
+										多人一车
+									</view>
+									<view class="time">
+										周一到周日训练
+									</view>
+								</view>
+							</view>
+							<view class="call_btn">
+								<image src="../../../static/images/icon/icon-hotline-1.png" class="img" mode=""></image>
+								<text class="text">免费咨询</text>
+							</view>
 						</view>
 					</view>
-					<view class="assess_wrap">
-						<view class="item">
-							<view class="top_box">
-								<image src="http://iph.href.lu/64x64?text=64x64" class="user_photo" mode=""></image>
-								<view class="user_box">
+					<!-- 教练 -->
+					<view class="coach_list" v-else-if="tabs == 1">
+						<block v-for="n in 5" :key='n'>
+							<view class="item">
+								<view class="rank">
+									{{n}}
+								</view>
+								<image src="http://iph.href.lu/100x100?text=头像" class="head_sculpture" mode=""></image>
+								<view class="coach_info">
 									<view class="name">
-										遇于北
+										周卫
 									</view>
 									<view class="score_box">
-										<image src="../../../static/images/icon/icon-stars-1.png" class="img" mode=""></image>
-										<image src="../../../static/images/icon/icon-stars-1.png" class="img" mode=""></image>
-										<image src="../../../static/images/icon/icon-stars-1.png" class="img" mode=""></image>
-										<image src="../../../static/images/icon/icon-stars-1.png" class="img" mode=""></image>
-										<image src="../../../static/images/icon/icon-stars-1.png" class="img" mode=""></image>
+										<block v-for="n in 5" :key='n'>
+											<image src="../../../static/images/icon/icon-stars-1.png" class="img" mode=""></image>
+										</block>
 										<text class="text">5.0分</text>
 									</view>
+									<view class="score_data">
+										<view class="sort">
+											学员
+										</view>
+										<view class="text">
+											462
+										</view>
+										<view class="line"></view>
+										<view class="sort">
+											教龄
+										</view>
+										<view class="text">
+											8
+										</view>
+									</view>
+
 								</view>
-								<view class="time">
-									2019.10.30
+								<view class="atte">
+									<text class="text">24小时内活跃</text>
+									<img src="http://iph.href.lu/90x90?text=教练认证" class="img" alt="">
 								</view>
 							</view>
-							<view class="mid_box">
-								科二总算过了，教练很负责任，最重要的就是考试时控制好离合，越慢越好，拿出驾校教练车时的感觉你就过了，越考越不紧张！
+						</block>
+
+					</view>
+					<!-- 场地 -->
+					<view class="area_list" v-else-if="tabs == 2">
+						<block v-for="n in 5" :key='n'>
+							<view class="item">
+								<image src="http://iph.href.lu/181x112?text=181x112" class="img" mode=""></image>
+								<view class="area_info">
+									<view class="name">
+										蓝星驾校宗关训练基地
+									</view>
+									<view class="address">
+										岳家嘴柴林花园
+									</view>
+								</view>
+								<view class="area_sort">
+									<view class="sort_text">
+										科二
+									</view>
+									<view class="gap">
+										300m
+									</view>
+								</view>
+							</view>
+						</block>
+					</view>
+					<!-- 评价 -->
+					<view class="assess_list" v-else-if="tabs == 3">
+						<view class="menu_tabs">
+							<view class="item active">
+								全部
+							</view>
+							<view class="item">
+								最新
+							</view>
+							<view class="item">
+								好评(1001)
+							</view>
+							<view class="item">
+								中评(5201)
+							</view>
+							<view class="item">
+								差评(11)
 							</view>
 						</view>
-						<view class="item">
-							<view class="top_box">
-								<image src="http://iph.href.lu/64x64?text=64x64" class="user_photo" mode=""></image>
-								<view class="user_box">
-									<view class="name">
-										遇于北
+						<view class="assess_wrap">
+							<block v-for="n in 5" :key='n'>
+								<view class="item">
+									<view class="top_box">
+										<image src="http://iph.href.lu/64x64?text=64x64" class="user_photo" mode=""></image>
+										<view class="user_box">
+											<view class="name">
+												遇于北
+											</view>
+											<view class="score_box">
+												<block v-for="n in 5" :key='n'>
+													<image src="../../../static/images/icon/icon-stars-1.png" class="img" mode=""></image>
+												</block>
+												<text class="text">5.0分</text>
+											</view>
+										</view>
+										<view class="time">
+											2019.10.30
+										</view>
 									</view>
-									<view class="score_box">
-										<image src="../../../static/images/icon/icon-stars-1.png" class="img" mode=""></image>
-										<image src="../../../static/images/icon/icon-stars-1.png" class="img" mode=""></image>
-										<image src="../../../static/images/icon/icon-stars-1.png" class="img" mode=""></image>
-										<image src="../../../static/images/icon/icon-stars-1.png" class="img" mode=""></image>
-										<image src="../../../static/images/icon/icon-stars-1.png" class="img" mode=""></image>
-										<text class="text">5.0分</text>
-									</view>
-								</view>
-								<view class="time">
-									2019.10.30
-								</view>
-							</view>
-							<view class="mid_box">
-								科二总算过了，教练很负责任，最重要的就是考试时控制好离合，越慢越好，拿出驾校教练车时的感觉你就过了，越考越不紧张！
-							</view>
-						</view>
-						<view class="item">
-							<view class="top_box">
-								<image src="http://iph.href.lu/64x64?text=64x64" class="user_photo" mode=""></image>
-								<view class="user_box">
-									<view class="name">
-										遇于北
-									</view>
-									<view class="score_box">
-										<image src="../../../static/images/icon/icon-stars-1.png" class="img" mode=""></image>
-										<image src="../../../static/images/icon/icon-stars-1.png" class="img" mode=""></image>
-										<image src="../../../static/images/icon/icon-stars-1.png" class="img" mode=""></image>
-										<image src="../../../static/images/icon/icon-stars-1.png" class="img" mode=""></image>
-										<image src="../../../static/images/icon/icon-stars-1.png" class="img" mode=""></image>
-										<text class="text">5.0分</text>
+									<view class="mid_box">
+										科二总算过了，教练很负责任，最重要的就是考试时控制好离合，越慢越好，拿出驾校教练车时的感觉你就过了，越考越不紧张！
 									</view>
 								</view>
-								<view class="time">
-									2019.10.30
-								</view>
-							</view>
-							<view class="mid_box">
-								科二总算过了，教练很负责任，最重要的就是考试时控制好离合，越慢越好，拿出驾校教练车时的感觉你就过了，越考越不紧张！
-							</view>
+							</block>
 						</view>
 					</view>
 				</view>
-			</view>
+			</block>
 		</scroll-view>
 		<view class="footer_box">
 			<view class="collect_box" @click="tapCollect">
@@ -302,9 +257,10 @@
 		data() {
 			return {
 				tabs: 0,
-				tabsData:['班型','教练','场地','评价'],
-				num:'2324',
-				collect:true
+				listData: [],
+				tabsData: ['班型', '教练', '场地', '评价'],
+				num: '2324',
+				collect: true
 			}
 		},
 		onLoad: function(options) {
@@ -320,6 +276,7 @@
 				success: (res) => {
 					if (res.data.code == 200) {
 						console.log(res.data)
+						this.listData = res.data.msg
 					} else {
 						uni.showToast({
 							icon: 'none',
@@ -345,10 +302,10 @@
 			}
 		},
 		methods: {
-			tapTabs:function(e){
+			tapTabs: function(e) {
 				this.tabs = e.currentTarget.dataset.idx
 			},
-			tapCollect:function(e){
+			tapCollect: function(e) {
 				this.collect = !this.collect
 			}
 		}

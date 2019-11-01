@@ -62,11 +62,9 @@
 						<view class="name">{{item.schoolName}}</view>
 						<view class="comment_box">
 							<view class="comment_stars">
-								<image src="../../../static/images/icon/icon-stars-1.png" mode=""></image>
-								<image src="../../../static/images/icon/icon-stars-2.png" mode=""></image>
-								<image src="../../../static/images/icon/icon-stars-3.png" mode=""></image>
-								<image src="../../../static/images/icon/icon-stars-4.png" mode=""></image>
-								<image src="../../../static/images/icon/icon-stars-5.png" mode=""></image>
+								<block v-for="n in 5" :key='n'>
+									<image src="../../../static/images/icon/icon-stars-1.png" mode=""></image>
+								</block>
 							</view>
 							<view class="comment_num">
 								5.0分
@@ -102,7 +100,23 @@
 		data() {
 			return {
 				city: '武汉市',
-				columnData:[{url:'',src:'jkph',title:'驾校排行'},{url:'../../signUp/Coach-ranking/Coach-ranking',src:'jlph',title:'教练排行'},{url:'../../signUp/Partner-service/Partner-service',src:'plfw',title:'陪练服务'},{url:'',src:'jkzn',title:'驾考指南'},],
+				columnData: [{
+					url: '',
+					src: 'jkph',
+					title: '驾校排行'
+				}, {
+					url: '../../signUp/Coach-ranking/Coach-ranking',
+					src: 'jlph',
+					title: '教练排行'
+				}, {
+					url: '../../signUp/Partner-service/Partner-service',
+					src: 'plfw',
+					title: '陪练服务'
+				}, {
+					url: '../../signUp/Driving-test-guide/Driving-test-guide',
+					src: 'jkzn',
+					title: '驾考指南'
+				}, ],
 				listData: []
 			}
 		},
@@ -126,13 +140,13 @@
 						uni.setStorageSync('address', res)
 						uni.hideToast();
 						this.city = res.address.city
-					/* 有定位信息 */
+						/* 有定位信息 */
 					} else if (address != '0') {
 						/* 没有切换城市 */
 						if (address.address.city == res.address.city) {
 							uni.setStorageSync('address', res)
 							this.city = res.address.city
-						/* 切换城市 */
+							/* 切换城市 */
 						} else if (address.address.city != res.address.city) {
 							uni.showModal({
 								title: '温馨提示',
@@ -148,7 +162,7 @@
 								}
 							});
 						}
-					/* 有定位信息 */
+						/* 有定位信息 */
 					} else {
 						uni.showToast({
 							icon: 'none',
@@ -161,20 +175,20 @@
 			// #endif
 			//驾校列表
 			uni.request({
-				url: this.$Url+'/api/school/home',
+				url: this.$Url + '/api/school/home',
 				method: 'GET',
 				data: {},
 				header: {
 					'content-type': 'application/x-www-form-urlencoded'
 				},
 				success: (res) => {
-					if(res.data.code == 200){
+					if (res.data.code == 200) {
 						this.listData = res.data.msg
-					}else{
+					} else {
 						uni.showToast({
-							icon:'none',
-						    title: '网络不给力，请稍后重试',
-						    duration: 2000
+							icon: 'none',
+							title: '网络不给力，请稍后重试',
+							duration: 2000
 						});
 					}
 				}
@@ -186,9 +200,9 @@
 			}, 1000);
 		},
 		methods: {
-			ToSchoolDetails:function(e){
+			ToSchoolDetails: function(e) {
 				uni.navigateTo({
-				    url: '../../signUp/school-details/school-details?id='+e.currentTarget.dataset.id
+					url: '../../signUp/school-details/school-details?id=' + e.currentTarget.dataset.id
 				});
 			}
 		}

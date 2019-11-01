@@ -52,14 +52,14 @@
 										<view class="radio_icon" :class="judgeSelect == 0?'radio_icon_on':''">
 											A
 										</view>
-										<view class="radio_text">{{item.item1}}</view>
+										<view class="radio_text">{{item.item1 != ''?item.item1:'正确'}}</view>
 									</label>
 									<label class="radio_list">
 										<radio value="1" style="display: none;" />
 										<view class="radio_icon" :class="judgeSelect == 1?'radio_icon_on':''">
 											B
 										</view>
-										<view class="radio_text">{{item.item2}}</view>
+										<view class="radio_text">{{item.item2 != ''?item.item2:'错误'}}</view>
 									</label>
 								</radio-group>
 							</block>
@@ -171,7 +171,7 @@
 				open: false
 			}
 		},
-		onLoad() {
+		onLoad(options) {
 			this.radioData = ['违章行为', '违法行为', '过失行为', '违规行为']
 			this.checkboxData = [{
 				value: '0',
@@ -190,7 +190,7 @@
 			this.judgeData = ['正确', '错误']
 			this.openCountDown()
 			uni.request({
-				url: this.$Url + '/api/exam/item/one',
+				url: this.$Url + '/api/exam/item/' + options.tabs,
 				method: 'GET',
 				data: {
 
@@ -495,7 +495,12 @@
 	.baffle_wrap {
 		display: none;
 		width: 100%;
+		/* #ifdef H5 */
 		height: calc(100% - 44px);
+		/* #endif */
+		/* #ifdef APP-PLUS */
+		height: 100%;
+		/* #endif */
 		position: fixed;
 		left: 0;
 		bottom: 0;
@@ -633,7 +638,7 @@
 		border-radius: 50%;
 		line-height: 92rpx;
 		text-align: center;
-		margin: 16rpx 13rpx;
+		margin: 16rpx 12rpx;
 		color: #929292;
 		font-size: 28rpx;
 	}

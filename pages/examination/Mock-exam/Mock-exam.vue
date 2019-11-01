@@ -52,7 +52,7 @@
 		<view class="Warm_prompt">
 			温馨提示：模拟考试不能修改答案，每错1题扣1分，错题累计超过10题，考试不通过，系统自动提醒交卷。
 		</view>
-		<navigator url="../exam/exam" class="btn" hover-class="none">开始考试</navigator>
+		<navigator :url="'../exam/exam?tabs='+tabs" class="btn" hover-class="none">开始考试</navigator>
 	</view>
 </template>
 
@@ -60,14 +60,17 @@
 	export default {
 		data() {
 			return {
-
+				tabs: 'one'
 			}
+		},
+		onLoad(options) {
+			this.tabs = options.tabs == 0 ?'one':'four'
 		},
 		onNavigationBarButtonTap: function(e) {
 			console.log(e)
-			if(e.type == 'none'){
+			if (e.type == 'none') {
 				uni.showToast({
-					title: '你点了成绩单按钮', 
+					title: '你点了成绩单按钮',
 					icon: 'none'
 				});
 			}

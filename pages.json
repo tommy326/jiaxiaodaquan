@@ -74,10 +74,9 @@
 			"style": {
 				"navigationBarTitleText": ""
 			}
-		}
-	    ,{
-            "path" : "pages/examination/Random-practice/Random-practice",
-            "style" : {
+		}, {
+			"path": "pages/examination/Random-practice/Random-practice",
+			"style": {
 				"navigationBarTitleText": "随机练习",
 				"app-plus": {
 					"titleNView": {
@@ -90,26 +89,24 @@
 					}
 				}
 			}
-        }	
-        ,{
-            "path" : "pages/examination/Mock-exam/Mock-exam",
-            "style" : {
-            	"navigationBarTitleText": "模拟考试",
-            	"app-plus": {
-            		"titleNView": {
-            			"buttons": [{
+		}, {
+			"path": "pages/examination/Mock-exam/Mock-exam",
+			"style": {
+				"navigationBarTitleText": "模拟考试",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
 							"type": "none",
-            				"fontSrc": "/static/font/iconfont.ttf",
-            				"text": "\ue607",
-            				"fontSize": "18px"
-            			}]
-            		}
-            	}
-            }
-        }
-        ,{
-            "path" : "pages/examination/exam/exam",
-            "style" : {
+							"fontSrc": "/static/font/iconfont.ttf",
+							"text": "\ue607",
+							"fontSize": "18px"
+						}]
+					}
+				}
+			}
+		}, {
+			"path": "pages/examination/exam/exam",
+			"style": {
 				"navigationBarTitleText": "倒计时45:00",
 				"app-plus": {
 					"titleNView": {
@@ -122,45 +119,45 @@
 					}
 				}
 			}
-        }
-        ,{
-            "path" : "pages/signUp/Partner-service/Partner-service",
-            "style" : {
+		}, {
+			"path": "pages/signUp/Partner-service/Partner-service",
+			"style": {
 				"navigationBarTitleText": "陪练服务"
 			}
-        }
-        ,{
-            "path" : "pages/signUp/Coach-ranking/Coach-ranking",
-            "style" : {
+		}, {
+			"path": "pages/signUp/Coach-ranking/Coach-ranking",
+			"style": {
 				"navigationBarTitleText": "教练排行",
-				"backgroundColor":"#F6F6F6"
+				"backgroundColor": "#F6F6F6"
 			}
-        }
-        ,{
-            "path" : "pages/my/My-mistake/My-mistake",
-            "style" : {
+		}, {
+			"path": "pages/my/My-mistake/My-mistake",
+			"style": {
 				"navigationBarTitleText": "我的错题",
-				"navigationBarBackgroundColor":"#3860fe",
-				"navigationBarTextStyle":"white"
+				"navigationBarBackgroundColor": "#3860fe",
+				"navigationBarTextStyle": "white"
 			}
-        }
-        ,{
-            "path" : "pages/my/My-grades/My-grades",
-            "style" : {
+		}, {
+			"path": "pages/my/My-grades/My-grades",
+			"style": {
 				"navigationBarTitleText": "我的成绩",
-				"navigationBarBackgroundColor":"#3860fe",
-				"navigationBarTextStyle":"white"
+				"navigationBarBackgroundColor": "#3860fe",
+				"navigationBarTextStyle": "white"
 			}
-        }
-        ,{
-            "path" : "pages/my/Item-bank-selection/Item-bank-selection",
-            "style" : {
+		}, {
+			"path": "pages/my/Item-bank-selection/Item-bank-selection",
+			"style": {
 				"navigationBarTitleText": "题库选择",
-				"navigationBarBackgroundColor":"#3860fe",
-				"navigationBarTextStyle":"white"
+				"navigationBarBackgroundColor": "#3860fe",
+				"navigationBarTextStyle": "white"
 			}
-        }
-    ],
+		}, {
+			"path": "pages/signUp/Driving-test-guide/Driving-test-guide",
+			"style": {
+				"navigationBarTitleText": "驾考指南"
+			}
+		}
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "驾考大全",
