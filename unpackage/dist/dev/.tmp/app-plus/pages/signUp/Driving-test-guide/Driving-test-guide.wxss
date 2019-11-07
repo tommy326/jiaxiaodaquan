@@ -90,7 +90,7 @@
 	line-height: 48rpx;
 	position: relative;
 }
-.news_list .item .info_wrap .time{
+.news_list .item .info_wrap .time {
 	display: block;
 	color: #929292;
 	font-size: 24rpx;

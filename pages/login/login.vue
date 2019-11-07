@@ -87,34 +87,33 @@
 					});
 				}
 				uni.request({
-					url: this.$Url+'/api/user/register', //仅为示例，并非真实接口地址。
+					url: this.$Url+'/api/login', //仅为示例，并非真实接口地址。
 					method: 'POST',
 					data: {
-						mobile: this.user,
+						phone: this.user,
 						password: this.pass
 					},
 					header: {
 						'content-type': 'application/x-www-form-urlencoded'
 					},
 					success: (res) => {
-						if (res.data.status_code == 200) {
-							uni.setStorageSync('userinfo', res.data.data.user_info)
-							uni.setStorageSync('token', res.data.data.access_token)
-							uni.setStorageSync('login_time', Math.round(new Date() / 1000) + 604800)
+						if (res.data.code == 200) {
+							getApp().globalData.logon_status = 1
+							getApp().globalData.token = res.data.token
 							uni.showToast({
 								title: '登录成功',
 								duration: 1000,
 							});
 							setTimeout(function(){
 								uni.switchTab({
-									url: '../my/my'
+									url: '../tabBar/my/my'
 								})
 							}, 1000)
 
 						} else {
 							uni.showToast({
 								icon: 'none',
-								title: res.data.msg,
+								title: '网络不给力，请稍后重试',
 								duration: 1000
 							});
 						}

@@ -1,9 +1,12 @@
 <template>
 	<view>
+		<!-- 科目分类 -->
 		<view class="tabs_box">
 			<view class="item" v-for="(item,idx) in tabsData" :key='idx' :class="tabs == idx ?'active':''" :data-idx='idx' @click="tapTabs">{{item}}</view>
 		</view>
+		<!-- 广告位 -->
 		<view class="banner_box"></view>
+		<!-- 内容 -->
 		<view class="main_wrap">
 			<view class="side_box">
 				<navigator url="" class="link_box" hover-class="none">
@@ -66,6 +69,7 @@
 			</view>
 		</view>
 		<view class="line"></view>
+		<!-- 社区 -->
 		<view class="comment_box">
 			<view class="top_box">
 				<view class="info_title">

@@ -8,10 +8,10 @@
 		<view class="top_line"></view>
 		<!-- 用户信息 -->
 		<view class="user_box">
-			<image src="http://iph.href.lu/120x120?text=头像" class="user_photo" mode=""></image>
+			<image :src="userAvatar" class="user_photo" @click="tapLogin" mode=""></image>
 			<view class="user_info">
 				<view class="user_name" @click="tapLogin">
-					用户名0012
+					{{userName}}
 				</view>
 				<text class="user_tag">
 					开通会员
@@ -30,8 +30,8 @@
 		<view class="line"></view>
 		<!-- 设置列表 -->
 		<view class="setting_list set_one">
-			<block v-for="(item,index) in setData" :key='index' :data-idx='index' v-if="index < 3">
-				<view class="item">
+			<block v-for="(item,index) in setData" :key='index' v-if="index < 3">
+				<view class="item" :data-idx='index' @click="tapJump">
 					<view class="photo_wrap"></view>
 					<view class="text">
 						{{item}}
@@ -41,8 +41,8 @@
 		</view>
 		<view class="line"></view>
 		<view class="setting_list set_two">
-			<block v-for="(item,index) in setData" :key='index' :data-idx='index' v-if="index > 2">
-				<view class="item">
+			<block v-for="(item,index) in setData" :key='index' v-if="index > 2">
+				<view class="item" :data-idx='index' @click="tapJump">
 					<view class="photo_wrap"></view>
 					<view class="text">
 						{{item}}
@@ -57,6 +57,8 @@
 	export default {
 		data() {
 			return {
+				userName: '请登录',
+				userAvatar: 'http://iph.href.lu/120x120?text=头像',
 				columnData: [{
 					src: 'wdct',
 					title: '我的错题'
@@ -75,44 +77,86 @@
 		},
 		onLoad: function() {
 			console.log('onLoad');
-			
 		},
 		onShow: function() {
-
+			if (getApp().globalData.logon_status == 0) {
+				this.userName = '请登录'
+				this.userAvatar = 'http://iph.href.lu/120x120?text=头像'
+			} else if (getApp().globalData.logon_status == 1) {
+				uni.request({
+					url: this.$Url + '/api/v1/get/user', //仅为示例，并非真实接口地址。
+					method: 'POST',
+					data: {
+						token: getApp().globalData.token,
+					},
+					header: {
+						'content-type': 'application/x-www-form-urlencoded'
+					},
+					success: (res) => {
+						if (res.data.code == 200) {
+							getApp().globalData.userData = res.data.data
+							this.userName = res.data.data.username
+							this.userAvatar = res.data.data.avatar == null?'http://iph.href.lu/120x120?text=头像':res.data.data.avatar
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: '网络不给力，请稍后重试',
+								duration: 1000
+							});
+						}
+					}
+				});
+			}
 		},
 		methods: {
-			tapLogin:function(e){
+			tapLogin: function(e) {
 				uni.navigateTo({
-				    url: '../../login/login'
+					url: '../../login/login'
 				});
 			},
-			tapNav:function(e){
-				console.log(uni.getStorageSync('logon_status'))
+			tapNav: function(e) {
 				let idx = e.currentTarget.dataset.idx
-				if(uni.getStorageSync('logon_status') == 0){
-					if(idx == 0){
+				if (getApp().globalData.logon_status == 1) {
+					if (idx == 0) {
 						uni.navigateTo({
-						    url: '../../my/My-mistake/My-mistake'
+							url: '../../my/My-mistake/My-mistake'
 						});
-					}else if(idx == 1){
+					} else if (idx == 1) {
 						uni.navigateTo({
-						    url: '../../signUp/Partner-service/Partner-service'
+							url: '../../signUp/Partner-service/Partner-service'
 						});
-					}else if(idx == 2){
+					} else if (idx == 2) {
 						uni.navigateTo({
-						    url: '../../my/My-grades/My-grades'
+							url: '../../my/My-grades/My-grades'
 						});
-					}else if(idx == 3){
+					} else if (idx == 3) {
 						uni.navigateTo({
-						    url: '../../my/Item-bank-selection/Item-bank-selection'
+							url: '../../my/Item-bank-selection/Item-bank-selection'
 						});
 					}
-				}else{
+				} else {
 					uni.navigateTo({
-					    url: '../../login/login'
+						url: '../../login/login'
 					});
 				}
-				
+
+			},
+			tapJump: function(e) {
+				let idx = e.currentTarget.dataset.idx
+				if (getApp().globalData.logon_status == 1) {
+					if (idx == 5) {
+						getApp().globalData.userData = ''
+						getApp().globalData.logon_status = 0
+						getApp().globalData.token = 0
+						this.userName = '请登录'
+						this.userAvatar = 'http://iph.href.lu/120x120?text=头像'
+					}
+				} else {
+					uni.navigateTo({
+						url: '../../login/login'
+					});
+				}
+
 			}
 		}
 	}
@@ -277,8 +321,8 @@
 		font-size: 32rpx;
 		border-bottom: 2rpx solid rgba(0, 0, 0, 0.08);
 	}
-	
-	.set_two{
+
+	.set_two {
 		padding-bottom: 10rpx;
 	}
 </style>

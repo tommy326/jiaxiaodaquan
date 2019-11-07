@@ -2,6 +2,7 @@
 	export default {
 		onLaunch: function() {
 			console.log('App Launch')
+			var that = this
 			// #ifdef APP-PLUS
 			// 锁定屏幕方向
 			plus.screen.lockOrientation('portrait-primary'); //锁定
@@ -31,18 +32,17 @@
 			// 	}
 			// })
 			// #endif
-
 			// 检测登录状态
-			var logon_status = uni.getStorageSync('logon_status') || '0'
-			uni.setStorageSync('logon_status', logon_status)
-
+			var logon_status = that.globalData.logon_status || 0
+			that.globalData.logon_status = logon_status
 		},
 		onShow: function() {
 			console.log('App Show')
 		},
 		onHide: function() {
 			console.log('App Hide')
-		}
+		},
+		globalData: {}
 	}
 </script>
 

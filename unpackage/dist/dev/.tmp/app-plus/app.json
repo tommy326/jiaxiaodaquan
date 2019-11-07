@@ -51,8 +51,8 @@
   "nvueCompiler": "weex",
   "renderer": "auto",
   "splashscreen": {
-    "alwaysShowBeforeRender": false,
-    "autoclose": true
+    "alwaysShowBeforeRender": true,
+    "autoclose": false
   },
   "appname": "驾考大全",
   "compilerVersion": "2.3.7",

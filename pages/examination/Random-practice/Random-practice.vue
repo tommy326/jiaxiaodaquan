@@ -1,8 +1,9 @@
 <template>
 	<view>
+		<!-- 题目内容 -->
 		<view class="main_wrap">
 			<scroll-view scroll-y="true" class="scroll_box">
-				<block v-for="(item,idx) in listData" :key='idx'>
+				<block v-for="(item,idx) in listData" :key='idx' v-if="idx == 1">
 					<block v-if="item.item3 != ''">
 						<view class="sub_title">
 							<text class="title_type">单选</text>
@@ -101,6 +102,7 @@
 				</block>
 			</scroll-view>
 		</view>
+		<!-- 底部操作 -->
 		<view class="footer_box">
 			<view class="item prev" @click="tapPrev">
 				<text class="text">上一题</text>
@@ -119,6 +121,7 @@
 			</view>
 		</view>
 
+		<!-- 答题卡 -->
 		<view class="baffle_wrap" :class="open?'baffle_wrap_open':''">
 			<view class="Close_Answer" @click="CloseAnswer"></view>
 			<view class="Answer_card" :class="open?'Answer_card_open':''">
@@ -130,7 +133,7 @@
 						<text class="text">1000</text>
 					</view>
 					<view class="item card" @click="CloseAnswer">
-						<text class="text">{{questionId}}/1344</text>
+						<text class="text">{{questionId}}/{{total}}</text>
 					</view>
 					<view class="item collect_off" :class="collect?'collect_on':''" @click="tapCollect">
 						<text class="text">{{collect?'已收藏':'收藏'}}</text>
@@ -141,10 +144,23 @@
 				</view>
 				<scroll-view class="opt_wrap" scroll-y>
 					<view class="opt_wrap_list">
-						<block v-for="n in 100" :key='n'>
-							<view class="item">
-								{{n+1}}
-							</view>
+						<block v-for="(items,index) in data" :key='index'>
+							<block v-if="items.sign == 'r'">
+								<view class="item on" @click="tapSelTopic" :data-id='items.questionId'>
+									{{items.questionId}}
+								</view>
+							</block>
+							<block v-else-if="items.sign == 'w'">
+								<view class="item off" @click="tapSelTopic" :data-id='items.questionId'>
+									{{items.questionId}}
+								</view>
+							</block>
+							<block v-else>
+								<view class="item" @click="tapSelTopic" :data-questionId='items.questionId'>
+									{{items.questionId}}
+								</view>
+							</block>
+
 						</block>
 					</view>
 				</scroll-view>
@@ -165,34 +181,69 @@
 				radioSelect: '5',
 				judgeSelect: '2',
 				open: false,
-				questionId:0
+				questionId: 0,
+				total: '',
+				data: []
 			}
 		},
 		onLoad(options) {
-			console.log(options.tabs)
 			// 考题
 			uni.showToast({
-				icon:'loading',
-			    title: 'loading...',
-			    duration: 2000
+				icon: 'loading',
+				title: 'loading...',
+				duration: 2000
 			});
-			var tabs = options.tabs == 0 ?'one':'four'
+			var tabs = options.tabs == 0 ? 'one' : 'four'
+			// 获取题目
 			uni.request({
 				url: this.$Url + '/api/exam/study/' + tabs,
 				method: 'GET',
 				data: {
-					
+					'memberId': 1,
+					'subject': 1
 				},
 				header: {
 					'content-type': 'application/x-www-form-urlencoded'
 				},
 				success: (res) => {
-					
 					uni.hideToast();
 					if (res.data.code == 200) {
-						this.listData = res.data.msg
-						this.questionId = res.data.msg[0].questionId
 						console.log(res.data.msg)
+						var arr = []
+						for (let i in res.data) {
+							arr.push(res.data[i]);
+						}
+						console.log(arr);
+						this.listData = arr
+						this.questionId = arr[1].questionId
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: '网络不给力，请稍后重试',
+							duration: 2000
+						});
+					}
+				}
+			});
+
+			// 获取答题卡
+
+			uni.request({
+				url: this.$Url + '/api/exam/study/list',
+				method: 'GET',
+				data: {
+					'memberId': 1,
+					'subject': 1
+				},
+				header: {
+					'content-type': 'application/x-www-form-urlencoded'
+				},
+				success: (res) => {
+					uni.hideToast();
+					if (res.data.code == 200) {
+						console.log()
+						this.data = res.data.msg.item
+						this.total = res.data.msg.item.length
 					} else {
 						uni.showToast({
 							icon: 'none',
@@ -210,7 +261,7 @@
 			},
 			radioChange: function(e) {
 				this.radioSelect = e.target.value
-				if (this.listData[0].answer -1 == e.target.value) {
+				if (this.listData[0].answer - 1 == e.target.value) {
 					uni.showModal({
 						title: '温馨提示',
 						content: '恭喜您答对了',
@@ -306,6 +357,42 @@
 			},
 			CloseAnswer: function(e) {
 				this.open = !this.open
+			},
+			tapSelTopic:function(e){
+				this.open = !this.open
+				console.log(e)
+				this.questionId = e.currentTarget.dataset.id
+				console.log(e.currentTarget.dataset.id)
+				uni.request({
+					url: this.$Url + '/api/exam/study/one',
+					method: 'GET',
+					data: {
+						'memberId':1,
+						'subject': 1
+					},
+					header: {
+						'content-type': 'application/x-www-form-urlencoded'
+					},
+					success: (res) => {
+						uni.hideToast();
+						if (res.data.code == 200) {
+							console.log(res.data.msg)
+							var arr = []
+							for (let i in res.data) {
+								arr.push(res.data[i]);
+							}
+							console.log(arr);
+							this.listData = arr
+							
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: '网络不给力，请稍后重试',
+								duration: 2000
+							});
+						}
+					}
+				});
 			}
 		}
 	}
@@ -444,7 +531,7 @@
 		background-color: #3860ff;
 		color: #ffffff;
 	}
-	
+
 	.main_wrap .radio_list .radio_icon_off {
 		background-color: red;
 		color: #ffffff;

@@ -3,6 +3,7 @@
 		<view class="title">
 			快捷注册
 		</view>
+		<!-- 注册 -->
 		<view class="login_wrap">
 			<form @submit="formSubmit">
 				<view class="form_item">
@@ -21,13 +22,14 @@
 					<view class="input_see" :class="password?'':'see_on'" @click="tapSee"></view>
 				</view>
 				<view class="state">
-					未注册将为您创建账号并视为同意<navigator url="../privacy-statement/privacy-statement" hover-class="none" class="link">网络服务协议</navigator>和<navigator url="../privacy-statement/privacy-statement" hover-class="none"
+					未注册将为您创建账号并视为同意<navigator url="" hover-class="none" class="link">网络服务协议</navigator>和<navigator url="" hover-class="none"
 					 class="link">隐私政策</navigator>
 				</view>
 				<view class="btn_submit">
 					<button type="primary" formType="submit">注册</button>
 				</view>
 			</form>
+			<!-- 登录 -->
 			<navigator url="../login/login" class="btn_link" hover-class="none">
 				<view class="text">
 					账号登录
@@ -111,7 +113,7 @@
 						duration: 1000
 					});
 					uni.request({
-						url: this.$Url+'/api/user/register?mobile='+this.tel,
+						url: this.$Url+'/api/sms?mobile='+this.tel,
 						method: 'GET',
 						data: {},
 						header: {
@@ -164,8 +166,9 @@
 						duration: 1000
 					});
 				}else{
+					// 账号注册
 					uni.request({
-						url: 'https://m.baiche.com.cn/v1/check',
+						url:  this.$Url+'/api/check',
 						method: 'POST',
 						data: {
 							mobile:this.tel,
@@ -177,26 +180,29 @@
 						success: (res) => {
 							if(res.data.status_code == 200){
 								uni.request({
-									url: 'https://m.baiche.com.cn/v1/register',
+									url:  this.$Url + '/api/register',
 									method: 'POST',
 									data: {
-										mobile:this.tel,
+										username:this.tel,
+										phone:this.tel,
 										password:this.pass
 									},
 									header: {
 										'content-type': 'application/x-www-form-urlencoded'
 									},
 									success: (res) => {
-										if(res.data.status_code == 200){
+										if(res.data.code == 200){
 											uni.showToast({
-												title: res.data.msg,
+												title: '恭喜您注册成功！',
 												duration: 1000
 											});
-											uni.navigateBack() 
+											uni.navigateTo({
+											    url: '../login/login'
+											});
 										}else{
 											uni.showToast({
 												icon: 'none',
-												title: res.data.msg,
+												title: '网络不给力，请稍后重试',
 												duration: 1000
 											});
 										}

@@ -18,7 +18,7 @@
 			<!-- 广告位 -->
 			<view class="banner_box">
 				<!-- banner -->
-				<image src="http://iph.href.lu/686x266?text=686*266&fg=666666&bg=cccccc" class="pic" mode=""></image>
+				<image src="http://iph.href.lu/686x266?text=广告位 686*266" class="pic" mode=""></image>
 			</view>
 
 			<!-- 金刚区 -->
@@ -54,42 +54,44 @@
 
 			<!-- 驾校列表 -->
 			<view class="data_list">
-				<view class="item_wrap" v-for="(item,idx) in listData" :key="idx" @click="ToSchoolDetails" :data-id='item.id'>
-					<view class="left_box">
-						<image :src="$Url+item.businessLicense" class="pic" mode=""></image>
+				<block v-for="(item,idx) in listData" :key="idx">
+					<view class="item_wrap">
+						<view class="left_box"  @click="ToSchoolDetails" :data-id='item.id'>
+							<image :src="item.coverImg" class="pic" mode=""></image>
+						</view>
+						<view class="right_box"  @click="ToSchoolDetails" :data-id='item.id'>
+							<view class="name">{{item.schoolName}}</view>
+							<view class="comment_box">
+								<view class="comment_stars">
+									<block v-for="n in 5" :key='n'>
+										<image src="../../../static/images/icon/icon-stars-1.png" mode=""></image>
+									</block>
+								</view>
+								<view class="comment_num">
+									5.0分
+								</view>
+								<view class="comment_hit">班车接送</view>
+							</view>
+							<view class="range_box">
+								<view class="range_num">
+									80km
+								</view>
+								<view class="range_seat">
+									{{item.location}}
+								</view>
+							</view>
+							<view class="cost_box">
+								<view class="cost_num">
+									￥<text>2011</text>
+								</view>
+								<view class="cost_text">
+									C1 普通班
+								</view>
+							</view>
+						</view>
+						<navigator url="" class="consult_btn" hover-class="none">免费咨询</navigator>
 					</view>
-					<view class="right_box">
-						<view class="name">{{item.schoolName}}</view>
-						<view class="comment_box">
-							<view class="comment_stars">
-								<block v-for="n in 5" :key='n'>
-									<image src="../../../static/images/icon/icon-stars-1.png" mode=""></image>
-								</block>
-							</view>
-							<view class="comment_num">
-								5.0分
-							</view>
-							<view class="comment_hit">班车接送</view>
-						</view>
-						<view class="range_box">
-							<view class="range_num">
-								80km
-							</view>
-							<view class="range_seat">
-								{{item.location}}
-							</view>
-						</view>
-						<view class="cost_box">
-							<view class="cost_num">
-								￥<text>2011</text>
-							</view>
-							<view class="cost_text">
-								C1 普通班
-							</view>
-						</view>
-					</view>
-					<navigator url="" class="consult_btn" hover-class="none">免费咨询</navigator>
-				</view>
+				</block>
 			</view>
 		</view>
 	</view>
@@ -166,7 +168,7 @@
 					} else {
 						uni.showToast({
 							icon: 'none',
-							title: '获取位置失败，请检查手机定位权限设置！',
+							title: '获取位置失败，请开启手机设置定位权限！',
 						});
 					}
 
@@ -183,7 +185,12 @@
 				},
 				success: (res) => {
 					if (res.data.code == 200) {
-						this.listData = res.data.msg
+						var arr = []
+						for (let i in res.data.msg) {
+							res.data.msg[i].coverImg = this.$Url + res.data.msg[i].coverImg
+							arr.push(res.data.msg[i]); //属性
+						}
+						this.listData = arr
 					} else {
 						uni.showToast({
 							icon: 'none',

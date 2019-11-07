@@ -129,7 +129,7 @@
 						<block v-for="n in 5" :key='n'>
 							<view class="item">
 								<view class="rank">
-									{{n}}
+									{{n+1}}
 								</view>
 								<image src="http://iph.href.lu/100x100?text=头像" class="head_sculpture" mode=""></image>
 								<view class="coach_info">
@@ -260,7 +260,8 @@
 				listData: [],
 				tabsData: ['班型', '教练', '场地', '评价'],
 				num: '2324',
-				collect: true
+				collect: true,
+				classListData:[]
 			}
 		},
 		onLoad: function(options) {
@@ -268,15 +269,35 @@
 			//驾校信息
 			uni.request({
 				url: this.$Url + '/api/school/details?id=' + options.id,
-				method: 'GET',
+				method: 'get',
 				data: {},
 				header: {
-					'content-type': 'application/x-www-form-urlencoded'
+					 'content-type': 'application/x-www-form-urlencoded'
 				},
 				success: (res) => {
 					if (res.data.code == 200) {
-						console.log(res.data)
+						//console.log(res.data.msg[0].showImg.replace(/\\/gi,''))
 						this.listData = res.data.msg
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: '网络不给力，请稍后重试',
+							duration: 2000
+						});
+					}
+				}
+			});
+			uni.request({
+				url: this.$Url + '/api/school/course?id=' + options.id,
+				method: 'get',
+				data: {},
+				header: {
+					 'content-type': 'application/x-www-form-urlencoded'
+				},
+				success: (res) => {
+					if (res.data.code == 200) {
+						console.log(res.data.msg)
+						//this.classListData = res.data.msg
 					} else {
 						uni.showToast({
 							icon: 'none',
