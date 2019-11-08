@@ -44,6 +44,9 @@
 				password: true
 			}
 		},
+		onLoad: function(option) {
+
+		},
 		methods: {
 			tapUser: function(e) {
 				this.user = e.target.value;
@@ -87,7 +90,7 @@
 					});
 				}
 				uni.request({
-					url: this.$Url+'/api/login', //仅为示例，并非真实接口地址。
+					url: this.$Url + '/api/login', //仅为示例，并非真实接口地址。
 					method: 'POST',
 					data: {
 						phone: this.user,
@@ -104,7 +107,7 @@
 								title: '登录成功',
 								duration: 1000,
 							});
-							setTimeout(function(){
+							setTimeout(function() {
 								uni.switchTab({
 									url: '../tabBar/my/my'
 								})

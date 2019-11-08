@@ -2,7 +2,8 @@
 	<view>
 		<!-- 科目分类 -->
 		<view class="tabs_box">
-			<view class="item" v-for="(item,idx) in tabsData" :key='idx' :class="tabs == idx ?'active':''" :data-idx='idx' @click="tapTabs">{{item}}</view>
+			<view class="item" v-for="(item,idx) in tabsData" :key='idx' :class="tabs == idx ?'active':''" :data-idx='idx'
+			 @click="tapTabs">{{item}}</view>
 		</view>
 		<!-- 广告位 -->
 		<view class="banner_box"></view>
@@ -28,24 +29,24 @@
 					</view>
 				</navigator>
 			</view>
-			
+
 			<view class="mid_box">
-				<navigator :url="'../../examination/Random-practice/Random-practice?tabs='+tabs" class="link_box" hover-class="none">
+				<view class="link_box" @click="RandomPractice" :data-idx="tabs==0?'1':'4'">
 					<view class="info">
 						顺序练习
 					</view>
 					<view class="text">
 						1/1000
 					</view>
-				</navigator>
-				<navigator :url="'../../examination/Mock-exam/Mock-exam?tabs='+tabs" class="link_box" hover-class="none">
+				</view>
+				<view class="link_box" @click="MockExam" :data-idx="tabs==0?'one':'four'">
 					<view class="info">
 						模拟考试
 					</view>
 					<view class="text">
 						100%仿真
 					</view>
-				</navigator>
+				</view>
 			</view>
 			<view class="side_box">
 				<navigator url="" class="link_box" hover-class="none">
@@ -104,12 +105,34 @@
 		data() {
 			return {
 				tabs: 0,
-				tabsData:['科一','科四']
+				tabsData: ['科一', '科四']
 			}
 		},
 		methods: {
 			tapTabs: function(e) {
 				this.tabs = e.currentTarget.dataset.idx
+			},
+			RandomPractice: function(e) {
+				if (getApp().globalData.logon_status == 1) {
+					uni.navigateTo({
+						url: '../../examination/Random-practice/Random-practice?subject='+e.currentTarget.dataset.idx
+					});
+				} else {
+					uni.navigateTo({
+						url: '../../login/login'
+					});
+				}
+			},
+			MockExam: function(e) {
+				if (getApp().globalData.logon_status == 1) {
+					uni.navigateTo({
+						url: '../../examination/Mock-exam/Mock-exam?subject='+e.currentTarget.dataset.idx
+					});
+				} else {
+					uni.navigateTo({
+						url: '../../login/login'
+					});
+				}
 			}
 		}
 	}

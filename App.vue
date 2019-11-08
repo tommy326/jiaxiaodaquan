@@ -6,6 +6,16 @@
 			// #ifdef APP-PLUS
 			// 锁定屏幕方向
 			plus.screen.lockOrientation('portrait-primary'); //锁定
+			// 获取imei
+			plus.device.getInfo({
+				success: function(e) {
+					console.log('getDeviceInfo success: ' + JSON.stringify(e));
+				},
+				fail: function(e) {
+					console.log('getDeviceInfo failed: ' + JSON.stringify(e));
+				},
+				
+			});
 			// 检测升级
 			// uni.request({
 			// 	url: 'https://uniapp.dcloud.io/update', //检查更新的服务器地址
@@ -33,8 +43,8 @@
 			// })
 			// #endif
 			// 检测登录状态
-			var logon_status = that.globalData.logon_status || 0
-			that.globalData.logon_status = logon_status
+			var logon_status = that.$options.globalData.logon_status || 0
+			that.$options.globalData.logon_status = logon_status
 		},
 		onShow: function() {
 			console.log('App Show')
@@ -42,7 +52,11 @@
 		onHide: function() {
 			console.log('App Hide')
 		},
-		globalData: {}
+		globalData: {
+			logon_status:'',
+			token:'',
+			userData:''
+		}
 	}
 </script>
 

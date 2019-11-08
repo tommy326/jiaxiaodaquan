@@ -142,7 +142,7 @@
 	-webkit-align-items: center;
 	    -ms-flex-align: center;
 	        align-items: center;
-		border-radius: 10rpx;
+	border-radius: 10rpx;
 }
 .mid_wrap .list .on {
 	background: rgb(243, 246, 255);

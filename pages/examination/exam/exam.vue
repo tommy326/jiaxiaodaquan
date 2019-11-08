@@ -199,7 +199,7 @@
 			this.openCountDown()
 			// 获取题目
 			uni.request({
-				url: this.$Url + '/api/exam/item/' + options.tabs,
+				url: this.$Url + '/api/exam/item/' + options.subject,
 				method: 'GET',
 				data: {
 

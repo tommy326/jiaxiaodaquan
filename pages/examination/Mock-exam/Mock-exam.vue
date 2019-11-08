@@ -1,8 +1,8 @@
 <template>
 	<view class="main_wrap">
-		<image src="http://iph.href.lu/140x140" class="user_photo" mode=""></image>
+		<image :src="userAvatar" class="user_photo" mode=""></image>
 		<view class="user_name">
-			车轮学员5696
+			{{userName}}
 		</view>
 		<view class="hits_text">
 			模考5次95分及以上即可参加考试
@@ -52,7 +52,7 @@
 		<view class="Warm_prompt">
 			温馨提示：模拟考试不能修改答案，每错1题扣1分，错题累计超过10题，考试不通过，系统自动提醒交卷。
 		</view>
-		<navigator :url="'../exam/exam?tabs='+tabs" class="btn" hover-class="none">开始考试</navigator>
+		<navigator :url="'../exam/exam?subject='+subject" class="btn" hover-class="none">开始考试</navigator>
 	</view>
 </template>
 
@@ -60,11 +60,15 @@
 	export default {
 		data() {
 			return {
-				tabs: 'one'
+				subject: '',
+				userAvatar:'http://iph.href.lu/140x140',
+				userName:'用户名'
 			}
 		},
 		onLoad(options) {
-			this.tabs = options.tabs == 0 ?'one':'four'
+			this.subject = options.subject
+			this.userAvatar = getApp().globalData.userData.avatar == null?'http://iph.href.lu/120x120?text=头像':getApp().globalData.userData.avatar 
+			this.userName = getApp().globalData.userData.username
 		},
 		onNavigationBarButtonTap: function(e) {
 			console.log(e)
