@@ -21,6 +21,7 @@
     "Maps": {
       "coordType": "gcj02"
     },
+    "Payment": {},
     "UniNView": {
       "description": "UniNView原生渲染"
     }
@@ -84,25 +85,25 @@
       "splashscreen": {
         "ios": {
           "iphone": {
-            "portrait-896h@3x": "C:/Users/Admin/Desktop/images/微信图片_20191105144242.png",
-            "landscape-896h@3x": "C:/Users/Admin/Desktop/images/微信图片_20191105144242.png",
-            "portrait-896h@2x": "C:/Users/Admin/Desktop/images/微信图片_20191105144242.png",
-            "landscape-896h@2x": "C:/Users/Admin/Desktop/images/微信图片_20191105144242.png",
-            "iphonex": "C:/Users/Admin/Desktop/images/微信图片_20191105144242.png",
-            "iphonexl": "C:/Users/Admin/Desktop/images/微信图片_20191105144242.png",
-            "retina55": "C:/Users/Admin/Desktop/images/微信图片_20191105144242.png",
-            "retina55l": "C:/Users/Admin/Desktop/images/微信图片_20191105144242.png",
-            "retina47": "C:/Users/Admin/Desktop/images/微信图片_20191105144242.png",
-            "retina47l": "C:/Users/Admin/Desktop/images/微信图片_20191105144242.png",
-            "retina40": "C:/Users/Admin/Desktop/images/微信图片_20191105144242.png",
-            "retina40l": "C:/Users/Admin/Desktop/images/微信图片_20191105144242.png",
-            "retina35": "C:/Users/Admin/Desktop/images/微信图片_20191105144242.png"
+            "portrait-896h@3x": "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+            "landscape-896h@3x": "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+            "portrait-896h@2x": "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+            "landscape-896h@2x": "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+            "iphonex": "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+            "iphonexl": "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+            "retina55": "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+            "retina55l": "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+            "retina47": "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+            "retina47l": "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+            "retina40": "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+            "retina40l": "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+            "retina35": "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png"
           }
         },
         "android": {
-          "hdpi": "C:/Users/Admin/Desktop/images/微信图片_20191105144242.png",
-          "xhdpi": "C:/Users/Admin/Desktop/images/微信图片_20191105144242.png",
-          "xxhdpi": "C:/Users/Admin/Desktop/images/微信图片_20191105144242.png"
+          "hdpi": "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+          "xhdpi": "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+          "xxhdpi": "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png"
         }
       },
       "google": {
@@ -141,6 +142,7 @@
             "appkey_android": "1094c5aca8e935750ade7d415a2f725c"
           }
         },
+        "payment": {},
         "audio": {
           "mp3": {
             "description": "Android平台录音支持MP3格式文件"
@@ -156,10 +158,13 @@
       }
     },
     "uni-app": {
-      "compilerVersion": "2.3.7",
+      "compilerVersion": "2.4.1",
       "control": "v8",
-      "nvueCompiler": "weex",
-      "renderer": "auto"
+      "nvueCompiler": "uni-app",
+      "renderer": "auto",
+      "nvue": {
+        "flex-direction": "column"
+      }
     },
     "tabBar": {
       "color": "#929292",

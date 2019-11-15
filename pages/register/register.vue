@@ -30,7 +30,7 @@
 				</view>
 			</form>
 			<!-- 登录 -->
-			<navigator url="../login/login" class="btn_link" hover-class="none">
+			<navigator url="../login/login?form=0" class="btn_link" hover-class="none">
 				<view class="text">
 					账号登录
 				</view>

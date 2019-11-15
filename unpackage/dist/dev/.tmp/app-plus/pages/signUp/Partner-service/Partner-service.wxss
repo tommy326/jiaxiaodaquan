@@ -177,7 +177,7 @@ uni-page-body {
 	margin-left: 15rpx;
 	line-height: 1;
 }
-.comment_box .price{
+.comment_box .price {
 	-webkit-box-flex: 0;
 	-webkit-flex: 0 0 auto;
 	    -ms-flex: 0 0 auto;
@@ -203,7 +203,7 @@ uni-page-body {
 	width: 100%;
 	overflow: hidden;
 }
-.cost_box .school{
+.cost_box .school {
 	-webkit-box-flex: 1;
 	-webkit-flex: 1 1 auto;
 	    -ms-flex: 1 1 auto;
@@ -213,12 +213,12 @@ uni-page-body {
 	line-height: 1;
 	min-width: 120rpx;
 	overflow: hidden;
-	-o-text-overflow:ellipsis;
-	   text-overflow:ellipsis;
+	-o-text-overflow: ellipsis;
+	   text-overflow: ellipsis;
 	white-space: nowrap;
 	margin-right: 20rpx;
 }
-.cost_box .cost_text{
+.cost_box .cost_text {
 	-webkit-box-flex: 0;
 	-webkit-flex: 0 0 auto;
 	    -ms-flex: 0 0 auto;

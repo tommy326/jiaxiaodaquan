@@ -79,22 +79,23 @@
 			console.log('onLoad');
 		},
 		onShow: function() {
-			if (getApp().globalData.logon_status == 0) {
+			if (uni.getStorageSync('logon_status') == 0) {
 				this.userName = '请登录'
 				this.userAvatar = 'http://iph.href.lu/120x120?text=头像'
-			} else if (getApp().globalData.logon_status == 1) {
+			} else if (uni.getStorageSync('logon_status') == 1) {
+				console.log()
 				uni.request({
 					url: this.$Url + '/api/v1/get/user', //仅为示例，并非真实接口地址。
 					method: 'POST',
 					data: {
-						token: getApp().globalData.token,
+						token: uni.getStorageSync('token')
 					},
 					header: {
 						'content-type': 'application/x-www-form-urlencoded'
 					},
 					success: (res) => {
 						if (res.data.code == 200) {
-							getApp().globalData.userData = res.data.data
+							uni.setStorageSync('userData', res.data.data);
 							this.userName = res.data.data.username
 							this.userAvatar = res.data.data.avatar == null?'http://iph.href.lu/120x120?text=头像':res.data.data.avatar
 						} else {
@@ -106,17 +107,18 @@
 						}
 					}
 				});
+				
 			}
 		},
 		methods: {
 			tapLogin: function(e) {
 				uni.navigateTo({
-					url: '../../login/login'
+					url: '../../login/login?form=1'
 				});
 			},
 			tapNav: function(e) {
 				let idx = e.currentTarget.dataset.idx
-				if (getApp().globalData.logon_status == 1) {
+				if (uni.getStorageSync('logon_status') == 1) {
 					if (idx == 0) {
 						uni.navigateTo({
 							url: '../../my/My-mistake/My-mistake'
@@ -136,24 +138,24 @@
 					}
 				} else {
 					uni.navigateTo({
-						url: '../../login/login'
+						url: '../../login/login?form=1'
 					});
 				}
 
 			},
 			tapJump: function(e) {
 				let idx = e.currentTarget.dataset.idx
-				if (getApp().globalData.logon_status == 1) {
+				if (uni.getStorageSync('logon_status') == 1) {
 					if (idx == 5) {
-						getApp().globalData.userData = ''
-						getApp().globalData.logon_status = 0
-						getApp().globalData.token = 0
+						uni.setStorageSync('userData', '');
+						uni.setStorageSync('logon_status', 0);
+						uni.setStorageSync('token', 0);
 						this.userName = '请登录'
 						this.userAvatar = 'http://iph.href.lu/120x120?text=头像'
 					}
 				} else {
 					uni.navigateTo({
-						url: '../../login/login'
+						url: '../../login/login?form=1'
 					});
 				}
 

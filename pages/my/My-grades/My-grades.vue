@@ -52,7 +52,7 @@
 				url: this.$Url + '/api/exam/report',
 				method: 'GET',
 				data: {
-					memberId: getApp().globalData.userData.id
+					memberId: uni.getStorageSync('userData').id
 				},
 				header: {
 					'content-type': 'application/x-www-form-urlencoded'

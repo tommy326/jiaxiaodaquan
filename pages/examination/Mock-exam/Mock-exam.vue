@@ -67,8 +67,8 @@
 		},
 		onLoad(options) {
 			this.subject = options.subject
-			this.userAvatar = getApp().globalData.userData.avatar == null?'http://iph.href.lu/120x120?text=头像':getApp().globalData.userData.avatar 
-			this.userName = getApp().globalData.userData.username
+			this.userAvatar = uni.getStorageSync('userData').avatar == null?'http://iph.href.lu/120x120?text=头像':uni.getStorageSync('userData').avatar 
+			this.userName = uni.getStorageSync('userData').username
 		},
 		onNavigationBarButtonTap: function(e) {
 			console.log(e)

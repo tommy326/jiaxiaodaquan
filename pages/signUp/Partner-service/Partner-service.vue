@@ -60,7 +60,7 @@
 		},
 		onLoad() {
 			uni.request({
-				url: this.$Url + '/api/exam/coach/list',
+				url: this.$Url + '/api/school/coach/list',
 				method: 'GET',
 				data: {
 					accompany: '2'

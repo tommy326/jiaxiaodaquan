@@ -542,7 +542,7 @@
 }
 .area_list .item .area_sort .sort_text {
 	display: inline-block;
-	width: 64rpx;
+	width: 100rpx;
 	height: 32rpx;
 	background-color: #fff3e5;
 	border-radius: 4px;

@@ -6,7 +6,7 @@
 				<block v-for="(item,idx) in listData" :key='idx'>
 					<swiper-item class="swiper_item">
 						<scroll-view scroll-y="true" class="scroll_box">
-							<block v-if="item.item3 != ''">
+							<block v-if="item.item3 != '' && item.answer < 9">
 								<view class="sub_title">
 									<text class="title_type">单选</text>
 									<text class="title_text">{{item.question}}</text>
@@ -64,7 +64,7 @@
 									</label>
 								</radio-group>
 							</block>
-							<block v-if="item.subject == 2">
+							<block v-if="item.item3 != '' && item.answer > 9">
 								<view class="sub_title">
 									<text class="title_type">多选</text>
 									<text class="title_text">{{item.question}}</text>

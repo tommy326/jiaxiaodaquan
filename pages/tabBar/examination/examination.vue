@@ -113,24 +113,24 @@
 				this.tabs = e.currentTarget.dataset.idx
 			},
 			RandomPractice: function(e) {
-				if (getApp().globalData.logon_status == 1) {
+				if (uni.getStorageSync('logon_status') == 1) {
 					uni.navigateTo({
 						url: '../../examination/Random-practice/Random-practice?subject='+e.currentTarget.dataset.idx
 					});
 				} else {
 					uni.navigateTo({
-						url: '../../login/login'
+						url: '../../login/login?form=2'
 					});
 				}
 			},
 			MockExam: function(e) {
-				if (getApp().globalData.logon_status == 1) {
+				if (uni.getStorageSync('logon_status') == 1) {
 					uni.navigateTo({
 						url: '../../examination/Mock-exam/Mock-exam?subject='+e.currentTarget.dataset.idx
 					});
 				} else {
 					uni.navigateTo({
-						url: '../../login/login'
+						url: '../../login/login?form=2'
 					});
 				}
 			}
