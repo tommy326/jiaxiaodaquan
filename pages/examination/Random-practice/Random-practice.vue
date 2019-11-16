@@ -1,13 +1,17 @@
 <template>
 	<view>
+		<!-- 题目内容 -->
 		<view class="main_wrap">
 			<scroll-view scroll-y="true" class="scroll_box">
 				<block v-for="(item,idx) in listData" :key='idx'>
-					<block v-if="item.item3 != ''">
+					<block v-if="item.item3 != '' && item.answer < 9">
 						<view class="sub_title">
 							<text class="title_type">单选</text>
 							<text class="title_text">{{item.question}}</text>
 						</view>
+						<block v-if="item.url != ''">
+							<image :src="item.url" lazy-load='true' @load='imageLoad' :class="imageShow?'show':'hide'" :style="{ width: width + 'rpx', height: height + 'rpx'}" mode=""></image>
+						</block>
 						<radio-group @change="radioChange">
 							<label class="radio_list">
 								<radio value="0" style="display: none;" />
@@ -44,6 +48,9 @@
 							<text class="title_type">判断</text>
 							<text class="title_text">{{item.question}}</text>
 						</view>
+						<block v-if="item.url != ''">
+							<image :src="item.url" lazy-load='true' @load='imageLoad' :class="imageShow?'show':'hide'" :style="{ width: width + 'rpx', height: height + 'rpx' }" mode=""></image>
+						</block>
 						<radio-group @change="judgeChange">
 							<label class="radio_list">
 								<radio value="0" style="display: none;" />
@@ -61,11 +68,15 @@
 							</label>
 						</radio-group>
 					</block>
-					<block v-if="item.subject == 2">
+					<block v-if="item.item3 != '' && item.answer > 9">
 						<view class="sub_title">
 							<text class="title_type">多选</text>
 							<text class="title_text">{{item.question}}</text>
 						</view>
+						<block v-if="item.url != ''">
+							<image :src="item.url" lazy-load='true' @load='imageLoad' class="pic" :style="{ width: width + 'rpx', height: height + 'rpx' }"
+							 mode=""></image>
+						</block>
 						<checkbox-group @change="checkboxChange">
 							<label class="radio_list">
 								<checkbox value="0" checked="" style="display: none;" />
@@ -97,10 +108,10 @@
 							</label>
 						</checkbox-group>
 					</block>
-
 				</block>
 			</scroll-view>
 		</view>
+		<!-- 底部操作 -->
 		<view class="footer_box">
 			<view class="item prev" @click="tapPrev">
 				<text class="text">上一题</text>
@@ -119,6 +130,7 @@
 			</view>
 		</view>
 
+		<!-- 答题卡 -->
 		<view class="baffle_wrap" :class="open?'baffle_wrap_open':''">
 			<view class="Close_Answer" @click="CloseAnswer"></view>
 			<view class="Answer_card" :class="open?'Answer_card_open':''">
@@ -130,7 +142,7 @@
 						<text class="text">1000</text>
 					</view>
 					<view class="item card" @click="CloseAnswer">
-						<text class="text">{{questionId}}/1344</text>
+						<text class="text">{{questionId}}/{{total}}</text>
 					</view>
 					<view class="item collect_off" :class="collect?'collect_on':''" @click="tapCollect">
 						<text class="text">{{collect?'已收藏':'收藏'}}</text>
@@ -141,10 +153,23 @@
 				</view>
 				<scroll-view class="opt_wrap" scroll-y>
 					<view class="opt_wrap_list">
-						<block v-for="n in 100" :key='n'>
-							<view class="item">
-								{{n+1}}
-							</view>
+						<block v-for="(items,index) in data" :key='index'>
+							<block v-if="items.sign == 'r'">
+								<view class="item on" @click="tapSelTopic" :data-questionId='items.questionId'>
+									{{items.questionId}}
+								</view>
+							</block>
+							<block v-else-if="items.sign == 'w'">
+								<view class="item off" @click="tapSelTopic" :data-questionId='items.questionId'>
+									{{items.questionId}}
+								</view>
+							</block>
+							<block v-else>
+								<view class="item" @click="tapSelTopic" :data-questionId='items.questionId'>
+									{{items.questionId}}
+								</view>
+							</block>
+
 						</block>
 					</view>
 				</scroll-view>
@@ -159,72 +184,132 @@
 		data() {
 			return {
 				collect: false,
-				type: 0,
-				current: 0,
+				subject: '',
 				listData: [],
 				radioSelect: '5',
 				judgeSelect: '2',
 				open: false,
-				questionId:0
+				questionId: 0,
+				total: '',
+				data: [],
+				imageShow: false,
+				width: '',
+				height: ''
 			}
 		},
 		onLoad(options) {
-			console.log(options.tabs)
-			// 考题
-			uni.showToast({
-				icon:'loading',
-			    title: 'loading...',
-			    duration: 2000
-			});
-			var tabs = options.tabs == 0 ?'one':'four'
-			uni.request({
-				url: this.$Url + '/api/exam/study/' + tabs,
-				method: 'GET',
-				data: {
-					
-				},
-				header: {
-					'content-type': 'application/x-www-form-urlencoded'
-				},
-				success: (res) => {
-					
-					uni.hideToast();
-					if (res.data.code == 200) {
-						this.listData = res.data.msg
-						this.questionId = res.data.msg[0].questionId
-						console.log(res.data.msg)
-					} else {
-						uni.showToast({
-							icon: 'none',
-							title: '网络不给力，请稍后重试',
-							duration: 2000
-						});
-					}
-				}
-			});
-
+			this.subject = options.subject
+			this.examData()
 		},
 		methods: {
+			examData: function(e) {
+				// 获取题目
+				uni.request({
+					url: this.$Url + '/api/exam/study/list',
+					method: 'GET',
+					data: {
+						'memberId': uni.getStorageSync('userData').id,
+						'subject': this.subject,
+						'model':uni.getStorageSync('cars_mold')
+					},
+					header: {
+						'content-type': 'application/x-www-form-urlencoded'
+					},
+					success: (res) => {
+						// 考题
+						uni.showToast({
+							icon: 'loading',
+							title: '题目加载中...'
+						});
+						uni.hideToast()
+						if (res.data.code == 200) {
+							console.log(res.data.msg)
+							var arr = []
+							for (let i in res.data.msg) {
+								arr.push(res.data.msg[i]);
+							}
+							console.log(arr);
+							this.listData = arr
+							this.questionId = arr[0].questionId
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: '网络不给力，请稍后重试',
+								duration: 2000
+							});
+						}
+					}
+				});
+				// 获取答题卡
+				uni.request({
+					url: this.$Url + '/api/exam/study/card',
+					method: 'GET',
+					data: {
+						'memberId': uni.getStorageSync('userData').id,
+						'subject': this.subject,
+						'model':uni.getStorageSync('cars_mold')
+					},
+					header: {
+						'content-type': 'application/x-www-form-urlencoded'
+					},
+					success: (res) => {
+						if (res.data.code == 200) {
+							console.log()
+							this.data = res.data.msg.item
+							this.total = res.data.msg.item.length
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: '网络不给力，请稍后重试',
+								duration: 2000
+							});
+						}
+					}
+				});
+			},
+			DoTitle: function(sign, choose) {
+				uni.request({
+					url: this.$Url + '/api/exam/item/log',
+					method: 'GET',
+					data: {
+						memberId: uni.getStorageSync('userData').id,
+						subject: this.subject,
+						questionId: this.questionId,
+						sign: sign,
+						answer: this.listData[0].answer,
+						choose: choose
+					},
+					header: {
+						'content-type': 'application/x-www-form-urlencoded'
+					},
+					success: (res) => {}
+				});
+			},
 			tapCollect: function(e) {
 				this.collect = !this.collect
+				
 			},
 			radioChange: function(e) {
 				this.radioSelect = e.target.value
-				if (this.listData[0].answer -1 == e.target.value) {
+				if (this.listData[0].answer - 1 == e.target.value) {
+					this.DoTitle('r', this.listData[0].answer)
 					uni.showModal({
 						title: '温馨提示',
 						content: '恭喜您答对了',
 						cancelText: '解析',
 						confirmText: '下一题',
-						success: function(res) {
+						success: (res) => {
 							if (res.confirm) {
 								console.log('用户点击确定');
+								this.radioSelect = 5
+								this.examData()
 							} else if (res.cancel) {
 								console.log('用户点击取消');
 							}
 						}
 					});
 				} else {
+					this.DoTitle('w', parseInt(e.target.value) + 1)
 					uni.showModal({
 						title: '温馨提示',
 						content: '很抱歉您答错了',
@@ -233,6 +318,8 @@
 						success: function(res) {
 							if (res.confirm) {
 								console.log('用户点击确定');
+								this.radioSelect = 5
+								this.examData()
 							} else if (res.cancel) {
 								console.log('用户点击取消');
 							}
@@ -257,21 +344,26 @@
 			},
 			judgeChange: function(e) {
 				this.judgeSelect = e.target.value
-				if (this.listData[0].answer != e.target.value) {
+				console.log(this.listData[0].answer)
+				if (this.listData[0].answer - 1 == e.target.value) {
+					this.DoTitle('r', this.listData[0].answer)
 					uni.showModal({
 						title: '温馨提示',
 						content: '恭喜您答对了',
 						cancelText: '解析',
 						confirmText: '下一题',
-						success: function(res) {
+						success: (res) => {
 							if (res.confirm) {
 								console.log('用户点击确定');
+								this.judgeSelect = 2
+								this.examData()
 							} else if (res.cancel) {
 								console.log('用户点击取消');
 							}
 						}
 					});
 				} else {
+					this.DoTitle('w', parseInt(e.target.value) + 1)
 					uni.showModal({
 						title: '温馨提示',
 						content: '很抱歉您答错了',
@@ -280,6 +372,8 @@
 						success: function(res) {
 							if (res.confirm) {
 								console.log('用户点击确定');
+								this.judgeSelect = 2
+								this.examData()
 							} else if (res.cancel) {
 								console.log('用户点击取消');
 							}
@@ -288,24 +382,179 @@
 				}
 			},
 			tapPrev: function(e) {
-				if (this.type == 0) {
-					this.type = 2
-				} else {
-					this.type--
-				}
+				uni.request({
+					url: this.$Url + '/api/exam/study/change',
+					method: 'GET',
+					data: {
+						'memberId': uni.getStorageSync('userData').id,
+						'questionId':this.questionId,
+						'subject': this.subject,
+						'type': 'back'
+					},
+					header: {
+						'content-type': 'application/x-www-form-urlencoded'
+					},
+					success: (res) => {
+						// 考题
+						uni.showToast({
+							icon: 'loading',
+							title: '题目加载中...'
+						});
+						uni.hideToast()
+						if (res.data.code == 200) {
+							console.log(res.data.msg)
+							var arr = []
+							for (let i in res.data.msg) {
+								arr.push(res.data.msg[i]);
+							}
+							console.log(arr);
+							this.listData = arr
+							this.questionId = arr[0].questionId
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: '网络不给力，请稍后重试',
+								duration: 2000
+							});
+						}
+					}
+				});
+				// 获取答题卡
+				uni.request({
+					url: this.$Url + '/api/exam/study/card',
+					method: 'GET',
+					data: {
+						'memberId': uni.getStorageSync('userData').id,
+						'subject': this.subject
+					},
+					header: {
+						'content-type': 'application/x-www-form-urlencoded'
+					},
+					success: (res) => {
+						if (res.data.code == 200) {
+							console.log()
+							this.data = res.data.msg.item
+							this.total = res.data.msg.item.length
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: '网络不给力，请稍后重试',
+								duration: 2000
+							});
+						}
+					}
+				});
 			},
 			tapNext: function(e) {
-				if (this.type == 2) {
-					this.type = 0
-				} else {
-					this.type++
-				}
+				uni.request({
+					url: this.$Url + '/api/exam/study/change',
+					method: 'GET',
+					data: {
+						'memberId': uni.getStorageSync('userData').id,
+						'questionId':this.questionId,
+						'subject': this.subject,
+						'type': 'next'
+					},
+					header: {
+						'content-type': 'application/x-www-form-urlencoded'
+					},
+					success: (res) => {
+						// 考题
+						uni.showToast({
+							icon: 'loading',
+							title: '题目加载中...'
+						});
+						uni.hideToast()
+						if (res.data.code == 200) {
+							var arr = []
+							for (let i in res.data.msg) {
+								arr.push(res.data.msg[i]);
+							}
+							this.listData = arr
+							this.questionId = arr[0].questionId
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: '网络不给力，请稍后重试',
+								duration: 2000
+							});
+						}
+					}
+				});
+				// 获取答题卡
+				uni.request({
+					url: this.$Url + '/api/exam/study/card',
+					method: 'GET',
+					data: {
+						'memberId': uni.getStorageSync('userData').id,
+						'subject': this.subject
+					},
+					header: {
+						'content-type': 'application/x-www-form-urlencoded'
+					},
+					success: (res) => {
+						if (res.data.code == 200) {
+							console.log()
+							this.data = res.data.msg.item
+							this.total = res.data.msg.item.length
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: '网络不给力，请稍后重试',
+								duration: 2000
+							});
+						}
+					}
+				});
 			},
 			tapAnswer: function(e) {
 				this.open = !this.open
 			},
 			CloseAnswer: function(e) {
 				this.open = !this.open
+			},
+			tapSelTopic: function(e) {
+				this.open = !this.open
+				console.log(e)
+				this.questionId = e.currentTarget.dataset.questionid
+				console.log(e.currentTarget.dataset.questionid)
+				uni.request({
+					url: this.$Url + '/api/exam/study/choose',
+					method: 'GET',
+					data: {
+						'memberId': uni.getStorageSync('userData').id,
+						'subject': this.subject,
+						'questionId':this.questionId
+					},
+					header: {
+						'content-type': 'application/x-www-form-urlencoded'
+					},
+					success: (res) => {
+						uni.hideToast();
+						if (res.data.code == 200) {
+							console.log(res.data.msg)
+							var arr = []
+							for (let i in res.data.msg) {
+								arr.push(res.data.msg[i]);
+							}
+							console.log(arr);
+							this.listData = arr
+							this.questionId = arr[0].questionId
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: '网络不给力，请稍后重试',
+								duration: 2000
+							});
+						}
+					}
+				});
+			},
+			imageLoad: function(e) {
+				console.log('image发生load事件，携带值为' + e.detail.height + e.detail.width)
+				this.height = e.detail.height
+				this.width = e.detail.width
+				this.imageShow = true
 			}
 		}
 	}
@@ -328,6 +577,10 @@
 		display: block;
 		width: 100%;
 		height: 100%;
+	}
+
+	.scroll_box .pic {
+		margin: 30rpx auto;
 	}
 
 	.footer_box {
@@ -423,7 +676,6 @@
 		box-sizing: border-box;
 		color: #333333;
 		font-size: 34rpx;
-		align-items: center;
 		justify-content: center;
 	}
 
@@ -444,7 +696,7 @@
 		background-color: #3860ff;
 		color: #ffffff;
 	}
-	
+
 	.main_wrap .radio_list .radio_icon_off {
 		background-color: red;
 		color: #ffffff;
@@ -453,6 +705,7 @@
 
 	.main_wrap .radio_list .radio_text {
 		flex: 1 1 auto;
+		line-height: 60rpx;
 	}
 
 	.baffle_wrap {
@@ -616,5 +869,15 @@
 		background: rgba(255, 238, 237);
 		color: #ff564e;
 		border-color: rgba(255, 238, 237);
+	}
+
+	.show {
+		display: block;
+		margin: 30rpx auto;
+	}
+
+	.hide {
+		display: none;
+		margin: 30rpx auto;
 	}
 </style>

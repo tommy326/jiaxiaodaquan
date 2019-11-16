@@ -37,12 +37,16 @@
 	export default {
 		data() {
 			return {
+				form:'',
 				user: '',
 				userIcon: false,
 				pass: '',
 				passIcon: false,
 				password: true
 			}
+		},
+		onLoad: function(option) {
+			this.form = option.form
 		},
 		methods: {
 			tapUser: function(e) {
@@ -87,34 +91,59 @@
 					});
 				}
 				uni.request({
-					url: this.$Url+'/api/user/register', //仅为示例，并非真实接口地址。
+					url: this.$Url + '/api/login', //仅为示例，并非真实接口地址。
 					method: 'POST',
 					data: {
-						mobile: this.user,
+						phone: this.user,
 						password: this.pass
 					},
 					header: {
 						'content-type': 'application/x-www-form-urlencoded'
 					},
 					success: (res) => {
-						if (res.data.status_code == 200) {
-							uni.setStorageSync('userinfo', res.data.data.user_info)
-							uni.setStorageSync('token', res.data.data.access_token)
-							uni.setStorageSync('login_time', Math.round(new Date() / 1000) + 604800)
+						if (res.data.code == 200) {
+							uni.setStorageSync('logon_status', 1);
+							uni.setStorageSync('token', res.data.token);
+							uni.request({
+								url: this.$Url + '/api/v1/get/user', //仅为示例，并非真实接口地址。
+								method: 'POST',
+								data: {
+									token: res.data.token,
+								},
+								header: {
+									'content-type': 'application/x-www-form-urlencoded'
+								},
+								success: (res) => {
+									if (res.data.code == 200) {
+										uni.setStorageSync('userData', res.data.data);
+										uni.setStorageSync('cars_mold', res.data.data.style);
+									} else {
+										uni.showToast({
+											icon: 'none',
+											title: '网络不给力，请稍后重试',
+											duration: 1000
+										});
+									}
+								}
+							});
 							uni.showToast({
 								title: '登录成功',
-								duration: 1000,
+								duration: 500,
 							});
-							setTimeout(function(){
+							if(this.form == 0  || this.form == 1){
 								uni.switchTab({
-									url: '../my/my'
+									url: '../tabBar/my/my'
 								})
-							}, 1000)
-
+							}else if(this.form == 2){
+								console.log(2)
+								uni.switchTab({
+									url: '../tabBar/examination/examination'
+								})
+							}
 						} else {
 							uni.showToast({
 								icon: 'none',
-								title: res.data.msg,
+								title: '网络不给力，请稍后重试',
 								duration: 1000
 							});
 						}

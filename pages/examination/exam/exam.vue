@@ -1,11 +1,12 @@
 <template>
 	<view>
+		<!-- 做题 -->
 		<view class="main_wrap">
 			<swiper class="swiper_wrap" :current='current' @change='change'>
 				<block v-for="(item,idx) in listData" :key='idx'>
 					<swiper-item class="swiper_item">
 						<scroll-view scroll-y="true" class="scroll_box">
-							<block v-if="item.item3 != ''">
+							<block v-if="item.item3 != '' && item.answer < 9">
 								<view class="sub_title">
 									<text class="title_type">单选</text>
 									<text class="title_text">{{item.question}}</text>
@@ -63,7 +64,7 @@
 									</label>
 								</radio-group>
 							</block>
-							<block v-if="item.subject == 2">
+							<block v-if="item.item3 != '' && item.answer > 9">
 								<view class="sub_title">
 									<text class="title_type">多选</text>
 									<text class="title_text">{{item.question}}</text>
@@ -104,6 +105,7 @@
 				</block>
 			</swiper>
 		</view>
+		<!-- 底部操作 -->
 		<view class="footer_box">
 			<view class="item scantron" @click="tapAnswer">
 				<text class="text">{{current+1}}/100</text>
@@ -119,6 +121,7 @@
 			</view>
 		</view>
 
+		<!-- 答题卡 -->
 		<view class="baffle_wrap" :class="open?'baffle_wrap_open':''">
 			<view class="Close_Answer" @click="CloseAnswer"></view>
 			<view class="Answer_card" :class="open?'Answer_card_open':''">
@@ -142,8 +145,13 @@
 				<scroll-view class="opt_wrap" scroll-y>
 					<view class="opt_wrap_list">
 						<block v-for="n in 100" :key='n'>
-							<view class="item" :class="n==10?'on':''" @click="tapQuestionId" :data-idx='n'>
+							<view class="item" @click="tapQuestionId" :data-idx='n'>
+								<!-- #ifdef H5 -->
 								{{n}}
+								<!-- #endif -->
+								<!-- #ifdef APP-PLUS -->
+								{{n+1}}
+								<!-- #endif -->
 							</view>
 						</block>
 					</view>
@@ -189,8 +197,9 @@
 
 			this.judgeData = ['正确', '错误']
 			this.openCountDown()
+			// 获取题目
 			uni.request({
-				url: this.$Url + '/api/exam/item/' + options.tabs,
+				url: this.$Url + '/api/exam/item/' + options.subject,
 				method: 'GET',
 				data: {
 
@@ -249,10 +258,12 @@
 			change: function(e) {
 				this.current = e.detail.current
 				this.type = e.detail.current
+				this.radioSelect = '5'
+				this.judgeSelect = '2'
 			},
 			radioChange: function(e) {
 				this.radioSelect = e.target.value
-				if (this.listData[0].answer -1 == e.target.value) {
+				if (this.listData[0].answer - 1 == e.target.value) {
 					uni.showModal({
 						title: '温馨提示',
 						content: '恭喜您答对了',
@@ -335,8 +346,8 @@
 			CloseAnswer: function(e) {
 				this.open = !this.open
 			},
-			tapQuestionId:function(e){
-				this.current = e.currentTarget.dataset.idx -1
+			tapQuestionId: function(e) {
+				this.current = e.currentTarget.dataset.idx - 1
 				this.open = !this.open
 			}
 		}

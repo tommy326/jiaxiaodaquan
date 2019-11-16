@@ -69,6 +69,40 @@
 
 			}
 		},
+		onLoad() {
+			uni.request({
+				url: this.$Url + '/api/exam/err/list',
+				method: 'GET',
+				data: {
+					memberId: uni.getStorageSync('userData').id
+				},
+				header: {
+					'content-type': 'application/x-www-form-urlencoded'
+				},
+				success: (res) => {
+					if (res.data.code == 200) {
+						console.log(res.data.msg)
+						// this.Highest = res.data.msg.top.mark
+						// this.error = res.data.msg.error
+						// this.total = res.data.msg.total
+						// this.right = res.data.msg.right
+						// // this.listData = res.data.msg
+						// var arr = []
+						// for (let i in res.data.msg.list) {
+						// 	res.data.msg.list[i].time = res.data.msg.list[i].time.substr(5, 2)+'月'+res.data.msg.list[i].time.substr(8, 2)+'日'
+						// 	arr.push(res.data.msg.list[i]); //属性
+						// }
+						// this.listData = arr
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: '网络不给力，请稍后重试',
+							duration: 2000
+						});
+					}
+				}
+			});
+		},
 		methods: {
 
 		}

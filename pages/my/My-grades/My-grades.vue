@@ -2,87 +2,35 @@
 	<view>
 		<view class="head_wrap">
 			<view class="info_box">
-				<view class="num">
-					99
-				</view>
-				<view class="text">
-					错题数
-				</view>
+				<view class="num">{{Highest}}</view>
+				<view class="text">历史最高分</view>
 			</view>
 			<view class="list">
 				<view class="item">
-					<view class="num">
-						8
-					</view>
-					<view class="text">
-						未做题
-					</view>
+					<view class="num">{{total}}</view>
+					<view class="text">未做题</view>
 				</view>
 				<view class="item">
-					<view class="num">
-						12
-					</view>
-					<view class="text">
-						答错题
-					</view>
+					<view class="num">{{error}}</view>
+					<view class="text">答错题</view>
 				</view>
 				<view class="item">
-					<view class="num">
-						22
-					</view>
-					<view class="text">
-						答对题
-					</view>
+					<view class="num">{{right}}</view>
+					<view class="text">答对题</view>
 				</view>
 			</view>
 		</view>
 		<view class="mid_wrap">
-			<view class="sub_title">
-				错题详情
-			</view>
+			<view class="sub_title">错题详情</view>
 			<view class="list">
-				<view class="item off">
-					<view class="num">
-						5分
+				<block v-for="item in listData" :key='item'>
+					<view class="item" :class="item.mark >= 90?'on':'off'">
+						<view class="num">{{item.mark}}</view>
+						<view class="time">{{item.userTime}}分钟</view>
+						<view class="date">{{item.time}}</view>
+						<view class="grade">{{item.mark >= 90?'高手':'马路杀手'}}</view>
 					</view>
-					<view class="time">
-						0分18秒
-					</view>
-					<view class="date">
-						10月10日
-					</view>
-					<view class="grade">
-						马路杀手
-					</view>
-				</view>
-				<view class="item on">
-					<view class="num">
-						92分
-					</view>
-					<view class="time">
-						30分18秒
-					</view>
-					<view class="date">
-						10月10日
-					</view>
-					<view class="grade">
-						高手
-					</view>
-				</view>
-				<view class="item on">
-					<view class="num">
-						92分
-					</view>
-					<view class="time">
-						30分18秒
-					</view>
-					<view class="date">
-						10月10日
-					</view>
-					<view class="grade">
-						高手
-					</view>
-				</view>
+				</block>
 			</view>
 		</view>
 	</view>
@@ -92,8 +40,46 @@
 	export default {
 		data() {
 			return {
-
+				Highest: '0',
+				error: '0',
+				total: '0',
+				right: '0',
+				listData: []
 			}
+		},
+		onLoad() {
+			uni.request({
+				url: this.$Url + '/api/exam/report',
+				method: 'GET',
+				data: {
+					memberId: uni.getStorageSync('userData').id
+				},
+				header: {
+					'content-type': 'application/x-www-form-urlencoded'
+				},
+				success: (res) => {
+					if (res.data.code == 200) {
+						console.log(res.data.msg)
+						this.Highest = res.data.msg.top.mark
+						this.error = res.data.msg.error
+						this.total = res.data.msg.total
+						this.right = res.data.msg.right
+						// this.listData = res.data.msg
+						var arr = []
+						for (let i in res.data.msg.list) {
+							res.data.msg.list[i].time = res.data.msg.list[i].time.substr(5, 2)+'月'+res.data.msg.list[i].time.substr(8, 2)+'日'
+							arr.push(res.data.msg.list[i]); //属性
+						}
+						this.listData = arr
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: '网络不给力，请稍后重试',
+							duration: 2000
+						});
+					}
+				}
+			});
 		},
 		methods: {
 
@@ -201,7 +187,7 @@
 		background: #ffffff;
 		margin-bottom: 24rpx;
 		align-items: center;
-			border-radius: 10rpx;
+		border-radius: 10rpx;
 	}
 
 	.mid_wrap .list .on {

@@ -12,232 +12,60 @@
 				<text class="text">筛选</text>
 			</view>
 		</view>
+		<!-- 列表 -->
 		<view class="service_list">
-			<view class="item">
-				<view class="eq">
-					1
-				</view>
-				<image src="http://iph.href.lu/100x100?text=100*100" mode="" class="photo"></image>
-				<view class="info_box">
-					<view class="user_info">
-						<view class="user_name">
-							周卫建
+			<block v-for="(item,idx) in listData" :key='item'>
+				<view class="item">
+					<block v-if="idx < 3 || idx > 9">
+						<view class="eq">
+							{{idx+1}}
 						</view>
-					</view>
-					<view class="comment_box">
-						<view class="comment_stars">
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<text class="fraction">5.0分</text>
+					</block>
+					<block v-if="idx > 3 && idx < 9">
+						<view class="eq">
+							{{'0'+(idx+1)}}
 						</view>
-						<view class="price">
-							综合分405
+					</block>
+					<image src="http://iph.href.lu/100x100?text=100*100" mode="" class="photo"></image>
+					<view class="info_box">
+						<view class="user_info">
+							<view class="user_name">
+								周卫建
+							</view>
 						</view>
-					</view>
-					<view class="cost_box">
-						<view class="school">
-							￥2620
+						<view class="comment_box">
+							<view class="comment_stars">
+								<block v-for="n in 5" :key='n'>
+									<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
+								</block>
+								<text class="fraction">5.0分</text>
+							</view>
+							<view class="price">
+								综合分405
+							</view>
 						</view>
-						<view class="cost_text">
-							蓝华驾校
+						<view class="cost_box">
+							<view class="school">
+								￥2620
+							</view>
+							<view class="cost_text">
+								蓝华驾校
+							</view>
 						</view>
-					</view>
-					<view class="tag_list">
-						<view class="tag_item">
-							10年驾龄
-						</view>
-						<view class="tag_item">
-							尽心尽责
-						</view>
-						<view class="tag_item">
-							和蔼可亲
-						</view>
-					</view>
-				</view>
-			</view>
-			<view class="item">
-				<view class="eq">
-					2
-				</view>
-				<image src="http://iph.href.lu/100x100?text=100*100" mode="" class="photo"></image>
-				<view class="info_box">
-					<view class="user_info">
-						<view class="user_name">
-							周卫建
-						</view>
-					</view>
-					<view class="comment_box">
-						<view class="comment_stars">
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<text class="fraction">5.0分</text>
-						</view>
-						<view class="price">
-							综合分405
-						</view>
-					</view>
-					<view class="cost_box">
-						<view class="school">
-							￥2620
-						</view>
-						<view class="cost_text">
-							蓝华驾校
-						</view>
-					</view>
-					<view class="tag_list">
-						<view class="tag_item">
-							10年驾龄
-						</view>
-						<view class="tag_item">
-							尽心尽责
-						</view>
-						<view class="tag_item">
-							和蔼可亲
+						<view class="tag_list">
+							<view class="tag_item">
+								10年驾龄
+							</view>
+							<view class="tag_item">
+								尽心尽责
+							</view>
+							<view class="tag_item">
+								和蔼可亲
+							</view>
 						</view>
 					</view>
 				</view>
-			</view>
-			<view class="item">
-				<view class="eq">
-					3
-				</view>
-				<image src="http://iph.href.lu/100x100?text=100*100" mode="" class="photo"></image>
-				<view class="info_box">
-					<view class="user_info">
-						<view class="user_name">
-							周卫建
-						</view>
-					</view>
-					<view class="comment_box">
-						<view class="comment_stars">
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<text class="fraction">5.0分</text>
-						</view>
-						<view class="price">
-							综合分405
-						</view>
-					</view>
-					<view class="cost_box">
-						<view class="school">
-							￥2620
-						</view>
-						<view class="cost_text">
-							蓝华驾校
-						</view>
-					</view>
-					<view class="tag_list">
-						<view class="tag_item">
-							10年驾龄
-						</view>
-						<view class="tag_item">
-							尽心尽责
-						</view>
-						<view class="tag_item">
-							和蔼可亲
-						</view>
-					</view>
-				</view>
-			</view>
-			<view class="item">
-				<view class="eq">
-					04
-				</view>
-				<image src="http://iph.href.lu/100x100?text=100*100" mode="" class="photo"></image>
-				<view class="info_box">
-					<view class="user_info">
-						<view class="user_name">
-							周卫建
-						</view>
-					</view>
-					<view class="comment_box">
-						<view class="comment_stars">
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<text class="fraction">5.0分</text>
-						</view>
-						<view class="price">
-							综合分405
-						</view>
-					</view>
-					<view class="cost_box">
-						<view class="school">
-							￥2620
-						</view>
-						<view class="cost_text">
-							蓝华驾校
-						</view>
-					</view>
-					<view class="tag_list">
-						<view class="tag_item">
-							10年驾龄
-						</view>
-						<view class="tag_item">
-							尽心尽责
-						</view>
-						<view class="tag_item">
-							和蔼可亲
-						</view>
-					</view>
-				</view>
-			</view>
-			<view class="item">
-				<view class="eq">
-					05
-				</view>
-				<image src="http://iph.href.lu/100x100?text=100*100" mode="" class="photo"></image>
-				<view class="info_box">
-					<view class="user_info">
-						<view class="user_name">
-							周卫建
-						</view>
-					</view>
-					<view class="comment_box">
-						<view class="comment_stars">
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<text class="fraction">5.0分</text>
-						</view>
-						<view class="price">
-							综合分405
-						</view>
-					</view>
-					<view class="cost_box">
-						<view class="school">
-							￥2620
-						</view>
-						<view class="cost_text">
-							蓝华驾校
-						</view>
-					</view>
-					<view class="tag_list">
-						<view class="tag_item">
-							10年驾龄
-						</view>
-						<view class="tag_item">
-							尽心尽责
-						</view>
-						<view class="tag_item">
-							和蔼可亲
-						</view>
-					</view>
-				</view>
-			</view>
+			</block>
 		</view>
 	</view>
 </template>
@@ -246,8 +74,31 @@
 	export default {
 		data() {
 			return {
-
+				listData: []
 			}
+		},
+		onLoad() {
+			uni.request({
+				url: this.$Url + '/api/school/coach/list',
+				method: 'GET',
+				data: {},
+				header: {
+					'content-type': 'application/x-www-form-urlencoded'
+				},
+				success: (res) => {
+					if (res.data.code == 200) {
+						console.log(res)
+						this.listData = res.data.msg
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: '网络不给力，请稍后重试',
+							duration: 2000
+						});
+					}
+
+				}
+			});
 		},
 		methods: {
 
@@ -260,6 +111,12 @@
 		display: block;
 		width: 100%;
 		height: auto;
+		/* #ifdef H5 */
+		min-height: calc(100vh - 44px);
+		/* #endif */
+		/* #ifdef APP-PLUS */
+		min-height: 100vh;
+		/* #endif */
 		background: #f6f6f6;
 		padding: 0 32rpx 24rpx;
 		box-sizing: border-box;
@@ -310,8 +167,8 @@
 		margin-bottom: 24rpx;
 		padding-top: 32rpx;
 	}
-	
-	.service_list .item .eq{
+
+	.service_list .item .eq {
 		flex: 0 0 auto;
 		font-size: 32rpx;
 		width: 56rpx;
@@ -322,7 +179,7 @@
 
 	.service_list .item:nth-child(1) .eq,
 	.service_list .item:nth-child(2) .eq,
-	.service_list .item:nth-child(3) .eq{
+	.service_list .item:nth-child(3) .eq {
 		font-size: 72rpx;
 		color: #3860ff;
 		padding-top: 22rpx;

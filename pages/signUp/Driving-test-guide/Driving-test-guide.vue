@@ -24,19 +24,21 @@
 			驾考咨询
 		</view>
 		<view class="news_list">
-			<view class="item" v-for="n in 3" :key='n'>
-				<view class="info_wrap">
-					<view class="info_title">
-						年后准备练车了，先看完这个再决定是否去蓝......
+			<block v-for="item in listData" :key='item.title'>
+				<view class="item">
+					<view class="info_wrap">
+						<view class="info_title">
+							{{item.title}}
+						</view>
+						<view class="time">
+							{{item.time}}
+						</view>
 					</view>
-					<view class="time">
-						2019-05-16
+					<view class="photo_wrap">
+						<image :src="item.image" class="pic" mode=""></image>
 					</view>
 				</view>
-				<view class="photo_wrap">
-					<image src="https://iph.href.lu/240x160" class="pic" mode=""></image>
-				</view>
-			</view>
+			</block>
 		</view>
 	</view>
 </template>
@@ -45,8 +47,36 @@
 	export default {
 		data() {
 			return {
-
+				listData: []
 			}
+		},
+		onLoad() {
+			uni.request({
+				url: this.$Url + '/api/school/compress',
+				method: 'GET',
+				data: {},
+				header: {
+					'content-type': 'application/x-www-form-urlencoded'
+				},
+				success: (res) => {
+					if (res.data.code == 200) {
+						console.log(res)
+						var arr = []
+						for (let i in res.data.msg) {
+							res.data.msg[i].image = this.$Url + res.data.msg[i].image
+							res.data.msg[i].title = res.data.msg[i].title.length > 24?res.data.msg[i].title.substring(0,24)+'...':res.data.msg[i].title
+							arr.push(res.data.msg[i]); //属性
+						}
+						this.listData = arr
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: '网络不给力，请稍后重试',
+							duration: 2000
+						});
+					}
+				}
+			});
 		},
 		methods: {
 
@@ -137,8 +167,8 @@
 		line-height: 48rpx;
 		position: relative;
 	}
-	
-	.news_list .item .info_wrap .time{
+
+	.news_list .item .info_wrap .time {
 		display: block;
 		color: #929292;
 		font-size: 24rpx;

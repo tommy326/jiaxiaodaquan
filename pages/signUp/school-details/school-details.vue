@@ -48,88 +48,40 @@
 				<view class="tabs_content">
 					<!-- 班型 -->
 					<view class="class_list" v-if="tabs == 0">
-						<view class="item">
-							<view class="level c">
-								C1
-							</view>
-							<view class="class_info">
-								<view class="class_name">
-									特价班
+						<block v-for="item in classListData" :key='item.name'>
+							<view class="item">
+								<view class="level c">
+									{{item.category}}
 								</view>
-								<view class="class_data">
-									<view class="label">
-										自行前往
+								<view class="class_info">
+									<view class="class_name">
+										{{item.name}}
 									</view>
-									<view class="label">
-										多人一车
-									</view>
-									<view class="time">
-										周一到周日训练
-									</view>
-								</view>
-							</view>
-							<view class="call_btn">
-								<image src="../../../static/images/icon/icon-hotline-1.png" class="img" mode=""></image>
-								<text class="text">免费咨询</text>
-							</view>
-						</view>
-						<view class="item">
-							<view class="level a">
-								A1
-							</view>
-							<view class="class_info">
-								<view class="class_name">
-									特价班
-								</view>
-								<view class="class_data">
-									<view class="label">
-										自行前往
-									</view>
-									<view class="label">
-										多人一车
-									</view>
-									<view class="time">
-										周一到周日训练
+									<view class="class_data">
+										<view class="label">
+											自行前往
+										</view>
+										<view class="label">
+											多人一车
+										</view>
+										<view class="time">
+											周一到周日训练
+										</view>
 									</view>
 								</view>
-							</view>
-							<view class="call_btn">
-								<image src="../../../static/images/icon/icon-hotline-1.png" class="img" mode=""></image>
-								<text class="text">免费咨询</text>
-							</view>
-						</view>
-						<view class="item">
-							<view class="level b">
-								B1
-							</view>
-							<view class="class_info">
-								<view class="class_name">
-									特价班
-								</view>
-								<view class="class_data">
-									<view class="label">
-										自行前往
-									</view>
-									<view class="label">
-										多人一车
-									</view>
-									<view class="time">
-										周一到周日训练
-									</view>
+								<view class="call_btn">
+									<image src="../../../static/images/icon/icon-hotline-1.png" class="img" mode=""></image>
+									<text class="text">免费咨询</text>
 								</view>
 							</view>
-							<view class="call_btn">
-								<image src="../../../static/images/icon/icon-hotline-1.png" class="img" mode=""></image>
-								<text class="text">免费咨询</text>
-							</view>
-						</view>
+						</block>
 					</view>
 					<!-- 教练 -->
 					<view class="coach_list" v-else-if="tabs == 1">
 						<block v-for="n in 5" :key='n'>
 							<view class="item">
 								<view class="rank">
-									{{n}}
+									{{n+1}}
 								</view>
 								<image src="http://iph.href.lu/100x100?text=头像" class="head_sculpture" mode=""></image>
 								<view class="coach_info">
@@ -169,20 +121,20 @@
 					</view>
 					<!-- 场地 -->
 					<view class="area_list" v-else-if="tabs == 2">
-						<block v-for="n in 5" :key='n'>
+						<block v-for="item in areaListData" :key='item.id'>
 							<view class="item">
-								<image src="http://iph.href.lu/181x112?text=181x112" class="img" mode=""></image>
+								<image :src="item.showImg" class="img" mode=""></image>
 								<view class="area_info">
 									<view class="name">
-										蓝星驾校宗关训练基地
+										{{item.fieldName}}
 									</view>
 									<view class="address">
-										岳家嘴柴林花园
+										{{item.address}}
 									</view>
 								</view>
 								<view class="area_sort">
 									<view class="sort_text">
-										科二
+										{{item.subject}}
 									</view>
 									<view class="gap">
 										300m
@@ -260,7 +212,9 @@
 				listData: [],
 				tabsData: ['班型', '教练', '场地', '评价'],
 				num: '2324',
-				collect: true
+				collect: true,
+				classListData: [],
+				areaListData:[]
 			}
 		},
 		onLoad: function(options) {
@@ -268,15 +222,67 @@
 			//驾校信息
 			uni.request({
 				url: this.$Url + '/api/school/details?id=' + options.id,
-				method: 'GET',
+				method: 'get',
 				data: {},
 				header: {
 					'content-type': 'application/x-www-form-urlencoded'
 				},
 				success: (res) => {
 					if (res.data.code == 200) {
-						console.log(res.data)
+						//console.log(res.data.msg[0].showImg.replace(/\\/gi,''))
 						this.listData = res.data.msg
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: '网络不给力，请稍后重试',
+							duration: 2000
+						});
+					}
+				}
+			});
+			
+			// 班级
+			uni.request({
+				url: this.$Url + '/api/school/course/list',
+				method: 'get',
+				data: {
+					schoolId: options.id
+				},
+				header: {
+					'content-type': 'application/x-www-form-urlencoded'
+				},
+				success: (res) => {
+					if (res.data.code == 200) {
+						this.classListData = res.data.msg
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: '网络不给力，请稍后重试',
+							duration: 2000
+						});
+					}
+				}
+			});
+			
+			//场次
+			uni.request({
+				url: this.$Url + '/api/school/field/list',
+				method: 'get',
+				data: {
+					schoolId: options.id
+				},
+				header: {
+					'content-type': 'application/x-www-form-urlencoded'
+				},
+				success: (res) => {
+					if (res.data.code == 200) {
+						console.log(res.data.msg)
+						var arr = []
+						for (let i in res.data.msg) {
+							res.data.msg[i].showImg = this.$Url + res.data.msg[i].showImg
+							arr.push(res.data.msg[i]); //属性
+						}
+						this.areaListData = res.data.msg
 					} else {
 						uni.showToast({
 							icon: 'none',
@@ -757,7 +763,7 @@
 
 	.area_list .item .area_sort .sort_text {
 		display: inline-block;
-		width: 64rpx;
+		width: 100rpx;
 		height: 32rpx;
 		background-color: #fff3e5;
 		border-radius: 4px;

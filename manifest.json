@@ -9,14 +9,15 @@
     "app-plus" : {
         "usingComponents" : true,
         "splashscreen" : {
-            "alwaysShowBeforeRender" : false,
+            "alwaysShowBeforeRender" : true,
             "waiting" : true,
             "autoclose" : true,
             "delay" : 0
         },
         /* 模块配置 */
         "modules" : {
-            "Maps" : {}
+            "Maps" : {},
+            "Payment" : {}
         },
         /* 应用发布信息 */
         "distribute" : {
@@ -58,6 +59,63 @@
                         "appkey_ios" : "1094c5aca8e935750ade7d415a2f725c",
                         "appkey_android" : "1094c5aca8e935750ade7d415a2f725c"
                     }
+                },
+                "payment" : {}
+            },
+            "icons" : {
+                "android" : {
+                    "hdpi" : "unpackage/res/icons/72x72.png",
+                    "xhdpi" : "unpackage/res/icons/96x96.png",
+                    "xxhdpi" : "unpackage/res/icons/144x144.png",
+                    "xxxhdpi" : "unpackage/res/icons/192x192.png"
+                },
+                "ios" : {
+                    "appstore" : "unpackage/res/icons/1024x1024.png",
+                    "ipad" : {
+                        "app" : "unpackage/res/icons/76x76.png",
+                        "app@2x" : "unpackage/res/icons/152x152.png",
+                        "notification" : "unpackage/res/icons/20x20.png",
+                        "notification@2x" : "unpackage/res/icons/40x40.png",
+                        "proapp@2x" : "unpackage/res/icons/167x167.png",
+                        "settings" : "unpackage/res/icons/29x29.png",
+                        "settings@2x" : "unpackage/res/icons/58x58.png",
+                        "spotlight" : "unpackage/res/icons/40x40.png",
+                        "spotlight@2x" : "unpackage/res/icons/80x80.png"
+                    },
+                    "iphone" : {
+                        "app@2x" : "unpackage/res/icons/120x120.png",
+                        "app@3x" : "unpackage/res/icons/180x180.png",
+                        "notification@2x" : "unpackage/res/icons/40x40.png",
+                        "notification@3x" : "unpackage/res/icons/60x60.png",
+                        "settings@2x" : "unpackage/res/icons/58x58.png",
+                        "settings@3x" : "unpackage/res/icons/87x87.png",
+                        "spotlight@2x" : "unpackage/res/icons/80x80.png",
+                        "spotlight@3x" : "unpackage/res/icons/120x120.png"
+                    }
+                }
+            },
+            "splashscreen" : {
+                "ios" : {
+                    "iphone" : {
+                        "portrait-896h@3x" : "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+                        "landscape-896h@3x" : "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+                        "portrait-896h@2x" : "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+                        "landscape-896h@2x" : "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+                        "iphonex" : "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+                        "iphonexl" : "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+                        "retina55" : "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+                        "retina55l" : "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+                        "retina47" : "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+                        "retina47l" : "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+                        "retina40" : "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+                        "retina40l" : "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+                        "retina35" : "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png"
+                    }
+                },
+                "android" : {
+                    "hdpi" : "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+                    "xhdpi" : "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+                    "xxhdpi" : "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png"
                 }
             }
         }

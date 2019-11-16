@@ -13,142 +13,40 @@
 			</view>
 		</view>
 		<view class="service_list">
-			<view class="item">
-				<image src="http://iph.href.lu/100x100?text=100*100" mode="" class="photo"></image>
-				<view class="info_box">
-					<view class="user_info">
-						<view class="user_name">
-							周卫建
+			<block v-for="(item,idx) in listData" :key='item'>
+				<view class="item">
+					<image :src="item.avatar" lazy-load='true' mode="" class="photo" :data-id = 'idx' @error="imageError" @load='imageLoad'></image>
+					<view class="info_box">
+						<view class="user_info">
+							<view class="user_name">
+								{{item.name}}
+							</view>
+							<view class="user_tag">
+								{{item.workingYears}}年驾龄
+							</view>
 						</view>
-						<view class="user_tag">
-							10年驾龄
+						<view class="comment_box">
+							<view class="comment_stars">
+								<block v-for="n in item.score" :key='n'>
+									<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
+								</block>
+								<text class="fraction">{{item.score}}.0分</text>
+							</view>
+							<view class="price">
+								{{item.price}}元/小时
+							</view>
 						</view>
-					</view>
-					<view class="comment_box">
-						<view class="comment_stars">
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<text class="fraction">5.0分</text>
-						</view>
-						<view class="price">
-							100元/小时
-						</view>
-					</view>
-					<view class="cost_box">
-						<view class="school">
-							蓝华驾校蓝华驾校
-						</view>
-						<view class="cost_text">
-							科二、科三、拿本上路陪练
-						</view>
-					</view>
-				</view>
-			</view>
-			<view class="item">
-				<image src="http://iph.href.lu/100x100?text=100*100" mode="" class="photo"></image>
-				<view class="info_box">
-					<view class="user_info">
-						<view class="user_name">
-							周卫建
-						</view>
-						<view class="user_tag">
-							10年驾龄
-						</view>
-					</view>
-					<view class="comment_box">
-						<view class="comment_stars">
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<text class="fraction">5.0分</text>
-						</view>
-						<view class="price">
-							100元/小时
-						</view>
-					</view>
-					<view class="cost_box">
-						<view class="school">
-							蓝华驾校蓝华驾校
-						</view>
-						<view class="cost_text">
-							科二、科三、拿本上路陪练
+						<view class="cost_box">
+							<view class="school">
+								{{item.school}}
+							</view>
+							<view class="cost_text">
+								科二、科三、拿本上路陪练
+							</view>
 						</view>
 					</view>
 				</view>
-			</view>
-			<view class="item">
-				<image src="http://iph.href.lu/100x100?text=100*100" mode="" class="photo"></image>
-				<view class="info_box">
-					<view class="user_info">
-						<view class="user_name">
-							周卫建
-						</view>
-						<view class="user_tag">
-							10年驾龄
-						</view>
-					</view>
-					<view class="comment_box">
-						<view class="comment_stars">
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<text class="fraction">5.0分</text>
-						</view>
-						<view class="price">
-							100元/小时
-						</view>
-					</view>
-					<view class="cost_box">
-						<view class="school">
-							蓝华驾校蓝华驾校
-						</view>
-						<view class="cost_text">
-							科二、科三、拿本上路陪练
-						</view>
-					</view>
-				</view>
-			</view>
-			<view class="item">
-				<image src="http://iph.href.lu/100x100?text=100*100" mode="" class="photo"></image>
-				<view class="info_box">
-					<view class="user_info">
-						<view class="user_name">
-							周卫建
-						</view>
-						<view class="user_tag">
-							10年驾龄
-						</view>
-					</view>
-					<view class="comment_box">
-						<view class="comment_stars">
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
-							<text class="fraction">5.0分</text>
-						</view>
-						<view class="price">
-							100元/小时
-						</view>
-					</view>
-					<view class="cost_box">
-						<view class="school">
-							蓝华驾校蓝华驾校
-						</view>
-						<view class="cost_text">
-							科二、科三、拿本上路陪练
-						</view>
-					</view>
-				</view>
-			</view>
+			</block>
 		</view>
 	</view>
 </template>
@@ -157,11 +55,48 @@
 	export default {
 		data() {
 			return {
-
+				listData: []
 			}
 		},
-		methods: {
+		onLoad() {
+			uni.request({
+				url: this.$Url + '/api/school/coach/list',
+				method: 'GET',
+				data: {
+					accompany: '2'
+				},
+				header: {
+					'content-type': 'application/x-www-form-urlencoded'
+				},
+				success: (res) => {
+					if (res.data.code == 200) {
+						var arr = []
+						for (let i in res.data.msg) {
+							res.data.msg[i].avatar = this.$Url + res.data.msg[i].avatar
+							res.data.msg[i].price = res.data.msg[i].price == null ? '0' : res.data.msg[i].price
+							res.data.msg[i].score = res.data.msg[i].score == null ? 5 : res.data.msg[i].score
+							arr.push(res.data.msg[i]); //属性
+						}
+						this.listData = arr
+						console.log(arr)
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: '网络不给力，请稍后重试',
+							duration: 2000
+						});
+					}
 
+				}
+			});
+		},
+		methods: {
+			imageError: function(e) {
+				this.listData[e.currentTarget.dataset.id].avatar = 'http://iph.href.lu/100x100'
+			},
+			imageLoad:function(e) {
+				console.log('image发生load事件，携带值为' + e.detail.height + e.detail.width)
+			}
 		}
 	}
 </script>
@@ -293,8 +228,8 @@
 		margin-left: 15rpx;
 		line-height: 1;
 	}
-	
-	.comment_box .price{
+
+	.comment_box .price {
 		flex: 0 0 auto;
 		color: #3860ff;
 		font-size: 24rpx;
@@ -309,20 +244,20 @@
 		width: 100%;
 		overflow: hidden;
 	}
-	
-	.cost_box .school{
+
+	.cost_box .school {
 		flex: 1 1 auto;
 		color: #666666;
 		font-size: 24rpx;
 		line-height: 1;
 		min-width: 120rpx;
 		overflow: hidden;
-		text-overflow:ellipsis;
+		text-overflow: ellipsis;
 		white-space: nowrap;
 		margin-right: 20rpx;
 	}
-	
-	.cost_box .cost_text{
+
+	.cost_box .cost_text {
 		flex: 0 0 auto;
 		color: #333333;
 		font-size: 26rpx;
