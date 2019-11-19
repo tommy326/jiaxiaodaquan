@@ -21,7 +21,7 @@
 					考题标准
 				</view>
 				<view class="text">
-					100题
+				{{ this.subject == 'one' ? '100':'50'}}题
 				</view>
 			</view>
 			<view class="item">
@@ -50,7 +50,7 @@
 			</view>
 		</view>
 		<view class="Warm_prompt">
-			温馨提示：模拟考试不能修改答案，每错1题扣1分，错题累计超过10题，考试不通过，系统自动提醒交卷。
+			温馨提示：模拟考试不能修改答案，每错1题扣{{this.subject == 'one' ? '1':'2'}}分，错题累计超过{{this.subject == 'one' ? '10':'5'}}题，考试不通过，系统自动提醒交卷。
 		</view>
 		<navigator :url="'../exam/exam?subject='+subject" class="btn" hover-class="none">开始考试</navigator>
 	</view>

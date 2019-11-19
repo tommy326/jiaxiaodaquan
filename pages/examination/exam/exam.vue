@@ -11,34 +11,25 @@
 									<text class="title_type">单选</text>
 									<text class="title_text">{{item.question}}</text>
 								</view>
+								<block v-if="item.url != ''">
+									<rich-text :nodes="item.url"></rich-text>
+								</block>
 								<radio-group @change="radioChange">
 									<label class="radio_list">
-										<radio value="0" style="display: none;" />
-										<view class="radio_icon" :class="radioSelect == 0?'radio_icon_on':''">
-											A
-										</view>
-										<view class="radio_text">{{item.item1}}</view>
+										<radio value="1" class="radio_icon" />
+										<view class="radio_text">A. {{item.item1}}</view>
 									</label>
 									<label class="radio_list">
-										<radio value="1" style="display: none;" />
-										<view class="radio_icon" :class="radioSelect == 1?'radio_icon_on':''">
-											B
-										</view>
-										<view class="radio_text">{{item.item2}}</view>
+										<radio value="2" class="radio_icon" />
+										<view class="radio_text">B. {{item.item2}}</view>
 									</label>
 									<label class="radio_list">
-										<radio value="2" style="display: none;" />
-										<view class="radio_icon" :class="radioSelect == 2?'radio_icon_on':''">
-											C
-										</view>
-										<view class="radio_text">{{item.item3}}</view>
+										<radio value="3" class="radio_icon" />
+										<view class="radio_text">C. {{item.item3}}</view>
 									</label>
 									<label class="radio_list">
-										<radio value="3" style="display: none;" />
-										<view class="radio_icon" :class="radioSelect == 3?'radio_icon_on':''">
-											D
-										</view>
-										<view class="radio_text">{{item.item4}}</view>
+										<radio value="4" class="radio_icon" />
+										<view class="radio_text">D. {{item.item4}}</view>
 									</label>
 								</radio-group>
 							</block>
@@ -47,19 +38,17 @@
 									<text class="title_type">判断</text>
 									<text class="title_text">{{item.question}}</text>
 								</view>
+								<block v-if="item.url != ''">
+									<rich-text :nodes="item.url"></rich-text>
+								</block>
 								<radio-group @change="judgeChange">
 									<label class="radio_list">
-										<radio value="0" style="display: none;" />
-										<view class="radio_icon" :class="judgeSelect == 0?'radio_icon_on':''">
-											A
-										</view>
+										<radio value="1" />
+
 										<view class="radio_text">{{item.item1 != ''?item.item1:'正确'}}</view>
 									</label>
 									<label class="radio_list">
-										<radio value="1" style="display: none;" />
-										<view class="radio_icon" :class="judgeSelect == 1?'radio_icon_on':''">
-											B
-										</view>
+										<radio value="2" />
 										<view class="radio_text">{{item.item2 != ''?item.item2:'错误'}}</view>
 									</label>
 								</radio-group>
@@ -71,34 +60,24 @@
 								</view>
 								<checkbox-group @change="checkboxChange">
 									<label class="radio_list">
-										<checkbox value="0" checked="" style="display: none;" />
-										<view class="radio_icon" :class="item.checked ?'radio_icon_on':''">
-											A
-										</view>
-										<view class="radio_text">{{item.item1}}</view>
+										<checkbox value="A" />
+										<view class="radio_text">A. {{item.item1}}</view>
 									</label>
 									<label class="radio_list">
-										<checkbox value="1" checked="" style="display: none;" />
-										<view class="radio_icon" :class="item.checked ?'radio_icon_on':''">
-											B
-										</view>
-										<view class="radio_text">{{item.item2}}</view>
+										<checkbox value="B" />
+
+										<view class="radio_text">B. {{item.item2}}</view>
 									</label>
 									<label class="radio_list">
-										<checkbox value="2" checked="" style="display: none;" />
-										<view class="radio_icon" :class="item.checked ?'radio_icon_on':''">
-											C
-										</view>
-										<view class="radio_text">{{item.item3}}</view>
+										<checkbox value="C" />
+										<view class="radio_text">C. {{item.item3}}</view>
 									</label>
 									<label class="radio_list">
-										<checkbox value="3" checked="" style="display: none;" />
-										<view class="radio_icon" :class="item.checked ?'radio_icon_on':''">
-											D
-										</view>
-										<view class="radio_text">{{item.item4}}</view>
+										<checkbox value="D" />
+										<view class="radio_text">D. {{item.item4}}</view>
 									</label>
 								</checkbox-group>
+								<button class="checkbox_btn" :data-index='idx' @click="tapCheckbox">提交</button>
 							</block>
 						</scroll-view>
 					</swiper-item>
@@ -108,7 +87,7 @@
 		<!-- 底部操作 -->
 		<view class="footer_box">
 			<view class="item scantron" @click="tapAnswer">
-				<text class="text">{{current+1}}/100</text>
+				<text class="text">{{current+1}}/{{this.subject == 'one' ? '100':'50'}}</text>
 			</view>
 			<view class="item collect_off" :class="collect?'collect_on':''" @click="tapCollect">
 				<text class="text">{{collect?'已收藏':'收藏'}}</text>
@@ -144,7 +123,7 @@
 				</view>
 				<scroll-view class="opt_wrap" scroll-y>
 					<view class="opt_wrap_list">
-						<block v-for="n in 100" :key='n'>
+						<block v-for="n in this.subject == 'one' ? 100 : 50" :key='n'>
 							<view class="item" @click="tapQuestionId" :data-idx='n'>
 								<!-- #ifdef H5 -->
 								{{n}}
@@ -169,49 +148,44 @@
 		data() {
 			return {
 				collect: false,
+				subject:'',
 				type: 0,
 				current: 0,
 				listData: [],
-				radioSelect: '5',
-				judgeSelect: '2',
 				maxTime: 2700,
 				timer: '',
-				open: false
+				open: false,
+				AnswerData: []
 			}
 		},
 		onLoad(options) {
-			this.radioData = ['违章行为', '违法行为', '过失行为', '违规行为']
-			this.checkboxData = [{
-				value: '0',
-				name: '违章行为'
-			}, {
-				value: '1',
-				name: '违法行为'
-			}, {
-				value: '2',
-				name: '过失行为'
-			}, {
-				value: '3',
-				name: '违规行为'
-			}]
-
-			this.judgeData = ['正确', '错误']
+			uni.showToast({
+				icon:'loading',
+			    title: '数据加载中...',
+			    duration: 1000
+			});
+			clearInterval(this.timer)
+			this.subject = options.subject
 			this.openCountDown()
 			// 获取题目
 			uni.request({
 				url: this.$Url + '/api/exam/item/' + options.subject,
 				method: 'GET',
-				data: {
-
-				},
+				data: {},
 				header: {
 					'content-type': 'application/x-www-form-urlencoded'
 				},
 				success: (res) => {
-
-					uni.hideToast();
 					if (res.data.code == 200) {
-						console.log(res.data.msg)
+						let arr = []
+						for (let i in res.data.msg) {
+							if (res.data.msg[i].url != '') {
+								res.data.msg[i].url =
+									'<div><img style="display: block;margin: 0 auto;max-width: 80%;max-height: 150px;" src="' + res.data.msg[i]
+									.url + '"/></div>'
+							}
+							arr.push(res.data.msg[i])
+						}
 						this.listData = res.data.msg
 					} else {
 						uni.showToast({
@@ -222,7 +196,14 @@
 					}
 				}
 			});
-
+			let answerData = []
+			for (let i = 0; i < 100; i++) {
+				answerData.push('')
+			}
+			this.answerData = answerData
+		},
+		onHide() {
+			clearInterval(this.timer)
 		},
 		onBackPress() {
 			clearInterval(this.timer)
@@ -257,20 +238,18 @@
 			},
 			change: function(e) {
 				this.current = e.detail.current
-				this.type = e.detail.current
-				this.radioSelect = '5'
-				this.judgeSelect = '2'
 			},
 			radioChange: function(e) {
-				this.radioSelect = e.target.value
-				if (this.listData[0].answer - 1 == e.target.value) {
+				this.answerData.splice(this.current, 1, e.target.value)
+				if (this.listData[this.current].answer == e.target.value) {
 					uni.showModal({
 						title: '温馨提示',
 						content: '恭喜您答对了',
 						cancelText: '解析',
 						confirmText: '下一题',
-						success: function(res) {
+						success: (res) => {
 							if (res.confirm) {
+								this.current++
 								console.log('用户点击确定');
 							} else if (res.cancel) {
 								console.log('用户点击取消');
@@ -283,8 +262,9 @@
 						content: '很抱歉您答错了',
 						cancelText: '解析',
 						confirmText: '下一题',
-						success: function(res) {
+						success: (res) => {
 							if (res.confirm) {
+								this.current++
 								console.log('用户点击确定');
 							} else if (res.cancel) {
 								console.log('用户点击取消');
@@ -292,32 +272,58 @@
 						}
 					});
 				}
+				console.log(this.answerData);
 			},
 			checkboxChange: function(e) {
-				var items = this.checkboxData,
-					values = e.detail.value;
-				let arr = []
-				for (var i = 0, lenI = items.length; i < lenI; ++i) {
-					const item = items[i]
-					if (values.indexOf(item.value) >= 0) {
-						arr.push(item.value)
-						this.$set(item, 'checked', true)
-					} else {
-						this.$set(item, 'checked', false)
-					}
+				let str = ''
+				switch (e.detail.value.join('')) {
+					case 'AB':
+						str = "7";
+						break;
+					case 'AC':
+						str = "8";
+						break;
+					case 'AD':
+						str = "9";
+						break;
+					case 'BC':
+						str = "10";
+						break;
+					case 'BD':
+						str = "11";
+						break;
+					case 'CD':
+						str = "12";
+						break;
+					case 'ABC':
+						str = "13";
+						break;
+					case 'ABD':
+						str = "14";
+						break;
+					case 'ACD':
+						str = "15";
+						break;
+					case 'BCD':
+						str = "16";
+						break;
+					case 'ABCD':
+						str = "17";
+						break;
 				}
-				console.log(arr)
+				this.answerData.splice(this.current, 1, str)
 			},
 			judgeChange: function(e) {
-				this.judgeSelect = e.target.value
-				if (this.listData[0].answer != e.target.value) {
+				this.answerData.splice(this.current, 1, e.target.value)
+				if (this.listData[this.current].answer == e.target.value) {
 					uni.showModal({
 						title: '温馨提示',
 						content: '恭喜您答对了',
 						cancelText: '解析',
 						confirmText: '下一题',
-						success: function(res) {
+						success: (res) => {
 							if (res.confirm) {
+								this.current++
 								console.log('用户点击确定');
 							} else if (res.cancel) {
 								console.log('用户点击取消');
@@ -330,8 +336,9 @@
 						content: '很抱歉您答错了',
 						cancelText: '解析',
 						confirmText: '下一题',
-						success: function(res) {
+						success: (res) => {
 							if (res.confirm) {
+								this.current++
 								console.log('用户点击确定');
 							} else if (res.cancel) {
 								console.log('用户点击取消');
@@ -349,6 +356,40 @@
 			tapQuestionId: function(e) {
 				this.current = e.currentTarget.dataset.idx - 1
 				this.open = !this.open
+			},
+			tapCheckbox: function(e) {
+				let index = e.currentTarget.dataset.index
+				if (this.listData[this.current].answer == this.answerData[index]) {
+					uni.showModal({
+						title: '温馨提示',
+						content: '恭喜您答对了',
+						cancelText: '解析',
+						confirmText: '下一题',
+						success: (res) => {
+							if (res.confirm) {
+								this.current++
+								console.log('用户点击确定');
+							} else if (res.cancel) {
+								console.log('用户点击取消');
+							}
+						}
+					});
+				} else {
+					uni.showModal({
+						title: '温馨提示',
+						content: '很抱歉您答错了',
+						cancelText: '解析',
+						confirmText: '下一题',
+						success: (res) => {
+							if (res.confirm) {
+								this.current++
+								console.log('用户点击确定');
+							} else if (res.cancel) {
+								console.log('用户点击取消');
+							}
+						}
+					});
+				}
 			}
 		}
 	}
@@ -447,10 +488,10 @@
 	.main_wrap .sub_title {
 		display: block;
 		width: 100%;
-		padding: 0 32rpx;
+		padding: 12upx 32rpx;
 		box-sizing: border-box;
 		line-height: 50rpx;
-		margin: 12upx 0 30upx;
+		margin: 0 0 30upx;
 	}
 
 	.main_wrap .sub_title .title_type {
@@ -476,31 +517,20 @@
 		padding: 22rpx 32rpx;
 		box-sizing: border-box;
 		color: #333333;
-		font-size: 34rpx;
-		align-items: center;
-		justify-content: center;
+		align-items: flex-start;
+		justify-content: flex-start;
 	}
 
 	.main_wrap .radio_list .radio_icon {
 		flex: 0 0 auto;
-		width: 56rpx;
-		height: 56rpx;
-		line-height: 56rpx;
-		text-align: center;
-		margin-right: 20rpx;
-		border: solid 1px #3860ff;
-		font-size: 32rpx;
-		color: #3860ff;
-		border-radius: 50%;
-	}
-
-	.main_wrap .radio_list .radio_icon_on {
-		background-color: #3860ff;
-		color: #ffffff;
 	}
 
 	.main_wrap .radio_list .radio_text {
 		flex: 1 1 auto;
+		padding-top: 10rpx;
+		line-height: 48rpx;
+		font-size: 34rpx;
+		margin-left: 10rpx;
 	}
 
 	.baffle_wrap {
@@ -684,5 +714,23 @@
 		font-size: 17px;
 		text-align: center;
 		line-height: 40px;
+	}
+
+	.show {
+		display: block;
+		margin: 30rpx auto;
+	}
+
+	.hide {
+		display: none;
+		margin: 30rpx auto;
+	}
+
+	.checkbox_btn {
+		width: 40%;
+		margin-top: 50rpx;
+		line-height: 2;
+		background-color: #3860ff;
+		color: #ffffff;
 	}
 </style>

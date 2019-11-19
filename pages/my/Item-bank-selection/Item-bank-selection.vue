@@ -25,7 +25,7 @@
 						C1/C2/C3
 					</view>
 				</view>
-				<view class="item">
+				<!-- <view class="item">
 					<image src="../../../static/images/icon/12.png" class="pic" mode=""></image>
 					<view class="cars">
 						货车
@@ -51,7 +51,7 @@
 					<view class="text">
 						D/E/F
 					</view>
-				</view>
+				</view> -->
 			</view>
 			<view class="sub_title">
 				资格证

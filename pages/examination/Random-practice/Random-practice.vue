@@ -315,7 +315,7 @@
 						content: '很抱歉您答错了',
 						cancelText: '解析',
 						confirmText: '下一题',
-						success: function(res) {
+						success:  (res) =>  {
 							if (res.confirm) {
 								console.log('用户点击确定');
 								this.radioSelect = 5
@@ -369,7 +369,7 @@
 						content: '很抱歉您答错了',
 						cancelText: '解析',
 						confirmText: '下一题',
-						success: function(res) {
+						success:  (res) =>  {
 							if (res.confirm) {
 								console.log('用户点击确定');
 								this.judgeSelect = 2

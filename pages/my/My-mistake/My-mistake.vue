@@ -32,7 +32,7 @@
 			<view class="sub_title">
 				错题详情
 			</view>
-			<view class="list">
+			<!-- <view class="list">
 				<view class="item">
 					<view class="text">
 						交通处罚题
@@ -41,23 +41,7 @@
 						6
 					</view>
 				</view>
-				<view class="item">
-					<view class="text">
-						交通处罚题
-					</view>
-					<view class="num">
-						6
-					</view>
-				</view>
-				<view class="item">
-					<view class="text">
-						交通处罚题
-					</view>
-					<view class="num">
-						6
-					</view>
-				</view>
-			</view>
+			</view> -->
 		</view>
 	</view>
 </template>
@@ -71,7 +55,7 @@
 		},
 		onLoad() {
 			uni.request({
-				url: this.$Url + '/api/exam/err/list',
+				url: this.$Url + '/api/exam/error/list',
 				method: 'GET',
 				data: {
 					memberId: uni.getStorageSync('userData').id
