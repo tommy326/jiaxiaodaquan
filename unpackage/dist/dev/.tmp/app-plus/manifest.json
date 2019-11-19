@@ -85,25 +85,25 @@
       "splashscreen": {
         "ios": {
           "iphone": {
-            "portrait-896h@3x": "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
-            "landscape-896h@3x": "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
-            "portrait-896h@2x": "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
-            "landscape-896h@2x": "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
-            "iphonex": "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
-            "iphonexl": "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
-            "retina55": "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
-            "retina55l": "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
-            "retina47": "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
-            "retina47l": "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
-            "retina40": "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
-            "retina40l": "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
-            "retina35": "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png"
+            "portrait-896h@3x": "E:/我的图片/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+            "landscape-896h@3x": "E:/我的图片/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+            "portrait-896h@2x": "E:/我的图片/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+            "landscape-896h@2x": "E:/我的图片/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+            "iphonex": "E:/我的图片/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+            "iphonexl": "E:/我的图片/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+            "retina55": "E:/我的图片/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+            "retina55l": "E:/我的图片/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+            "retina47": "E:/我的图片/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+            "retina47l": "E:/我的图片/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+            "retina40": "E:/我的图片/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+            "retina40l": "E:/我的图片/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+            "retina35": "E:/我的图片/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png"
           }
         },
         "android": {
-          "hdpi": "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
-          "xhdpi": "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
-          "xxhdpi": "C:/Users/Admin/Desktop/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png"
+          "hdpi": "E:/我的图片/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+          "xhdpi": "E:/我的图片/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
+          "xxhdpi": "E:/我的图片/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png"
         }
       },
       "google": {
@@ -158,7 +158,7 @@
       }
     },
     "uni-app": {
-      "compilerVersion": "2.4.1",
+      "compilerVersion": "2.4.2",
       "control": "v8",
       "nvueCompiler": "uni-app",
       "renderer": "auto",
