@@ -1,0 +1,14 @@
+{
+  "navigationBarTitleText": "随机练习",
+  "titleNView": {
+    "buttons": [
+      {
+        "type": "none",
+        "fontSrc": "/static/font/iconfont.ttf",
+        "text": "",
+        "fontSize": "18px"
+      }
+    ]
+  },
+  "usingComponents": {}
+}
