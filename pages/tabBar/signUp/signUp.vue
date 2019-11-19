@@ -103,7 +103,7 @@
 			return {
 				city: '武汉市',
 				columnData: [{
-					url: '',
+					url: '../../signUp/jiaxiao-ranking/jiaxiao-ranking',
 					src: 'jkph',
 					title: '驾校排行'
 				}, {

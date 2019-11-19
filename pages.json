@@ -125,6 +125,12 @@
 				"navigationBarTitleText": "陪练服务"
 			}
 		}, {
+			"path": "pages/signUp/jiaxiao-ranking/jiaxiao-ranking",
+			"style": {
+				"navigationBarTitleText": "驾校排行",
+				"backgroundColor": "#F6F6F6"
+			}
+		}, {
 			"path": "pages/signUp/Coach-ranking/Coach-ranking",
 			"style": {
 				"navigationBarTitleText": "教练排行",
