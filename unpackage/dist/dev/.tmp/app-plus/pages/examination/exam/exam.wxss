@@ -317,6 +317,10 @@
 	color: #3860ff;
 	border-color: rgba(235, 239, 255);
 }
+.Answer_card .opt_wrap_list .load {
+	border-color: #3860ff;
+	color: #3860ff;
+}
 .Answer_card .opt_wrap_list .off {
 	background: rgba(255, 238, 237);
 	color: #ff564e;

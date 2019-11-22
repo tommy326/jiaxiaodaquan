@@ -14,23 +14,23 @@
 		</view>
 		<!-- 列表 -->
 		<view class="service_list">
-			<block v-for="(item,idx) in listData" :key='item'>
-				<view class="item">
+			<block v-for="(item,idx) in listData" :key='idx'>
+				<navigator :url="'../coach-details/coach-details?id='+item.id" class="item">
 					<block v-if="idx < 3 || idx > 9">
 						<view class="eq">
 							{{idx+1}}
 						</view>
 					</block>
-					<block v-if="idx > 3 && idx < 9">
+					<block v-if="idx >= 3 && idx <= 9">
 						<view class="eq">
 							{{'0'+(idx+1)}}
 						</view>
 					</block>
-					<image src="http://iph.href.lu/100x100?text=100*100" mode="" class="photo"></image>
+					<image :src="item.avatar" lazy-load='true' mode="" class="photo" :data-id = 'idx' @error="imageError"></image>
 					<view class="info_box">
 						<view class="user_info">
 							<view class="user_name">
-								周卫建
+								{{item.name}}
 							</view>
 						</view>
 						<view class="comment_box">
@@ -41,7 +41,7 @@
 								<text class="fraction">5.0分</text>
 							</view>
 							<view class="price">
-								综合分405
+								综合分{{item.num}}
 							</view>
 						</view>
 						<view class="cost_box">
@@ -49,7 +49,7 @@
 								￥2620
 							</view>
 							<view class="cost_text">
-								蓝华驾校
+								{{item.school}}
 							</view>
 						</view>
 						<view class="tag_list">
@@ -64,7 +64,7 @@
 							</view>
 						</view>
 					</view>
-				</view>
+				</navigator>
 			</block>
 		</view>
 	</view>
@@ -87,8 +87,13 @@
 				},
 				success: (res) => {
 					if (res.data.code == 200) {
-						console.log(res)
-						this.listData = res.data.msg
+						var arr = []
+						for (let i in res.data.msg) {
+							res.data.msg[i].avatar = this.$Url + res.data.msg[i].avatar
+							arr.push(res.data.msg[i]); //属性
+						}
+						this.listData = arr
+						console.log(arr)
 					} else {
 						uni.showToast({
 							icon: 'none',
@@ -101,7 +106,9 @@
 			});
 		},
 		methods: {
-
+			imageError: function(e) {
+				this.listData[e.currentTarget.dataset.id].avatar = 'http://iph.href.lu/100x100'
+			}
 		}
 	}
 </script>

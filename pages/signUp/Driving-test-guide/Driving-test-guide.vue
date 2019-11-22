@@ -25,7 +25,7 @@
 		</view>
 		<view class="news_list">
 			<block v-for="item in listData" :key='item.title'>
-				<view class="item">
+				<navigator :url="'../news-details/news-details?id='+item.id" class="item">
 					<view class="info_wrap">
 						<view class="info_title">
 							{{item.title}}
@@ -37,7 +37,7 @@
 					<view class="photo_wrap">
 						<image :src="item.image" class="pic" mode=""></image>
 					</view>
-				</view>
+				</navigator>
 			</block>
 		</view>
 	</view>
@@ -64,7 +64,8 @@
 						var arr = []
 						for (let i in res.data.msg) {
 							res.data.msg[i].image = this.$Url + res.data.msg[i].image
-							res.data.msg[i].title = res.data.msg[i].title.length > 24?res.data.msg[i].title.substring(0,24)+'...':res.data.msg[i].title
+							res.data.msg[i].title = res.data.msg[i].title.length > 24 ? res.data.msg[i].title.substring(0, 24) + '...' :
+								res.data.msg[i].title
 							arr.push(res.data.msg[i]); //属性
 						}
 						this.listData = arr
@@ -128,12 +129,11 @@
 		margin-right: 24rpx;
 	}
 
-	.listData .item:nth-child(1) {}
-
 	.listData .item .pic {
 		display: block;
 		width: 328rpx;
 		height: 168rpx;
+
 	}
 
 	.news_list .item {

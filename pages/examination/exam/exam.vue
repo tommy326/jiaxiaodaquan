@@ -16,19 +16,19 @@
 								</block>
 								<radio-group @change="radioChange">
 									<label class="radio_list">
-										<radio value="1" class="radio_icon" />
+										<radio value="1" class="radio_icon" :disabled="disabled" />
 										<view class="radio_text">A. {{item.item1}}</view>
 									</label>
 									<label class="radio_list">
-										<radio value="2" class="radio_icon" />
+										<radio value="2" class="radio_icon" :disabled="disabled" />
 										<view class="radio_text">B. {{item.item2}}</view>
 									</label>
 									<label class="radio_list">
-										<radio value="3" class="radio_icon" />
+										<radio value="3" class="radio_icon" :disabled="disabled" />
 										<view class="radio_text">C. {{item.item3}}</view>
 									</label>
 									<label class="radio_list">
-										<radio value="4" class="radio_icon" />
+										<radio value="4" class="radio_icon" :disabled="disabled" />
 										<view class="radio_text">D. {{item.item4}}</view>
 									</label>
 								</radio-group>
@@ -43,12 +43,11 @@
 								</block>
 								<radio-group @change="judgeChange">
 									<label class="radio_list">
-										<radio value="1" />
-
+										<radio value="1" class="radio_icon" :disabled="disabled" />
 										<view class="radio_text">{{item.item1 != ''?item.item1:'正确'}}</view>
 									</label>
 									<label class="radio_list">
-										<radio value="2" />
+										<radio value="2" class="radio_icon" :disabled="disabled" />
 										<view class="radio_text">{{item.item2 != ''?item.item2:'错误'}}</view>
 									</label>
 								</radio-group>
@@ -60,20 +59,19 @@
 								</view>
 								<checkbox-group @change="checkboxChange">
 									<label class="radio_list">
-										<checkbox value="A" />
+										<checkbox value="A" class="radio_icon" :disabled="disabled" />
 										<view class="radio_text">A. {{item.item1}}</view>
 									</label>
 									<label class="radio_list">
-										<checkbox value="B" />
-
+										<checkbox value="B" class="radio_icon" :disabled="disabled" />
 										<view class="radio_text">B. {{item.item2}}</view>
 									</label>
 									<label class="radio_list">
-										<checkbox value="C" />
+										<checkbox value="C" class="radio_icon" :disabled="disabled" />
 										<view class="radio_text">C. {{item.item3}}</view>
 									</label>
 									<label class="radio_list">
-										<checkbox value="D" />
+										<checkbox value="D" class="radio_icon" :disabled="disabled" />
 										<view class="radio_text">D. {{item.item4}}</view>
 									</label>
 								</checkbox-group>
@@ -87,7 +85,7 @@
 		<!-- 底部操作 -->
 		<view class="footer_box">
 			<view class="item scantron" @click="tapAnswer">
-				<text class="text">{{current+1}}/{{this.subject == 'one' ? '100':'50'}}</text>
+				<text class="text">{{current+1}}/{{answerData.length}}</text>
 			</view>
 			<view class="item collect_off" :class="collect?'collect_on':''" @click="tapCollect">
 				<text class="text">{{collect?'已收藏':'收藏'}}</text>
@@ -106,10 +104,10 @@
 			<view class="Answer_card" :class="open?'Answer_card_open':''">
 				<view class="oper_list">
 					<view class="item yes">
-						<text class="text">2000</text>
+						<text class="text">{{yes}}</text>
 					</view>
 					<view class="item wrong">
-						<text class="text">1000</text>
+						<text class="text">{{wrong}}</text>
 					</view>
 					<view class="item card" @click="CloseAnswer">
 						<text class="text">{{current+1}}/100</text>
@@ -123,21 +121,38 @@
 				</view>
 				<scroll-view class="opt_wrap" scroll-y>
 					<view class="opt_wrap_list">
-						<block v-for="n in this.subject == 'one' ? 100 : 50" :key='n'>
+						<!-- <block v-for="n in this.subject == 'one' ? 100 : 50" :key='n'>
 							<view class="item" @click="tapQuestionId" :data-idx='n'>
 								<!-- #ifdef H5 -->
-								{{n}}
-								<!-- #endif -->
-								<!-- #ifdef APP-PLUS -->
-								{{n+1}}
-								<!-- #endif -->
+						{{n}}
+						<!-- #endif -->
+						<!-- #ifdef APP-PLUS -->
+						{{n+1}}
+						<!-- #endif -->
+					</view>
+					</block> -->
+					<block v-for="(items,index) in answerData" :key='index'>
+						<block v-if="items.result == '1'">
+							<view class="item on" @click="tapQuestionId" :data-idx='index'>
+								{{index + 1}}
 							</view>
 						</block>
-					</view>
-				</scroll-view>
+						<block v-else-if="items.result == '2'">
+							<view class="item off" @click="tapQuestionId" :data-idx='index'>
+								{{index + 1}}
+							</view>
+						</block>
+						<block v-else>
+							<view class="item" @click="tapQuestionId" :data-idx='index'>
+								{{index + 1}}
+							</view>
+						</block>
+					</block>
 			</view>
-
+			</scroll-view>
 		</view>
+
+	</view>
 	</view>
 
 </template>
@@ -148,21 +163,25 @@
 		data() {
 			return {
 				collect: false,
-				subject:'',
+				subject: '',
 				type: 0,
 				current: 0,
 				listData: [],
 				maxTime: 2700,
 				timer: '',
 				open: false,
-				AnswerData: []
+				answerData: [],
+				questionId: '',
+				yes: 0,
+				wrong: 0,
+				disabled: false
 			}
 		},
 		onLoad(options) {
 			uni.showToast({
-				icon:'loading',
-			    title: '数据加载中...',
-			    duration: 1000
+				icon: 'loading',
+				title: '数据加载中...',
+				duration: 1000
 			});
 			clearInterval(this.timer)
 			this.subject = options.subject
@@ -187,6 +206,18 @@
 							arr.push(res.data.msg[i])
 						}
 						this.listData = res.data.msg
+						this.questionId = res.data.msg[0].questionId
+						let answerData = []
+						for (let i = 0; i < res.data.msg.length; i++) {
+							let obj = new Object()
+							obj.questionId = res.data.msg[i].questionId;
+							obj.disabled = false;
+							obj.answer = '';
+							obj.result = 0
+							answerData.push(obj)
+						}
+						this.answerData = answerData
+						this.answerData[0].result = 3
 					} else {
 						uni.showToast({
 							icon: 'none',
@@ -196,11 +227,6 @@
 					}
 				}
 			});
-			let answerData = []
-			for (let i = 0; i < 100; i++) {
-				answerData.push('')
-			}
-			this.answerData = answerData
 		},
 		onHide() {
 			clearInterval(this.timer)
@@ -236,12 +262,39 @@
 					this.CountDown()
 				}, 1000)
 			},
+			DoTitle: function(sign, choose) {
+				let subject = this.subject == 'one' ? '1' : '4'
+				uni.request({
+					url: this.$Url + '/api/exam/item/log',
+					method: 'GET',
+					data: {
+						memberId: uni.getStorageSync('userData').id,
+						subject: subject,
+						questionId: this.questionId,
+						sign: sign,
+						answer: this.listData[this.current].answer,
+						choose: choose
+					},
+					header: {
+						'content-type': 'application/x-www-form-urlencoded'
+					},
+					success: (res) => {}
+				});
+			},
 			change: function(e) {
+				console.log(this.answerData)
 				this.current = e.detail.current
+				this.questionId = this.listData[e.detail.current].questionId
+				this.disabled = this.answerData[e.detail.current].disabled
 			},
 			radioChange: function(e) {
-				this.answerData.splice(this.current, 1, e.target.value)
+				this.answerData[this.current].answer = e.target.value
+				this.disabled = true
+				this.answerData[this.current].disabled = true
 				if (this.listData[this.current].answer == e.target.value) {
+					this.DoTitle('r', parseInt(e.target.value) + 1)
+					this.answerData[this.current].result = 1
+					this.yes++
 					uni.showModal({
 						title: '温馨提示',
 						content: '恭喜您答对了',
@@ -257,6 +310,9 @@
 						}
 					});
 				} else {
+					this.DoTitle('w', parseInt(e.target.value) + 1)
+					this.answerData[this.current].result = 2
+					this.wrong++
 					uni.showModal({
 						title: '温馨提示',
 						content: '很抱歉您答错了',
@@ -272,7 +328,6 @@
 						}
 					});
 				}
-				console.log(this.answerData);
 			},
 			checkboxChange: function(e) {
 				let str = ''
@@ -311,11 +366,16 @@
 						str = "17";
 						break;
 				}
-				this.answerData.splice(this.current, 1, str)
+				this.answerData[this.current].answer = str
 			},
 			judgeChange: function(e) {
-				this.answerData.splice(this.current, 1, e.target.value)
+				this.answerData[this.current].answer = e.target.value
+				this.disabled = true
+				this.answerData[this.current].disabled = true
 				if (this.listData[this.current].answer == e.target.value) {
+					this.yes++
+					this.DoTitle('r', parseInt(e.target.value) + 1)
+					this.answerData[this.current].result = 1
 					uni.showModal({
 						title: '温馨提示',
 						content: '恭喜您答对了',
@@ -331,6 +391,9 @@
 						}
 					});
 				} else {
+					this.DoTitle('w', parseInt(e.target.value) + 1)
+					this.answerData[this.current].result = 2
+					this.wrong++
 					uni.showModal({
 						title: '温馨提示',
 						content: '很抱歉您答错了',
@@ -354,12 +417,17 @@
 				this.open = !this.open
 			},
 			tapQuestionId: function(e) {
-				this.current = e.currentTarget.dataset.idx - 1
+				this.current = e.currentTarget.dataset.idx
 				this.open = !this.open
 			},
 			tapCheckbox: function(e) {
 				let index = e.currentTarget.dataset.index
+				this.disabled = true
+				this.answerData[this.current].disabled = true
 				if (this.listData[this.current].answer == this.answerData[index]) {
+					this.yes++
+					this.DoTitle('r', this.answerData[index])
+					this.answerData[this.current].result = 1
 					uni.showModal({
 						title: '温馨提示',
 						content: '恭喜您答对了',
@@ -375,6 +443,9 @@
 						}
 					});
 				} else {
+					this.DoTitle('w', this.answerData[index])
+					this.answerData[this.current].result = 2
+					this.wrong++
 					uni.showModal({
 						title: '温馨提示',
 						content: '很抱歉您答错了',
@@ -688,6 +759,11 @@
 		background: rgba(235, 239, 255);
 		color: #3860ff;
 		border-color: rgba(235, 239, 255);
+	}
+
+	.Answer_card .opt_wrap_list .load {
+		border-color: #3860ff;
+		color: #3860ff;
 	}
 
 	.Answer_card .opt_wrap_list .off {

@@ -163,7 +163,42 @@
 				"navigationBarTitleText": "驾考指南"
 			}
 		}
-	],
+	    ,{
+            "path" : "pages/signUp/ladder-player-details/ladder-player-details",
+            "style" : {
+				"navigationBarTitleText": "陪练详情",
+				"navigationBarBackgroundColor": "#3860ff",
+				"navigationBarTextStyle": "white"
+			}
+        }
+        ,{
+            "path" : "pages/examination/community-list/community-list",
+            "style" : {
+				"navigationBarTitleText": "科一社区"
+			}
+        }
+        ,{
+            "path" : "pages/signUp/news-details/news-details",
+            "style" : {
+				"navigationBarTitleText": "",
+				"app-plus": {
+					"titleNView": {
+						"buttons": [{
+							"type": "menu"
+						}]
+					}
+				}
+			}
+        }
+        ,{
+            "path" : "pages/signUp/coach-details/coach-details",
+            "style" : {
+				"navigationBarTitleText": "教练详情",
+				"navigationBarBackgroundColor": "#3860ff",
+				"navigationBarTextStyle": "white"
+			}
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "驾考大全",

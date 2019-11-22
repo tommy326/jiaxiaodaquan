@@ -76,7 +76,7 @@
 				<view class="info_title">
 					{{tabsData[tabs]}}社区
 				</view>
-				<navigator url="" class="link" hover-class="none">查看全部</navigator>
+				<navigator :url="'../../examination/community-list/community-list?tabs='+tabs" class="link" hover-class="none">查看全部</navigator>
 			</view>
 			<view class="ask_list">
 				<view class="item">

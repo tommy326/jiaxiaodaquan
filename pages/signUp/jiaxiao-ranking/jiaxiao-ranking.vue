@@ -1,32 +1,29 @@
 <template>
-	<view class="uni_container">
+	<view class="main_container">
 		<view class="tabs_box">
 			<view class="item active">
-				<text class="text">综合</text>
+				<text class="text">综合排行</text>
 				<image src="../../../static/images/icon/7.png" class="pic" mode=""></image>
+			</view>
+			<view class="item">
+				<text class="text">价格</text>
+			</view>
+			<view class="item">
+				<text class="text">筛选</text>
 			</view>
 		</view>
 		<!-- 列表 -->
 		<view class="service_list">
 			<block v-for="(item,idx) in listData" :key='idx'>
-				<view class="item">
-					<block v-if="idx < 3 || idx > 9">
-						<view class="eq">
+				<navigator :url="'../../signUp/school-details/school-details?id='+item.id"  class="item">
+					<view class="main_item">
+						<view class="eq" :class="idx < 3?'eq_on':''">
 							{{idx+1}}
 						</view>
-					</block>
-					<block v-if="idx > 3 && idx < 9">
-						<view class="eq">
-							{{'0'+(idx+1)}}
-						</view>
-					</block>
-					<image :src="item.coverImg" mode="" class="photo"></image>
-					<view class="right_box"  @click="ToSchoolDetails" :data-id='item.id'>
-						<view class="info_box">
+						<image :src="item.coverImg" mode="" class="photo"></image>
+						<view class="right_box">
 							<view class="user_info">
-								<view class="user_name">
-									{{item.schoolName}}
-								</view>
+								{{item.schoolName}}
 							</view>
 							<view class="comment_box">
 								<view class="comment_stars">
@@ -35,32 +32,45 @@
 									</block>
 									<text class="fraction">5.0分</text>
 								</view>
-								<view class="price">
-									综合分405
+								<view class="region">
+									汉阳区
 								</view>
 							</view>
 							<view class="cost_box">
-								<view class="school">
-									￥2620
+								<view class="price">
+									￥<text class="num">2620</text>
 								</view>
 								<view class="cost_text">
-									蓝华驾校
-								</view>
-							</view>
-							<view class="tag_list">
-								<view class="tag_item">
-									10年驾龄
-								</view>
-								<view class="tag_item">
-									尽心尽责
-								</view>
-								<view class="tag_item">
-									和蔼可亲
+									C1 普通班
 								</view>
 							</view>
 						</view>
 					</view>
-				</view>
+					<view class="bottom_item">
+						<view class="tag_list">
+							<view class="tag_item">
+								规模大
+							</view>
+							<view class="tag_item">
+								拿本快
+							</view>
+							<view class="tag_item">
+								有接送
+							</view>
+							<view class="tag_item">
+								约课方便
+							</view>
+						</view>
+						<view class="activity_item" v-if="idx ==0">
+							<text class="tag_info">免</text>
+							<text class="tag_text">免费试学4小时</text>
+						</view>
+						<view class="activity_item" v-if="idx == 1">
+							<text class="tag_info">减</text>
+							<text class="tag_text">报名立减500</text>
+						</view>
+					</view>
+				</navigator>
 			</block>
 		</view>
 	</view>
@@ -96,7 +106,7 @@
 							duration: 2000
 						});
 					}
-	
+
 				}
 			});
 		},
@@ -125,7 +135,7 @@
 		padding: 0 32rpx 24rpx;
 		box-sizing: border-box;
 	}
-	
+
 	.tabs_box {
 		display: flex;
 		width: 100%;
@@ -133,141 +143,144 @@
 		align-items: center;
 		justify-content: space-between;
 	}
-	
+
 	.tabs_box .item {
 		display: flex;
-		width: 140rpx;
+		width: auto;
+		padding: 0 30rpx;
 		height: 92rpx;
 		align-items: center;
 		justify-content: center;
 		color: #999999;
 	}
-	
+
 	.tabs_box .item .text {
 		flex: 0 0 auto;
 		font-size: 30rpx
 	}
-	
+
 	.tabs_box .active {
 		color: #3860ff;
 	}
-	
+
 	.tabs_box .item .pic {
 		flex: 0 0 auto;
 		width: 12rpx;
 		height: 7rpx;
 		margin-left: 6rpx;
 	}
-	
+
 	.service_list .item {
+		display: block;
+		width: 100%;
+		padding: 32rpx 0;
+		margin-bottom: 24rpx;
+		background-color: #ffffff;
+		border-radius: 20rpx;
+	}
+
+
+	.service_list .item .main_item {
 		display: flex;
 		width: 100%;
-		height: 240rpx;
-		background-color: #ffffff;
+		height: 170rpx;
 		border-radius: 16rpx;
-		justify-content: space-between;
-		padding: 0 32rpx;
+		align-items: center;
 		box-sizing: border-box;
-		margin-bottom: 24rpx;
-		padding-top: 32rpx;
 	}
-	
-	.service_list .item .eq {
+
+	.service_list .item .main_item .eq {
 		flex: 0 0 auto;
-		font-size: 32rpx;
-		width: 56rpx;
+		font-size: 36rpx;
+		width: 80rpx;
+		height: 170rpx;
 		color: #999999;
 		line-height: 1;
-		padding-top: 40rpx;
+		line-height: 170rpx;
+		text-align: center;
 	}
-	
-	.service_list .item:nth-child(1) .eq,
-	.service_list .item:nth-child(2) .eq,
-	.service_list .item:nth-child(3) .eq {
+
+	.service_list .item .main_item .eq_on {
 		font-size: 72rpx;
 		color: #3860ff;
-		padding-top: 22rpx;
 	}
-	
-	.service_list .item .photo {
+
+	.service_list .item .main_item .photo {
 		flex: 0 0 auto;
-		width: 100rpx;
-		height: 100rpx;
-		border-radius: 50%;
-		margin-top: 6rpx;
+		width: 170rpx;
+		height: 170rpx;
+		background-color: #5c5c5c;
+		border-radius: 10rpx;
 	}
-	
-	.service_list .info_box {
-		flex: 1 1 auto;
-		margin-left: 30rpx;
-	}
-	
-	.user_info {
+
+	.service_list .item .main_item .right_box {
 		display: flex;
+		width: 100%;
+		height: 170rpx;
+		padding: 0 20rpx;
+		box-sizing: border-box;
+		align-items: flex-start;
+		flex-direction: column;
+		position: relative;
 	}
-	
-	.user_info .user_name {
-		flex: 0 0 auto;
+
+	.service_list .item .main_item .user_info {
+		display: block;
 		font-size: 34rpx;
 		line-height: 1;
 		color: #202020;
+		padding-top: 6rpx;
 	}
-	
-	.user_info .user_tag {
-		flex: 0 0 auto;
-		color: #929292;
-		font-size: 24rpx;
-		line-height: 1;
-		padding: 5rpx 8rpx;
-		background-color: #f6f6f6;
-		border-radius: 4rpx;
-		margin-left: 20rpx;
-	}
-	
-	.comment_box {
+
+	.service_list .item .main_item .comment_box {
 		display: flex;
 		width: 100%;
 		align-items: center;
 		justify-content: space-between;
-		margin-top: 19rpx;
+		margin-top: 24rpx;
 	}
-	
-	.comment_box .comment_stars {
+
+	.service_list .item .main_item .comment_box .comment_stars {
 		display: flex;
 		align-items: center;
 	}
-	
-	.comment_box .comment_stars .pic {
+
+	.service_list .item .main_item .comment_box .comment_stars .pic {
 		flex: 0 0 auto;
 		width: 21rpx;
 		height: 20rpx;
-		margin-right: 5rpx;
+		margin-right: 10rpx;
 	}
-	
-	.comment_box .comment_stars .fraction {
+
+	.service_list .item .main_item .comment_box .comment_stars .fraction {
 		flex: 0 0 auto;
 		color: #929292;
 		font-size: 22rpx;
 		margin-left: 15rpx;
 		line-height: 1;
 	}
-	
-	.comment_box .price {
+
+	.service_list .item .main_item .comment_box .region {
 		flex: 0 0 auto;
-		color: #3860ff;
+		color: #929292;
 		font-size: 24rpx;
 		line-height: 1;
 	}
-	
-	.cost_box {
+
+	.service_list .item .main_item .cost_box {
 		display: flex;
-		align-items: center;
+		align-items: flex-end;
 		margin-top: 20rpx;
 		width: 100%;
 		overflow: hidden;
+		padding: 0 20rpx;
+		box-sizing: border-box;
+		position: absolute;
+		bottom: 10rpx;
+		left: 0rpx;
 	}
-	
-	.cost_box .school {
+
+	.service_list .item .main_item .cost_box .price {
 		flex: 0 0 auto;
 		color: #666666;
 		font-size: 24rpx;
@@ -278,21 +291,34 @@
 		white-space: nowrap;
 		margin-right: 20rpx;
 	}
-	
-	.cost_box .cost_text {
+
+	.service_list .item .main_item .cost_box .price .num {
+		display: inline-block;
+		font-size: 38rpx;
+		color: #fe8c00;
+	}
+
+	.service_list .item .main_item .cost_box .cost_text {
 		flex: 0 0 auto;
 		color: #333333;
 		font-size: 26rpx;
 		line-height: 1;
 	}
 	
-	.tag_list {
+	.service_list .item .bottom_item{
+		display: block;
+		width: 100%;
+		padding-left: 270rpx;
+		box-sizing: border-box;
+	}
+
+	.service_list .item .bottom_item .tag_list {
 		display: flex;
 		width: 100%;
-		margin-top: 24rpx;
+		flex-wrap: wrap;
 	}
-	
-	.tag_list .tag_item {
+
+	.service_list .item .bottom_item .tag_list .tag_item {
 		flex: 0 0 auto;
 		color: #929292;
 		line-height: 1;
@@ -301,5 +327,29 @@
 		border-radius: 4rpx;
 		font-size: 24rpx;
 		margin-right: 23rpx;
+		margin: 14rpx 14rpx 0 0;
+	}
+	
+	.service_list .item .bottom_item .activity_item{
+		display: flex;
+		align-items: center;
+		width: 100%;
+		margin-top: 12rpx;
+		font-size: 22rpx;
+	}
+	
+	.service_list .item .bottom_item .activity_item .tag_info{
+		background: #3860ff;
+		color: #ffffff;
+		line-height: 1;
+		padding: 5rpx;
+		border: solid 1px #3860ff;
+	}
+	
+	.service_list .item .bottom_item .activity_item .tag_text{
+		color: #3860ff;
+		line-height: 1;
+		border: solid 1px #3860ff;
+		padding: 5rpx 10rpx;
 	}
 </style>

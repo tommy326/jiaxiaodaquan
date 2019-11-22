@@ -14,7 +14,7 @@
 		</view>
 		<view class="service_list">
 			<block v-for="(item,idx) in listData" :key='item'>
-				<view class="item">
+				<navigator :url="'../ladder-player-details/ladder-player-details?id='+item.id" class="item">
 					<image :src="item.avatar" lazy-load='true' mode="" class="photo" :data-id = 'idx' @error="imageError" @load='imageLoad'></image>
 					<view class="info_box">
 						<view class="user_info">
@@ -45,7 +45,7 @@
 							</view>
 						</view>
 					</view>
-				</view>
+				</navigator>
 			</block>
 		</view>
 	</view>

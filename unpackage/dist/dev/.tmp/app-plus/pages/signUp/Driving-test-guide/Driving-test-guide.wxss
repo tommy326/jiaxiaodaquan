@@ -47,7 +47,6 @@
 	height: 168rpx;
 	margin-right: 24rpx;
 }
-.listData .item:nth-child(1) {}
 .listData .item .pic {
 	display: block;
 	width: 328rpx;

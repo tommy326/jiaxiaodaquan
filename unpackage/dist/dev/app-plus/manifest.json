@@ -22,6 +22,7 @@
       "coordType": "gcj02"
     },
     "Payment": {},
+    "Share": {},
     "UniNView": {
       "description": "UniNView原生渲染"
     }
@@ -85,25 +86,37 @@
       "splashscreen": {
         "ios": {
           "iphone": {
-            "portrait-896h@3x": "E:/我的图片/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
-            "landscape-896h@3x": "E:/我的图片/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
-            "portrait-896h@2x": "E:/我的图片/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
-            "landscape-896h@2x": "E:/我的图片/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
-            "iphonex": "E:/我的图片/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
-            "iphonexl": "E:/我的图片/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
-            "retina55": "E:/我的图片/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
-            "retina55l": "E:/我的图片/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
-            "retina47": "E:/我的图片/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
-            "retina47l": "E:/我的图片/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
-            "retina40": "E:/我的图片/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
-            "retina40l": "E:/我的图片/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
-            "retina35": "E:/我的图片/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png"
+            "portrait-896h@3x": "static/Startup-page.png",
+            "landscape-896h@3x": "static/Startup-page.png",
+            "portrait-896h@2x": "static/Startup-page.png",
+            "landscape-896h@2x": "static/Startup-page.png",
+            "iphonex": "static/Startup-page.png",
+            "iphonexl": "static/Startup-page.png",
+            "retina55": "static/Startup-page.png",
+            "retina55l": "static/Startup-page.png",
+            "retina47": "static/Startup-page.png",
+            "retina47l": "static/Startup-page.png",
+            "retina40": "static/Startup-page.png",
+            "retina40l": "static/Startup-page.png",
+            "retina35": "static/Startup-page.png"
+          },
+          "ipad": {
+            "portrait-1366h@2x": "static/Startup-page.png",
+            "landscape-1366h@2x": "static/Startup-page.png",
+            "portrait-1194h@2": "static/Startup-page.png",
+            "landscape-1194h@2x": "static/Startup-page.png",
+            "portrait-1112h@2x": "static/Startup-page.png",
+            "landscape-1112h@2x": "static/Startup-page.png",
+            "portrait-retina7": "static/Startup-page.png",
+            "landscape-retina7": "static/Startup-page.png",
+            "portrait7": "static/Startup-page.png",
+            "landscape7": "static/Startup-page.png"
           }
         },
         "android": {
-          "hdpi": "E:/我的图片/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
-          "xhdpi": "E:/我的图片/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png",
-          "xxhdpi": "E:/我的图片/photo/7B1382D6-14EE-4f05-AB59-B39436143DB2.png"
+          "hdpi": "static/Startup-page.png",
+          "xhdpi": "static/Startup-page.png",
+          "xxhdpi": "static/Startup-page.png"
         }
       },
       "google": {
@@ -143,6 +156,12 @@
           }
         },
         "payment": {},
+        "share": {
+          "weixin": {
+            "appid": "wxc83ecb49c32b43ed",
+            "UniversalLinks": ""
+          }
+        },
         "audio": {
           "mp3": {
             "description": "Android平台录音支持MP3格式文件"

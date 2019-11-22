@@ -15,7 +15,7 @@ Vue.prototype.$time = Array.time || function(obj) {
 	let h = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
 	let m = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
 	let s = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
-	return Y + '年' + M + '月' + D + '日' + h + '时' + m + '分' + s + '秒';
+	return Y + '-' + M + '-' + D;
 };
 
 //价格单位换算（万，保留两位小数）

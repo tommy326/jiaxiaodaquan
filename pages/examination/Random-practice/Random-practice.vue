@@ -287,7 +287,6 @@
 			},
 			tapCollect: function(e) {
 				this.collect = !this.collect
-				
 			},
 			radioChange: function(e) {
 				this.radioSelect = e.target.value

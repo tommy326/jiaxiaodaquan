@@ -31,7 +31,7 @@
 						<view class="price">￥2100</view>
 						<view class="class">C1班</view>
 					</view>
-					<navigator url="" class="address" hover-class="none">{{item.address}}</navigator>
+					<view class="address" @click="openLocation">{{item.address}}</view>
 				</view>
 
 				<!-- tabs选项卡 -->
@@ -121,8 +121,11 @@
 					</view>
 					<!-- 场地 -->
 					<view class="area_list" v-else-if="tabs == 2">
-						<block v-for="item in areaListData" :key='item.id'>
-							<view class="item">
+						<view class="area_subTitle" v-if="areaListData.length > 0">
+							训练场地
+						</view>
+						<block v-for="(item,idx) in areaListData" :key='item.id'>
+							<view class="item" @click="tapMap(idx)">
 								<image :src="item.showImg" class="img" mode=""></image>
 								<view class="area_info">
 									<view class="name">
@@ -197,8 +200,39 @@
 				<image :src="'../../../static/images/icon/icon-collect-'+collect+'.png'" class="img" mode=""></image>
 				<text class="text">{{collect == true?'已收藏':'收藏'}}</text>
 			</view>
-			<view class="consult_btn">
-				免费咨询
+			<view class="consult_btn" @click="tapMaskOpen">免费咨询</view>
+		</view>
+		<view class="mask_wrap" :class="maskOpen?'show':'hide'">
+			<view class="crevice" @click="tapMaskOpen"></view>
+			<view class="main_wrap">
+				<view class="sub_title">
+					留下您的信息，我们将会与您联系
+				</view>
+				<form @submit="formSubmit" @reset="formReset">
+					<view class="form_item">
+						<view class="form_icon icon_user"></view>
+						<input type="text" class="form_input" :value="user" @input='tapUser' placeholder="请输入真实姓名" placeholder-class="pla_color" />
+					</view>
+					<view class="form_item">
+						<view class="form_icon icon_tel"></view>
+						<input type="number" class="form_input" :value="tel" @input='tapTel' placeholder="请输入手机号" placeholder-class="pla_color" />
+					</view>
+					<view class="form_item more">
+						<view class="form_icon icon_Dri"></view>
+						<picker @change="bindPickerChange" class="form_input" :range="array">
+							<input type="text" class="form_input" :value="Drivinglicense" placeholder="驾照类型" placeholder-class="pla_color"
+							 disabled />
+						</picker>
+					</view>
+					<view class="form_item more">
+						<view class="form_icon icon_loca"></view>
+						<view class="location" @click="chooseLocation" :class="location == 0?'':'location_on'">{{location == 0?'从哪出发':location}}</view>
+					</view>
+					<view class="hits_text">
+						*请放心填写，提交即视为同意<navigator class="link" url="">《个人信息保护声明》</navigator>
+					</view>
+					<button form-type="submit" class="form_btn">提交</button>
+				</form>
 			</view>
 		</view>
 	</view>
@@ -214,7 +248,13 @@
 				num: '2324',
 				collect: true,
 				classListData: [],
-				areaListData:[]
+				areaListData: [],
+				maskOpen: false,
+				user: '',
+				tel: '',
+				Drivinglicense: '',
+				array: ['C1 小型汽车', 'C2 小型自动挡汽车', 'C3 低速载货汽车', 'A1 大型客车', 'A2 牵引车', 'A3 城市公交车', 'B1 中型客车', 'B2 大型货车'],
+				location: 0,
 			}
 		},
 		onLoad: function(options) {
@@ -240,7 +280,7 @@
 					}
 				}
 			});
-			
+
 			// 班级
 			uni.request({
 				url: this.$Url + '/api/school/course/list',
@@ -263,7 +303,7 @@
 					}
 				}
 			});
-			
+
 			//场次
 			uni.request({
 				url: this.$Url + '/api/school/field/list',
@@ -313,6 +353,85 @@
 			},
 			tapCollect: function(e) {
 				this.collect = !this.collect
+			},
+			openLocation: function(e) {
+				uni.openLocation({
+					longitude: Number(this.listData[0].coordinate.split(",")[0]),
+					latitude: Number(this.listData[0].coordinate.split(",")[1]),
+					name: this.listData[0].schoolName,
+					address: this.listData[0].address
+				})
+
+			},
+			tapMap: function(e) {
+				uni.openLocation({
+					longitude: Number(this.areaListData[e].coordinate.split(",")[0]),
+					latitude: Number(this.areaListData[e].coordinate.split(",")[1]),
+					name: this.areaListData[e].fieldName,
+					address: this.areaListData[e].address
+				})
+			},
+			tapMaskOpen: function(e) {
+				this.maskOpen = !this.maskOpen
+			},
+			tapUser: function(e) {
+				this.user = e.detail.value
+			},
+			tapTel: function(e) {
+				this.tel = e.detail.value
+			},
+			bindPickerChange: function(e) {
+				this.Drivinglicense = this.array[e.target.value]
+			},
+			chooseLocation: function() {
+				uni.chooseLocation({
+					success: (res) => {
+						this.location = res.address
+					}
+				})
+			},
+			formSubmit: function(e) {
+				console.log(this.user.length);
+				if (this.user.length < 1) {
+					uni.showToast({
+						icon: 'none',
+						title: '请输入真实姓名',
+						duration: 2000
+					});
+				} else if (this.tel.length < 1) {
+					uni.showToast({
+						icon: 'none',
+						title: '请输入手机号',
+						duration: 2000
+					});
+				} else if (!(/^1[3456789]\d{9}$/.test(this.tel))) {
+					uni.showToast({
+						icon: 'none',
+						title: '手机号码有误',
+						duration: 2000
+					});
+				} else if (this.Drivinglicense.length < 1) {
+					uni.showToast({
+						icon: 'none',
+						title: '请选择驾照类型',
+						duration: 2000
+					});
+				} else if (this.location == 0) {
+					uni.showToast({
+						icon: 'none',
+						title: '请选择地址',
+						duration: 2000
+					});
+				} else {
+					console.log(this.user, this.tel, this.Drivinglicense, this.location)
+					this.maskOpen = !this.maskOpen
+					uni.showToast({
+						icon: 'success',
+						title: '提交成功！',
+						duration: 2000
+					});
+				}
+
 			}
 		}
 	}
@@ -333,7 +452,7 @@
 		width: 100%;
 		height: 120rpx;
 		background-color: #ffffff;
-		box-shadow: 0px -1rpx 1rpx 0px rgba(0, 0, 0, 0.08);
+		box-shadow: 0px -1px 1px 0px rgba(0, 0, 0, 0.08);
 		justify-content: space-between;
 		align-items: center;
 	}
@@ -469,7 +588,8 @@
 
 	.school_box .address {
 		display: block;
-		width: 542rpx;
+		width: auto;
+		max-width: 542rpx;
 		font-size: 28rpx;
 		color: #333333;
 		padding-right: 30rpx;
@@ -477,6 +597,9 @@
 		background-size: 11rpx;
 		margin-top: 28rpx;
 		line-height: 1;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
 
 	.tabs_box {
@@ -883,5 +1006,154 @@
 		position: absolute;
 		right: 0;
 		bottom: -24rpx;
+	}
+
+	.area_subTitle {
+		font-size: 34rpx;
+		color: #202020;
+		text-indent: 32rpx;
+	}
+
+	.mask_wrap {
+		display: none;
+		width: 100%;
+		height: 100vh;
+		background: rgba(0, 0, 0, .5);
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 9;
+	}
+
+	.mask_wrap .crevice {
+		display: block;
+		width: 100%;
+		height: calc(100vh - 825rpx);
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+
+	.mask_wrap .main_wrap {
+		display: block;
+		width: 100%;
+		height: 825rpx;
+		background-color: #ffffff;
+		box-shadow: 0px 6rpx 18rpx 0px rgba(0, 0, 0, 0.04);
+		border-radius: 40rpx 40rpx 0px 0px;
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		padding: 75rpx 40rpx 0;
+		box-sizing: border-box;
+	}
+
+	.mask_wrap .main_wrap .sub_title {
+		color: #252525;
+		font-size: 34rpx;
+		text-align: center;
+		margin-bottom: 24rpx;
+		line-height: 1;
+	}
+
+	.mask_wrap .main_wrap .form_item {
+		display: flex;
+		width: 100%;
+		height: 110rpx;
+		align-items: center;
+		border-bottom: 2rpx solid #ededed;
+
+	}
+
+	.mask_wrap .main_wrap .more {
+		background: url(../../../static/images/icon/26.png) no-repeat right center;
+		background-size: 14rpx 26rpx;
+		padding-right: 20rpx;
+		box-sizing: border-box;
+	}
+
+
+	.mask_wrap .main_wrap .form_item .form_icon {
+		flex: 0 0 auto;
+		width: 56rpx;
+		height: 110rpx;
+	}
+
+	.mask_wrap .main_wrap .form_item .icon_user {
+		background: url(../../../static/images/icon/22.png) no-repeat left center;
+		background-size: 30rpx 30rpx;
+	}
+
+	.mask_wrap .main_wrap .form_item .icon_tel {
+		background: url(../../../static/images/icon/23.png) no-repeat left center;
+		background-size: 23rpx 34rpx;
+	}
+
+	.mask_wrap .main_wrap .form_item .icon_Dri {
+		background: url(../../../static/images/icon/24.png) no-repeat left center;
+		background-size: 32rpx 24rpx;
+	}
+
+	.mask_wrap .main_wrap .form_item .icon_loca {
+		background: url(../../../static/images/icon/25.png) no-repeat left center;
+		background-size: 27rpx 34rpx;
+	}
+
+	.mask_wrap .main_wrap .form_item .form_input {
+		flex: 1 1 auto;
+		height: 110rpx;
+		font-size: 30rpx;
+	}
+
+	.mask_wrap .main_wrap .form_item .location {
+		flex: 1 1 auto;
+		height: 110rpx;
+		line-height: 110rpx;
+		font-size: 30rpx;
+		color: #acacac;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.mask_wrap .main_wrap .form_item .location_on {
+		color: #252525;
+	}
+
+	.pla_color {
+		color: #acacac;
+		line-height: 110rpx;
+	}
+
+	.mask_wrap .main_wrap .hits_text {
+		color: #b8b8b8;
+		font-size: 24rpx;
+		line-height: 1;
+		margin-top: 42rpx;
+		text-align: center;
+	}
+
+	.mask_wrap .main_wrap .hits_text .link {
+		display: inline-block;
+		color: #317ceb;
+	}
+
+	.mask_wrap .main_wrap .form_btn {
+		display: block;
+		width: 552rpx;
+		background-color: #317ceb;
+		box-shadow: 0px 6rpx 10rpx 0px rgba(49, 124, 235, 0.16),
+			inset 0px 1rpx 1rpx 0px rgba(255, 255, 255, 0.43);
+		border-radius: 40rpx;
+		margin: 24rpx auto;
+		color: #ffffff;
+	}
+
+	.show {
+		display: block;
+	}
+
+	.hide {
+		display: none;
 	}
 </style>
