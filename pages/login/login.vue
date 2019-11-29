@@ -17,7 +17,7 @@
 					<view class="input_see" :class="password?'':'see_on'" @click="tapSee"></view>
 				</view>
 				<view class="forget">
-					<navigator url="../forget-password/forget-password" hover-class="none" class="link">忘记密码？</navigator>
+					<navigator url="../my/reset-pass/reset-pass" hover-class="none" class="link">忘记密码？</navigator>
 				</view>
 				<view class="btn_submit">
 					<button type="primary" formType="submit">登录</button>
@@ -138,6 +138,10 @@
 								console.log(2)
 								uni.switchTab({
 									url: '../tabBar/examination/examination'
+								})
+							}else{
+								uni.switchTab({
+									url: '../tabBar/my/my'
 								})
 							}
 						} else {

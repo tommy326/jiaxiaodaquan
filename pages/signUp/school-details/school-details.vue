@@ -113,7 +113,7 @@
 								</view>
 								<view class="atte">
 									<text class="text">24小时内活跃</text>
-									<img src="http://iph.href.lu/90x90?text=教练认证" class="img" alt="">
+									<image src="../../../static/images/bg/4.png" class="img"  mode=""></image>
 								</view>
 							</view>
 						</block>
@@ -840,7 +840,7 @@
 
 	.coach_list .item .atte .img {
 		display: inline-block;
-		width: 90rpx;
+		width: 99rpx;
 		height: 90rpx;
 	}
 

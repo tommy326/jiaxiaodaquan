@@ -61,13 +61,13 @@
 		data() {
 			return {
 				subject: '',
-				userAvatar:'http://iph.href.lu/140x140',
+				userAvatar:'../../../static/picture/userAvatar.png',
 				userName:'用户名'
 			}
 		},
 		onLoad(options) {
 			this.subject = options.subject
-			this.userAvatar = uni.getStorageSync('userData').avatar == null?'http://iph.href.lu/120x120?text=头像':uni.getStorageSync('userData').avatar 
+			this.userAvatar = uni.getStorageSync('userData').avatar == null?'../../../static/picture/userAvatar.png':uni.getStorageSync('userData').avatar 
 			this.userName = uni.getStorageSync('userData').username
 		},
 		onNavigationBarButtonTap: function(e) {

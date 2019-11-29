@@ -58,7 +58,7 @@
 		data() {
 			return {
 				userName: '请登录',
-				userAvatar: 'http://iph.href.lu/120x120?text=头像',
+				userAvatar: '../../../static/picture/userAvatar.png',
 				columnData: [{
 					src: 'wdct',
 					title: '我的错题'
@@ -79,10 +79,7 @@
 			console.log('onLoad');
 		},
 		onShow: function() {
-			if (uni.getStorageSync('logon_status') == 0) {
-				this.userName = '请登录'
-				this.userAvatar = 'http://iph.href.lu/120x120?text=头像'
-			} else if (uni.getStorageSync('logon_status') == 1) {
+			if (uni.getStorageSync('logon_status') == 1) {
 				console.log()
 				uni.request({
 					url: this.$Url + '/api/v1/get/user', //仅为示例，并非真实接口地址。
@@ -97,7 +94,7 @@
 						if (res.data.code == 200) {
 							uni.setStorageSync('userData', res.data.data);
 							this.userName = res.data.data.username
-							this.userAvatar = res.data.data.avatar == null?'http://iph.href.lu/120x120?text=头像':res.data.data.avatar
+							this.userAvatar = res.data.data.avatar == null ? '../../../static/picture/userAvatar.png' : res.data.data.avatar
 						} else {
 							uni.showToast({
 								icon: 'none',
@@ -107,14 +104,19 @@
 						}
 					}
 				});
-				
+
+			}else{
+				this.userName = '请登录'
+				this.userAvatar = '../../../static/picture/userAvatar.png'
 			}
 		},
 		methods: {
 			tapLogin: function(e) {
-				uni.navigateTo({
-					url: '../../login/login?form=1'
-				});
+				if (uni.getStorageSync('logon_status') == 0) {
+					uni.navigateTo({
+						url: '../../login/login?form=1'
+					});
+				}
 			},
 			tapNav: function(e) {
 				let idx = e.currentTarget.dataset.idx
@@ -141,24 +143,21 @@
 						url: '../../login/login?form=1'
 					});
 				}
-
 			},
 			tapJump: function(e) {
 				let idx = e.currentTarget.dataset.idx
 				if (uni.getStorageSync('logon_status') == 1) {
 					if (idx == 5) {
-						uni.setStorageSync('userData', '');
-						uni.setStorageSync('logon_status', 0);
-						uni.setStorageSync('token', 0);
-						this.userName = '请登录'
-						this.userAvatar = 'http://iph.href.lu/120x120?text=头像'
+						uni.navigateTo({
+							url: '../../my/setting/setting'
+						});
 					}
+					
 				} else {
 					uni.navigateTo({
 						url: '../../login/login?form=1'
 					});
 				}
-
 			}
 		}
 	}

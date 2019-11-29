@@ -39,6 +39,27 @@
 			uni.setNavigationBarTitle({
 				title: options.tabs == 0 ? '科一社区' : '科四社区'
 			});
+			uni.request({
+				url: this.$Url + '/api/v1/exam/community', //仅为示例，并非真实接口地址。
+				method: 'GET',
+				data: {
+					token: uni.getStorageSync('token')
+				},
+				header: {
+					'content-type': 'application/x-www-form-urlencoded'
+				},
+				success: (res) => {
+					if (res.data.code == 200) {
+						console.log(res.data)
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: '网络不给力，请稍后重试',
+							duration: 1000
+						});
+					}
+				}
+			});
 		},
 		methods: {
 

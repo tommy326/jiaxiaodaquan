@@ -106,12 +106,6 @@
 			},
 			gainCode: function() {
 				if (/^(13[0-9]|14[5|6|7]|15[0|1|2|3|5|6|7|8|9]|166|17[0|1|3|5|6|7]|18[0-9]|19[8|9])\d{8}$/.test(this.tel)) {
-					this.countdown(60)
-					this.disabled = true
-					uni.showToast({
-						title: '发送成功',
-						duration: 1000
-					});
 					uni.request({
 						url: this.$Url+'/api/sms?mobile='+this.tel,
 						method: 'GET',
@@ -120,7 +114,20 @@
 							'content-type': 'application/x-www-form-urlencoded'
 						},
 						success: (res) => {
-							
+							if (res.statusCode == 200) {
+								this.countdown(60)
+								this.disabled = true
+								uni.showToast({
+									title: '发送成功',
+									duration: 1000
+								});
+							} else {
+								uni.showToast({
+									icon: 'none',
+									title: '网络不给力，请稍后重试',
+									duration: 1000
+								});
+							}
 						}
 					});
 				} else {

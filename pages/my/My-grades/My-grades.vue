@@ -49,10 +49,10 @@
 		},
 		onLoad() {
 			uni.request({
-				url: this.$Url + '/api/exam/report',
+				url: this.$Url + '/api/v1/exam/report',
 				method: 'GET',
 				data: {
-					memberId: uni.getStorageSync('userData').id
+					token: uni.getStorageSync('token')
 				},
 				header: {
 					'content-type': 'application/x-www-form-urlencoded'

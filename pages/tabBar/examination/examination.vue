@@ -6,7 +6,9 @@
 			 @click="tapTabs">{{item}}</view>
 		</view>
 		<!-- 广告位 -->
-		<view class="banner_box"></view>
+		<view class="banner_box">
+			
+		</view>
 		<!-- 内容 -->
 		<view class="main_wrap">
 			<view class="side_box">
@@ -234,11 +236,10 @@
 
 	.main_wrap .mid_box .link_box {
 		display: flex;
-		width: 200rpx;
-		height: 200rpx;
+		width: 243rpx;
+		height: 243rpx;
 		border-radius: 50%;
-		background-color: #333333;
-		color: #ffffff;
+		color: #333333;
 		align-items: center;
 		justify-content: center;
 		flex-direction: column;
@@ -247,10 +248,14 @@
 
 	.main_wrap .mid_box .link_box:first-child {
 		margin-top: 7rpx;
+		background: url(../../../static/images/bg/3.png) no-repeat center;
+		background-size: 100%;
 	}
 
 	.main_wrap .mid_box .link_box:last-child {
-		margin-top: 120rpx;
+		margin-top: 50rpx;
+		background: url(../../../static/images/bg/5.png) no-repeat center;
+		background-size: 100%;
 	}
 
 	.main_wrap .mid_box .link_box .info {
@@ -262,7 +267,7 @@
 	.main_wrap .mid_box .link_box .text {
 		flex: 0 0 auto;
 		font-size: 32rpx;
-		color: #ffffff;
+		color: #333333;
 		opacity: 0.8;
 		margin-top: 20rpx;
 		line-height: 1;

@@ -18,7 +18,17 @@
 			<!-- 广告位 -->
 			<view class="banner_box">
 				<!-- banner -->
-				<image src="http://iph.href.lu/686x266?text=广告位 686*266" class="pic" mode=""></image>
+				<swiper class="swiper" indicator-dots="true" autoplay="true" indicator-active-color="#3860ff">
+					<swiper-item>
+						<image src="http://iph.href.lu/686x266" class="pic" mode=""></image>
+					</swiper-item>
+					<swiper-item>
+						<image src="http://iph.href.lu/686x266" class="pic" mode=""></image>
+					</swiper-item>
+					<swiper-item>
+						<image src="http://iph.href.lu/686x266" class="pic" mode=""></image>
+					</swiper-item>
+				</swiper>
 			</view>
 
 			<!-- 金刚区 -->
@@ -53,7 +63,7 @@
 			<!-- 驾校列表 -->
 			<view class="service_list">
 				<block v-for="(item,idx) in listData" :key='idx'>
-					<navigator :url="'../../signUp/school-details/school-details?id='+item.id"  class="item">
+					<navigator :url="'../../signUp/school-details/school-details?id='+item.id" class="item">
 						<view class="main_item">
 							<image :src="item.coverImg" mode="" class="photo"></image>
 							<view class="right_box">
@@ -222,7 +232,7 @@
 			}, 1000);
 		},
 		methods: {
-		
+
 		}
 	}
 </script>
@@ -301,12 +311,18 @@
 		box-sizing: border-box;
 	}
 
+	.banner_box .swiper {
+		width: 100%;
+		height: 266rpx;
+		border-radius: 16rpx;
+		overflow: hidden;
+		background: #c3c3c3;
+	}
+
 	.banner_box .pic {
 		display: block;
 		width: 100%;
 		height: 266rpx;
-		background-color: #656565;
-		border-radius: 16rpx;
 	}
 
 	.column_list {
@@ -362,8 +378,8 @@
 		color: #3860ff;
 		font-size: 30rpx;
 	}
-	
-	.screen_list .item_box .pic{
+
+	.screen_list .item_box .pic {
 		flex: 0 0 auto;
 		width: 12rpx;
 		height: 7rpx;
@@ -406,7 +422,7 @@
 		margin-top: -14rpx;
 	}
 
-	.service_list{
+	.service_list {
 		display: block;
 		width: 100%;
 		padding: 0 32rpx 1rpx;
@@ -421,8 +437,8 @@
 		background-color: #ffffff;
 		border-radius: 20rpx;
 	}
-	
-	
+
+
 	.service_list .item .main_item {
 		display: flex;
 		width: 100%;
@@ -431,7 +447,7 @@
 		align-items: center;
 		box-sizing: border-box;
 	}
-	
+
 	.service_list .item .main_item .photo {
 		flex: 0 0 auto;
 		width: 170rpx;
@@ -440,7 +456,7 @@
 		border-radius: 10rpx;
 		margin-left: 20rpx;
 	}
-	
+
 	.service_list .item .main_item .right_box {
 		display: flex;
 		width: 100%;
@@ -451,7 +467,7 @@
 		flex-direction: column;
 		position: relative;
 	}
-	
+
 	.service_list .item .main_item .user_info {
 		display: block;
 		font-size: 34rpx;
@@ -459,7 +475,7 @@
 		color: #202020;
 		padding-top: 6rpx;
 	}
-	
+
 	.service_list .item .main_item .comment_box {
 		display: flex;
 		width: 100%;
@@ -467,19 +483,19 @@
 		justify-content: space-between;
 		margin-top: 24rpx;
 	}
-	
+
 	.service_list .item .main_item .comment_box .comment_stars {
 		display: flex;
 		align-items: center;
 	}
-	
+
 	.service_list .item .main_item .comment_box .comment_stars .pic {
 		flex: 0 0 auto;
 		width: 21rpx;
 		height: 20rpx;
 		margin-right: 10rpx;
 	}
-	
+
 	.service_list .item .main_item .comment_box .comment_stars .fraction {
 		flex: 0 0 auto;
 		color: #929292;
@@ -487,14 +503,14 @@
 		margin-left: 15rpx;
 		line-height: 1;
 	}
-	
+
 	.service_list .item .main_item .comment_box .region {
 		flex: 0 0 auto;
 		color: #929292;
 		font-size: 24rpx;
 		line-height: 1;
 	}
-	
+
 	.service_list .item .main_item .cost_box {
 		display: flex;
 		align-items: flex-end;
@@ -507,7 +523,7 @@
 		bottom: 10rpx;
 		left: 0rpx;
 	}
-	
+
 	.service_list .item .main_item .cost_box .price {
 		flex: 0 0 auto;
 		color: #666666;
@@ -519,33 +535,33 @@
 		white-space: nowrap;
 		margin-right: 20rpx;
 	}
-	
+
 	.service_list .item .main_item .cost_box .price .num {
 		display: inline-block;
 		font-size: 38rpx;
 		color: #fe8c00;
 	}
-	
+
 	.service_list .item .main_item .cost_box .cost_text {
 		flex: 0 0 auto;
 		color: #333333;
 		font-size: 26rpx;
 		line-height: 1;
 	}
-	
-	.service_list .item .bottom_item{
+
+	.service_list .item .bottom_item {
 		display: block;
 		width: 100%;
 		padding-left: 210rpx;
 		box-sizing: border-box;
 	}
-	
+
 	.service_list .item .bottom_item .tag_list {
 		display: flex;
 		width: 100%;
 		flex-wrap: wrap;
 	}
-	
+
 	.service_list .item .bottom_item .tag_list .tag_item {
 		flex: 0 0 auto;
 		color: #929292;
@@ -557,24 +573,24 @@
 		margin-right: 23rpx;
 		margin: 14rpx 14rpx 0 0;
 	}
-	
-	.service_list .item .bottom_item .activity_item{
+
+	.service_list .item .bottom_item .activity_item {
 		display: flex;
 		align-items: center;
 		width: 100%;
 		margin-top: 12rpx;
 		font-size: 22rpx;
 	}
-	
-	.service_list .item .bottom_item .activity_item .tag_info{
+
+	.service_list .item .bottom_item .activity_item .tag_info {
 		background: #3860ff;
 		color: #ffffff;
 		line-height: 1;
 		padding: 5rpx;
 		border: solid 1px #3860ff;
 	}
-	
-	.service_list .item .bottom_item .activity_item .tag_text{
+
+	.service_list .item .bottom_item .activity_item .tag_text {
 		color: #3860ff;
 		line-height: 1;
 		border: solid 1px #3860ff;

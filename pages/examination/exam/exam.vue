@@ -57,6 +57,9 @@
 									<text class="title_type">多选</text>
 									<text class="title_text">{{item.question}}</text>
 								</view>
+								<block v-if="item.url != ''">
+									<rich-text :nodes="item.url"></rich-text>
+								</block>
 								<checkbox-group @change="checkboxChange">
 									<label class="radio_list">
 										<checkbox value="A" class="radio_icon" :disabled="disabled" />
@@ -93,7 +96,7 @@
 			<view class="item answer">
 				<text class="text">解析</text>
 			</view>
-			<view class="btn_wrap">
+			<view class="btn_wrap"  @click="CloseExam">
 				<text class="text">交卷</text>
 			</view>
 		</view>
@@ -115,44 +118,34 @@
 					<view class="item collect_off" :class="collect?'collect_on':''" @click="tapCollect">
 						<text class="text">{{collect?'已收藏':'收藏'}}</text>
 					</view>
-					<view class="btn_wrap">
+					<view class="btn_wrap" @click="CloseExam">
 						<text class="text">交卷</text>
 					</view>
 				</view>
 				<scroll-view class="opt_wrap" scroll-y>
 					<view class="opt_wrap_list">
-						<!-- <block v-for="n in this.subject == 'one' ? 100 : 50" :key='n'>
-							<view class="item" @click="tapQuestionId" :data-idx='n'>
-								<!-- #ifdef H5 -->
-						{{n}}
-						<!-- #endif -->
-						<!-- #ifdef APP-PLUS -->
-						{{n+1}}
-						<!-- #endif -->
+						<block v-for="(items,index) in answerData" :key='index'>
+							<block v-if="items.result == '1'">
+								<view class="item on" @click="tapQuestionId" :data-idx='index'>
+									{{index + 1}}
+								</view>
+							</block>
+							<block v-else-if="items.result == '2'">
+								<view class="item off" @click="tapQuestionId" :data-idx='index'>
+									{{index + 1}}
+								</view>
+							</block>
+							<block v-else>
+								<view class="item" @click="tapQuestionId" :data-idx='index'>
+									{{index + 1}}
+								</view>
+							</block>
+						</block>
 					</view>
-					</block> -->
-					<block v-for="(items,index) in answerData" :key='index'>
-						<block v-if="items.result == '1'">
-							<view class="item on" @click="tapQuestionId" :data-idx='index'>
-								{{index + 1}}
-							</view>
-						</block>
-						<block v-else-if="items.result == '2'">
-							<view class="item off" @click="tapQuestionId" :data-idx='index'>
-								{{index + 1}}
-							</view>
-						</block>
-						<block v-else>
-							<view class="item" @click="tapQuestionId" :data-idx='index'>
-								{{index + 1}}
-							</view>
-						</block>
-					</block>
+				</scroll-view>
 			</view>
-			</scroll-view>
-		</view>
 
-	</view>
+		</view>
 	</view>
 
 </template>
@@ -188,9 +181,11 @@
 			this.openCountDown()
 			// 获取题目
 			uni.request({
-				url: this.$Url + '/api/exam/item/' + options.subject,
+				url: this.$Url + '/api/v1/exam/item/' + options.subject,
 				method: 'GET',
-				data: {},
+				data: {
+					token: uni.getStorageSync('token')
+				},
 				header: {
 					'content-type': 'application/x-www-form-urlencoded'
 				},
@@ -229,7 +224,7 @@
 			});
 		},
 		onHide() {
-			clearInterval(this.timer)
+			clearInterval()
 		},
 		onBackPress() {
 			clearInterval(this.timer)
@@ -254,6 +249,18 @@
 					uni.setNavigationBarTitle({
 						title: '考试结束'
 					});
+					uni.showModal({
+						title: '温馨提示',
+						content: '考试不通过',
+						showCancel: false,
+						confirmText: '交卷',
+						success: (res) => {
+							if (res.confirm) {
+								clearInterval()
+								uni.navigateBack()
+							}
+						}
+					});
 				}
 			},
 			openCountDown: function() {
@@ -265,10 +272,10 @@
 			DoTitle: function(sign, choose) {
 				let subject = this.subject == 'one' ? '1' : '4'
 				uni.request({
-					url: this.$Url + '/api/exam/item/log',
+					url: this.$Url + '/api/v1/exam/mock/log',
 					method: 'GET',
 					data: {
-						memberId: uni.getStorageSync('userData').id,
+						token: uni.getStorageSync('token'),
 						subject: subject,
 						questionId: this.questionId,
 						sign: sign,
@@ -298,14 +305,12 @@
 					uni.showModal({
 						title: '温馨提示',
 						content: '恭喜您答对了',
-						cancelText: '解析',
+						showCancel: false,
 						confirmText: '下一题',
 						success: (res) => {
 							if (res.confirm) {
 								this.current++
 								console.log('用户点击确定');
-							} else if (res.cancel) {
-								console.log('用户点击取消');
 							}
 						}
 					});
@@ -316,18 +321,17 @@
 					uni.showModal({
 						title: '温馨提示',
 						content: '很抱歉您答错了',
-						cancelText: '解析',
+						showCancel: false,
 						confirmText: '下一题',
 						success: (res) => {
 							if (res.confirm) {
 								this.current++
 								console.log('用户点击确定');
-							} else if (res.cancel) {
-								console.log('用户点击取消');
 							}
 						}
 					});
 				}
+				this.handPaper()
 			},
 			checkboxChange: function(e) {
 				let str = ''
@@ -379,14 +383,12 @@
 					uni.showModal({
 						title: '温馨提示',
 						content: '恭喜您答对了',
-						cancelText: '解析',
+						showCancel: false,
 						confirmText: '下一题',
 						success: (res) => {
 							if (res.confirm) {
 								this.current++
 								console.log('用户点击确定');
-							} else if (res.cancel) {
-								console.log('用户点击取消');
 							}
 						}
 					});
@@ -397,18 +399,17 @@
 					uni.showModal({
 						title: '温馨提示',
 						content: '很抱歉您答错了',
-						cancelText: '解析',
+						showCancel: false,
 						confirmText: '下一题',
 						success: (res) => {
 							if (res.confirm) {
 								this.current++
 								console.log('用户点击确定');
-							} else if (res.cancel) {
-								console.log('用户点击取消');
 							}
 						}
 					});
 				}
+				this.handPaper()
 			},
 			tapAnswer: function(e) {
 				this.open = !this.open
@@ -431,14 +432,12 @@
 					uni.showModal({
 						title: '温馨提示',
 						content: '恭喜您答对了',
-						cancelText: '解析',
+						showCancel: false,
 						confirmText: '下一题',
 						success: (res) => {
 							if (res.confirm) {
 								this.current++
 								console.log('用户点击确定');
-							} else if (res.cancel) {
-								console.log('用户点击取消');
 							}
 						}
 					});
@@ -449,18 +448,50 @@
 					uni.showModal({
 						title: '温馨提示',
 						content: '很抱歉您答错了',
-						cancelText: '解析',
+						showCancel: false,
 						confirmText: '下一题',
 						success: (res) => {
 							if (res.confirm) {
 								this.current++
 								console.log('用户点击确定');
-							} else if (res.cancel) {
-								console.log('用户点击取消');
 							}
 						}
 					});
 				}
+				this.handPaper()
+			},
+			handPaper: function(e) {
+				if (this.subject == 'one' && this.wrong > 10 || this.subject == 'four' && this.wrong > 5) {
+					uni.showModal({
+						title: '温馨提示',
+						content: '考试不通过',
+						showCancel: false,
+						confirmText: '交卷',
+						success: (res) => {
+							if (res.confirm) {
+								clearInterval()
+								uni.navigateBack()
+							}
+						}
+					});
+				}
+			},
+			CloseExam:function(e){
+				uni.showModal({
+					title: '温馨提示',
+					content: '确定提交试卷？',
+					showCancel: true,
+					cancelColor: '#3860ff',
+					confirmColor: '#929292',
+					success: function(res) {
+						if (res.confirm) {
+							clearInterval()
+							uni.navigateBack()
+						} else if (res.cancel) {
+							console.log('用户点击取消');
+						}
+					}
+				});
 			}
 		}
 	}

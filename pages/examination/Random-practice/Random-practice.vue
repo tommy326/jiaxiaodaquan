@@ -4,13 +4,14 @@
 		<view class="main_wrap">
 			<scroll-view scroll-y="true" class="scroll_box">
 				<block v-for="(item,idx) in listData" :key='idx'>
-					<block v-if="item.item3 != '' && item.answer < 9">
+					<block v-if="item.item3 != '' && item.answer < 6">
 						<view class="sub_title">
 							<text class="title_type">单选</text>
 							<text class="title_text">{{item.question}}</text>
 						</view>
 						<block v-if="item.url != ''">
-							<image :src="item.url" lazy-load='true' @load='imageLoad' :class="imageShow?'show':'hide'" :style="{ width: width + 'rpx', height: height + 'rpx'}" mode=""></image>
+							<image :src="item.url" lazy-load='true' @load='imageLoad' :class="imageShow?'show':'hide'" :style="{ width: width + 'rpx', height: height + 'rpx'}"
+							 mode=""></image>
 						</block>
 						<radio-group @change="radioChange">
 							<label class="radio_list">
@@ -49,7 +50,8 @@
 							<text class="title_text">{{item.question}}</text>
 						</view>
 						<block v-if="item.url != ''">
-							<image :src="item.url" lazy-load='true' @load='imageLoad' :class="imageShow?'show':'hide'" :style="{ width: width + 'rpx', height: height + 'rpx' }" mode=""></image>
+							<image :src="item.url" lazy-load='true' @load='imageLoad' :class="imageShow?'show':'hide'" :style="{ width: width + 'rpx', height: height + 'rpx' }"
+							 mode=""></image>
 						</block>
 						<radio-group @change="judgeChange">
 							<label class="radio_list">
@@ -68,45 +70,34 @@
 							</label>
 						</radio-group>
 					</block>
-					<block v-if="item.item3 != '' && item.answer > 9">
+					<block v-if="item.item3 != '' && item.answer > 6">
 						<view class="sub_title">
 							<text class="title_type">多选</text>
 							<text class="title_text">{{item.question}}</text>
 						</view>
 						<block v-if="item.url != ''">
-							<image :src="item.url" lazy-load='true' @load='imageLoad' class="pic" :style="{ width: width + 'rpx', height: height + 'rpx' }"
+							<image :src="item.url" lazy-load='true' @load='imageLoad' :class="imageShow?'show':'hide'" :style="{ width: width + 'rpx', height: height + 'rpx' }"
 							 mode=""></image>
 						</block>
 						<checkbox-group @change="checkboxChange">
 							<label class="radio_list">
-								<checkbox value="0" checked="" style="display: none;" />
-								<view class="radio_icon" :class="item.checked ?'radio_icon_on':''">
-									A
-								</view>
-								<view class="radio_text">{{item.item1}}</view>
+								<checkbox value="A" />
+								<view class="radio_text">A. {{item.item1}}</view>
 							</label>
 							<label class="radio_list">
-								<checkbox value="1" checked="" style="display: none;" />
-								<view class="radio_icon" :class="item.checked ?'radio_icon_on':''">
-									B
-								</view>
-								<view class="radio_text">{{item.item2}}</view>
+								<checkbox value="B" />
+								<view class="radio_text">B. {{item.item2}}</view>
 							</label>
 							<label class="radio_list">
-								<checkbox value="2" checked="" style="display: none;" />
-								<view class="radio_icon" :class="item.checked ?'radio_icon_on':''">
-									C
-								</view>
-								<view class="radio_text">{{item.item3}}</view>
+								<checkbox value="C" />
+								<view class="radio_text">C. {{item.item3}}</view>
 							</label>
 							<label class="radio_list">
-								<checkbox value="3" checked="" style="display: none;" />
-								<view class="radio_icon" :class="item.checked ?'radio_icon_on':''">
-									D
-								</view>
-								<view class="radio_text">{{item.item4}}</view>
+								<checkbox value="D" />
+								<view class="radio_text">D. {{item.item4}}</view>
 							</label>
 						</checkbox-group>
+						<button class="checkbox_btn" :data-index='idx' @click="tapCheckbox">提交</button>
 					</block>
 				</block>
 			</scroll-view>
@@ -188,6 +179,7 @@
 				listData: [],
 				radioSelect: '5',
 				judgeSelect: '2',
+				CheckboxSelect: '',
 				open: false,
 				questionId: 0,
 				total: '',
@@ -205,12 +197,12 @@
 			examData: function(e) {
 				// 获取题目
 				uni.request({
-					url: this.$Url + '/api/exam/study/list',
+					url: this.$Url + '/api/v1/exam/study/list',
 					method: 'GET',
 					data: {
-						'memberId': uni.getStorageSync('userData').id,
+						'token': uni.getStorageSync('token'),
 						'subject': this.subject,
-						'model':uni.getStorageSync('cars_mold')
+						'model': uni.getStorageSync('cars_mold')
 					},
 					header: {
 						'content-type': 'application/x-www-form-urlencoded'
@@ -242,12 +234,12 @@
 				});
 				// 获取答题卡
 				uni.request({
-					url: this.$Url + '/api/exam/study/card',
+					url: this.$Url + '/api/v1/exam/study/card',
 					method: 'GET',
 					data: {
-						'memberId': uni.getStorageSync('userData').id,
+						'token': uni.getStorageSync('token'),
 						'subject': this.subject,
-						'model':uni.getStorageSync('cars_mold')
+						'model': uni.getStorageSync('cars_mold')
 					},
 					header: {
 						'content-type': 'application/x-www-form-urlencoded'
@@ -269,10 +261,10 @@
 			},
 			DoTitle: function(sign, choose) {
 				uni.request({
-					url: this.$Url + '/api/exam/item/log',
+					url: this.$Url + '/api/v1/exam/item/log',
 					method: 'GET',
 					data: {
-						memberId: uni.getStorageSync('userData').id,
+						token: uni.getStorageSync('token'),
 						subject: this.subject,
 						questionId: this.questionId,
 						sign: sign,
@@ -314,7 +306,7 @@
 						content: '很抱歉您答错了',
 						cancelText: '解析',
 						confirmText: '下一题',
-						success:  (res) =>  {
+						success: (res) => {
 							if (res.confirm) {
 								console.log('用户点击确定');
 								this.radioSelect = 5
@@ -327,19 +319,43 @@
 				}
 			},
 			checkboxChange: function(e) {
-				var items = this.checkboxData,
-					values = e.detail.value;
-				let arr = []
-				for (var i = 0, lenI = items.length; i < lenI; ++i) {
-					const item = items[i]
-					if (values.indexOf(item.value) >= 0) {
-						arr.push(item.value)
-						this.$set(item, 'checked', true)
-					} else {
-						this.$set(item, 'checked', false)
-					}
+				let str = ''
+				switch (e.detail.value.join('')) {
+					case 'AB':
+						str = "7";
+						break;
+					case 'AC':
+						str = "8";
+						break;
+					case 'AD':
+						str = "9";
+						break;
+					case 'BC':
+						str = "10";
+						break;
+					case 'BD':
+						str = "11";
+						break;
+					case 'CD':
+						str = "12";
+						break;
+					case 'ABC':
+						str = "13";
+						break;
+					case 'ABD':
+						str = "14";
+						break;
+					case 'ACD':
+						str = "15";
+						break;
+					case 'BCD':
+						str = "16";
+						break;
+					case 'ABCD':
+						str = "17";
+						break;
 				}
-				console.log(arr)
+				this.CheckboxSelect = str
 			},
 			judgeChange: function(e) {
 				this.judgeSelect = e.target.value
@@ -368,7 +384,7 @@
 						content: '很抱歉您答错了',
 						cancelText: '解析',
 						confirmText: '下一题',
-						success:  (res) =>  {
+						success: (res) => {
 							if (res.confirm) {
 								console.log('用户点击确定');
 								this.judgeSelect = 2
@@ -380,15 +396,53 @@
 					});
 				}
 			},
+			tapCheckbox: function(e) {
+				if (this.listData[0].answer == this.CheckboxSelect) {
+					this.DoTitle('r', this.CheckboxSelect)
+					uni.showModal({
+						title: '温馨提示',
+						content: '恭喜您答对了',
+						cancelText: '解析',
+						confirmText: '下一题',
+						success: (res) => {
+							if (res.confirm) {
+								console.log('用户点击确定');
+								this.CheckboxSelect = ''
+								this.examData()
+							} else if (res.cancel) {
+								console.log('用户点击取消');
+							}
+						}
+					});
+				} else {
+					this.DoTitle('w', this.CheckboxSelect)
+					uni.showModal({
+						title: '温馨提示',
+						content: '很抱歉您答错了',
+						cancelText: '解析',
+						confirmText: '下一题',
+						success: (res) => {
+							if (res.confirm) {
+								console.log('用户点击确定');
+								this.CheckboxSelect = ''
+								this.examData()
+							} else if (res.cancel) {
+								console.log('用户点击取消');
+							}
+						}
+					});
+				}
+			},
 			tapPrev: function(e) {
 				uni.request({
-					url: this.$Url + '/api/exam/study/change',
+					url: this.$Url + '/api/v1/exam/study/change',
 					method: 'GET',
 					data: {
-						'memberId': uni.getStorageSync('userData').id,
-						'questionId':this.questionId,
-						'subject': this.subject,
-						'type': 'back'
+						'token': uni.getStorageSync('token'),
+						'questionId': this.questionId,
+						// 'subject': this.subject,
+						'type': 'back',
+						'model': uni.getStorageSync('cars_mold')
 					},
 					header: {
 						'content-type': 'application/x-www-form-urlencoded'
@@ -407,8 +461,27 @@
 								arr.push(res.data.msg[i]);
 							}
 							console.log(arr);
-							this.listData = arr
-							this.questionId = arr[0].questionId
+							if (arr.length > 0) {
+								this.listData = arr
+								this.questionId = arr[0].questionId
+								if (arr[0].item_log != null) {
+									console.log(arr[0].item_log.choose)
+									if (arr[0].item3 != '' && arr[0].answer < 6) {
+										this.radioSelect = Number(arr[0].item_log.choose) - 1
+									} else if (item.item3 == '') {
+										this.judgeSelect = Number(arr[0].item_log.choose) - 1
+									}
+								} else {
+									this.radioSelect = '5'
+									this.judgeSelect = '2'
+								}
+							} else {
+								uni.showToast({
+									icon: 'none',
+									title: '已经到顶了',
+									duration: 2000
+								});
+							}
 						} else {
 							uni.showToast({
 								icon: 'none',
@@ -420,11 +493,12 @@
 				});
 				// 获取答题卡
 				uni.request({
-					url: this.$Url + '/api/exam/study/card',
+					url: this.$Url + '/api/v1/exam/study/card',
 					method: 'GET',
 					data: {
-						'memberId': uni.getStorageSync('userData').id,
-						'subject': this.subject
+						'token': uni.getStorageSync('token'),
+						'subject': this.subject,
+						'model': uni.getStorageSync('cars_mold')
 					},
 					header: {
 						'content-type': 'application/x-www-form-urlencoded'
@@ -446,13 +520,14 @@
 			},
 			tapNext: function(e) {
 				uni.request({
-					url: this.$Url + '/api/exam/study/change',
+					url: this.$Url + '/api/v1/exam/study/change',
 					method: 'GET',
 					data: {
-						'memberId': uni.getStorageSync('userData').id,
-						'questionId':this.questionId,
-						'subject': this.subject,
-						'type': 'next'
+						'token': uni.getStorageSync('token'),
+						'questionId': this.questionId,
+						// 'subject': this.subject,
+						'type': 'next',
+						'model': uni.getStorageSync('cars_mold')
 					},
 					header: {
 						'content-type': 'application/x-www-form-urlencoded'
@@ -469,8 +544,28 @@
 							for (let i in res.data.msg) {
 								arr.push(res.data.msg[i]);
 							}
-							this.listData = arr
-							this.questionId = arr[0].questionId
+							if (arr.length > 0) {
+								this.listData = arr
+								this.questionId = arr[0].questionId
+								if (arr[0].item_log != null) {
+									console.log(arr[0].item_log.choose)
+									if (arr[0].item3 != '' && arr[0].answer < 6) {
+										this.radioSelect = Number(arr[0].item_log.choose) - 1
+									} else if (item.item3 == '') {
+										this.judgeSelect = Number(arr[0].item_log.choose) - 1
+									}
+								} else {
+									this.radioSelect = '5'
+									this.judgeSelect = '2'
+								}
+							} else {
+								uni.showToast({
+									icon: 'none',
+									title: '恭喜您已经做完了',
+									duration: 2000
+								});
+							}
+
 						} else {
 							uni.showToast({
 								icon: 'none',
@@ -482,11 +577,12 @@
 				});
 				// 获取答题卡
 				uni.request({
-					url: this.$Url + '/api/exam/study/card',
+					url: this.$Url + '/api/v1/exam/study/card',
 					method: 'GET',
 					data: {
-						'memberId': uni.getStorageSync('userData').id,
-						'subject': this.subject
+						'token': uni.getStorageSync('token'),
+						'subject': this.subject,
+						'model': uni.getStorageSync('cars_mold')
 					},
 					header: {
 						'content-type': 'application/x-www-form-urlencoded'
@@ -518,12 +614,12 @@
 				this.questionId = e.currentTarget.dataset.questionid
 				console.log(e.currentTarget.dataset.questionid)
 				uni.request({
-					url: this.$Url + '/api/exam/study/choose',
+					url: this.$Url + '/api/v1/exam/study/choose',
 					method: 'GET',
 					data: {
-						'memberId': uni.getStorageSync('userData').id,
+						'token': uni.getStorageSync('token'),
 						'subject': this.subject,
-						'questionId':this.questionId
+						'questionId': this.questionId
 					},
 					header: {
 						'content-type': 'application/x-www-form-urlencoded'
@@ -539,6 +635,17 @@
 							console.log(arr);
 							this.listData = arr
 							this.questionId = arr[0].questionId
+							if (arr[0].item_log != null) {
+								console.log(arr[0].item_log.choose)
+								if (arr[0].item3 != '' && arr[0].answer < 6) {
+									this.radioSelect = Number(arr[0].item_log.choose) - 1
+								} else if (item.item3 == '') {
+									this.judgeSelect = Number(arr[0].item_log.choose) - 1
+								}
+							} else {
+								this.radioSelect = '5'
+								this.judgeSelect = '2'
+							}
 						} else {
 							uni.showToast({
 								icon: 'none',
@@ -878,5 +985,13 @@
 	.hide {
 		display: none;
 		margin: 30rpx auto;
+	}
+
+	.checkbox_btn {
+		width: 40%;
+		margin-top: 50rpx;
+		line-height: 2;
+		background-color: #3860ff;
+		color: #ffffff;
 	}
 </style>

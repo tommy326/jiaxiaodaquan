@@ -55,10 +55,10 @@
 		},
 		onLoad() {
 			uni.request({
-				url: this.$Url + '/api/exam/error/list',
+				url: this.$Url + '/api/v1/exam/error/list',
 				method: 'GET',
 				data: {
-					memberId: uni.getStorageSync('userData').id
+					token: uni.getStorageSync('token')
 				},
 				header: {
 					'content-type': 'application/x-www-form-urlencoded'
