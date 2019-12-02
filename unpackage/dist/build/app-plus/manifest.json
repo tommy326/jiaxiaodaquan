@@ -21,8 +21,6 @@
     "Maps": {
       "coordType": "gcj02"
     },
-    "Payment": {},
-    "Share": {},
     "UniNView": {
       "description": "UniNView原生渲染"
     }
@@ -156,12 +154,7 @@
           }
         },
         "payment": {},
-        "share": {
-          "weixin": {
-            "appid": "wxc83ecb49c32b43ed",
-            "UniversalLinks": ""
-          }
-        },
+        "share": {},
         "audio": {
           "mp3": {
             "description": "Android平台录音支持MP3格式文件"

@@ -19,7 +19,12 @@
     "pages/signUp/ladder-player-details/ladder-player-details",
     "pages/examination/community-list/community-list",
     "pages/signUp/news-details/news-details",
-    "pages/signUp/coach-details/coach-details"
+    "pages/signUp/coach-details/coach-details",
+    "pages/my/setting/setting",
+    "pages/my/changeName/changeName",
+    "pages/my/changeTel/changeTel",
+    "pages/my/changePass/changePass",
+    "pages/my/reset-pass/reset-pass"
   ],
   "window": {
     "navigationBarTextStyle": "black",

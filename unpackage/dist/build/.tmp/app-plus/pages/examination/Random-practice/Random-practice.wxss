@@ -324,4 +324,11 @@
 	display: none;
 	margin: 30rpx auto;
 }
+.checkbox_btn {
+	width: 40%;
+	margin-top: 50rpx;
+	line-height: 2;
+	background-color: #3860ff;
+	color: #ffffff;
+}
 

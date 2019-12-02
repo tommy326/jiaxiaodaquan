@@ -493,7 +493,7 @@
 }
 .coach_list .item .atte .img {
 	display: inline-block;
-	width: 90rpx;
+	width: 99rpx;
 	height: 90rpx;
 }
 .area_list {
