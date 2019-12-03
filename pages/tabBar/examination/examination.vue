@@ -7,7 +7,18 @@
 		</view>
 		<!-- 广告位 -->
 		<view class="banner_box">
-			
+			<!-- banner -->
+			<swiper class="swiper" indicator-dots="true" autoplay="true" indicator-active-color="#3860ff">
+				<swiper-item>
+					<image src="http://iph.href.lu/686x194" :data-url='1' @click="openBrowser" class="pic" mode=""></image>
+				</swiper-item>
+				<swiper-item>
+					<image src="http://iph.href.lu/686x194" :data-url='2' @click="openBrowser" class="pic" mode=""></image>
+				</swiper-item>
+				<swiper-item>
+					<image src="http://iph.href.lu/686x194" :data-url='3' @click="openBrowser" class="pic" mode=""></image>
+				</swiper-item>
+			</swiper>
 		</view>
 		<!-- 内容 -->
 		<view class="main_wrap">
@@ -81,22 +92,16 @@
 				<navigator :url="'../../examination/community-list/community-list?tabs='+tabs" class="link" hover-class="none">查看全部</navigator>
 			</view>
 			<view class="ask_list">
-				<view class="item">
-					<view class="info">
-						上个月18号面签，到今天一个月了
+				<block v-for="(item,idx) in newsData" :key='item.content' v-if="idx < 3">
+					<view class="item">
+						<view class="info">
+							{{item.content}}
+						</view>
+						<view class="text">
+							{{item.community_ask_to_many_answer.length}}个回答
+						</view>
 					</view>
-					<view class="text">
-						12151个回答
-					</view>
-				</view>
-				<view class="item">
-					<view class="info">
-						上个月18号面签，到今天一个月了什上个月18号面签，到今天一个月了什
-					</view>
-					<view class="text">
-						262442个回答
-					</view>
-				</view>
+				</block>
 			</view>
 		</view>
 	</view>
@@ -107,17 +112,89 @@
 		data() {
 			return {
 				tabs: 0,
-				tabsData: ['科一', '科四']
+				tabsData: ['科一', '科四'],
+				adData: [],
+				askData: [],
+				newsData: []
 			}
 		},
+		onLoad: function() {
+			this.adRequest('one')
+			//社区列表
+			uni.request({
+				url: this.$Url + '/api/v1/exam/community', //仅为示例，并非真实接口地址。
+				method: 'GET',
+				data: {
+					token: uni.getStorageSync('token')
+				},
+				header: {
+					'content-type': 'application/x-www-form-urlencoded'
+				},
+				success: (res) => {
+					if (res.data.code == 200) {
+						console.log(res.data)
+						var arr = []
+						for (let i in res.data.msg) {
+							arr.push(res.data.msg[i]); //属性
+						}
+						this.newsData = arr
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: '网络不给力，请稍后重试',
+							duration: 1000
+						});
+					}
+				}
+			});
+		},
 		methods: {
+			adRequest: function(e) {
+				//广告
+				uni.request({
+					url: this.$Url + '/api/car/ad',
+					method: 'GET',
+					data: {
+						position: e
+					},
+					header: {
+						'content-type': 'application/x-www-form-urlencoded'
+					},
+					success: (res) => {
+						if (res.data.code == 200) {
+							console.log(res.data)
+							let arr = []
+							for (let i in res.data.msg) {
+								res.data.msg[i].coverImg = this.$Url + res.data.msg[i].coverImg
+								arr.push(res.data.msg[i]);
+							}
+							this.adData = arr
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: '网络不给力，请稍后重试',
+								duration: 2000
+							});
+						}
+					}
+				});
+				//社区列表
+			},
 			tapTabs: function(e) {
 				this.tabs = e.currentTarget.dataset.idx
+				if (e.currentTarget.dataset.idx == 0) {
+					this.adRequest('one')
+				} else {
+					this.adRequest('two')
+				}
+			},
+			openBrowser: function(e) {
+				plus.runtime.openURL(e.currentTarget.dataset.url)
 			},
 			RandomPractice: function(e) {
 				if (uni.getStorageSync('logon_status') == 1) {
 					uni.navigateTo({
-						url: '../../examination/Random-practice/Random-practice?subject='+e.currentTarget.dataset.idx
+						url: '../../examination/Random-practice/Random-practice?subject=' + e.currentTarget.dataset.idx
 					});
 				} else {
 					uni.navigateTo({
@@ -128,7 +205,7 @@
 			MockExam: function(e) {
 				if (uni.getStorageSync('logon_status') == 1) {
 					uni.navigateTo({
-						url: '../../examination/Mock-exam/Mock-exam?subject='+e.currentTarget.dataset.idx
+						url: '../../examination/Mock-exam/Mock-exam?subject=' + e.currentTarget.dataset.idx
 					});
 				} else {
 					uni.navigateTo({
@@ -187,6 +264,18 @@
 		background-color: #101014;
 		border-radius: 12rpx;
 		margin: 32rpx auto 40rpx;
+		overflow: hidden;
+	}
+
+	.banner_box .swiper {
+		width: 100%;
+		height: 194rpx;
+	}
+
+	.banner_box .pic {
+		display: block;
+		width: 100%;
+		height: 194rpx;
 	}
 
 	.main_wrap {

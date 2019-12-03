@@ -5,6 +5,7 @@
 			// #ifdef APP-PLUS
 			// 锁定屏幕方向
 			plus.screen.lockOrientation('portrait-primary'); //锁定
+			console.log('版本号'+ plus.runtime.version);
 			// 获取imei
 			plus.device.getInfo({
 				success: function(e) {
@@ -46,6 +47,7 @@
 			var cars_mold = uni.getStorageSync('cars_mold') || 'c1'
 			uni.setStorageSync('logon_status', logon_status);
 			uni.setStorageSync('cars_mold', cars_mold);
+
 		},
 		onShow: function() {
 			console.log('App Show')

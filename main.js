@@ -4,7 +4,7 @@ import App from './App'
 Vue.config.productionTip = false
  
  //接口默认网址
- Vue.prototype.$Url = 'http://jkdq.521che.com'
+ Vue.prototype.$Url = 'https://jkdq.521che.com'
 
 //时间戳转时间
 Vue.prototype.$time = Array.time || function(obj) {

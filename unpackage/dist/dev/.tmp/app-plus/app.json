@@ -24,7 +24,11 @@
     "pages/my/changeName/changeName",
     "pages/my/changeTel/changeTel",
     "pages/my/changePass/changePass",
-    "pages/my/reset-pass/reset-pass"
+    "pages/my/reset-pass/reset-pass",
+    "pages/my/My-publication/My-publication",
+    "pages/my/My-order/My-order",
+    "pages/my/My-collection/My-collection",
+    "pages/my/Browse-record/Browse-record"
   ],
   "window": {
     "navigationBarTextStyle": "black",

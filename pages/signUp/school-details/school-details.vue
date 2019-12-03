@@ -4,8 +4,15 @@
 			<block v-for="(item,idx) in listData" :key='idx'>
 				<!-- 驾校照片 -->
 				<view class="photo_box">
-					<image src="http://iph.href.lu/750x404?text=750x404&fg=666666&bg=cccccc" mode="" class="school_photo"></image>
-					<view class="photo_num">1/80</view>
+					<!-- banner -->
+					<swiper class="swiper" :current='current' circular @change='changeCurrent'>
+						<block v-for="item in photoData" :key='item'>
+							<swiper-item>
+								<image :src="item" mode="" class="school_photo"></image>
+							</swiper-item>
+						</block>
+					</swiper>
+					<view class="photo_num">{{current + 1}}/{{photoData.length}}</view>
 				</view>
 				<!-- 驾校简介 -->
 				<view class="school_box">
@@ -113,7 +120,7 @@
 								</view>
 								<view class="atte">
 									<text class="text">24小时内活跃</text>
-									<image src="../../../static/images/bg/4.png" class="img"  mode=""></image>
+									<image src="../../../static/images/bg/4.png" class="img" mode=""></image>
 								</view>
 							</view>
 						</block>
@@ -244,6 +251,8 @@
 			return {
 				tabs: 0,
 				listData: [],
+				photoData: ['http://jkdq.521che.com/uploads/schoolImage20190918/5d81db86d9662.jpg'],
+				current:0,
 				tabsData: ['班型', '教练', '场地', '评价'],
 				num: '2324',
 				collect: true,
@@ -269,8 +278,16 @@
 				},
 				success: (res) => {
 					if (res.data.code == 200) {
-						//console.log(res.data.msg[0].showImg.replace(/\\/gi,''))
 						this.listData = res.data.msg
+						let arr = [],
+							data = JSON.parse(this.listData[0].showImg)
+						for (let i in data) {
+							data[i] = this.$Url + data[i]
+							arr.push(data[i]);
+						}
+						if(arr.length > 0){
+							this.photoData = arr
+						}
 					} else {
 						uni.showToast({
 							icon: 'none',
@@ -316,13 +333,12 @@
 				},
 				success: (res) => {
 					if (res.data.code == 200) {
-						console.log(res.data.msg)
 						var arr = []
 						for (let i in res.data.msg) {
 							res.data.msg[i].showImg = this.$Url + res.data.msg[i].showImg
-							arr.push(res.data.msg[i]); //属性
+							arr.push(res.data.msg[i]);
 						}
-						this.areaListData = res.data.msg
+						this.areaListData = arr
 					} else {
 						uni.showToast({
 							icon: 'none',
@@ -350,6 +366,9 @@
 		methods: {
 			tapTabs: function(e) {
 				this.tabs = e.currentTarget.dataset.idx
+			},
+			changeCurrent: function(e) {
+				this.current = e.detail.current
 			},
 			tapCollect: function(e) {
 				this.collect = !this.collect
@@ -500,9 +519,15 @@
 		overflow: hidden;
 	}
 
+	.photo_box .swiper {
+		width: 100%;
+		height: 404rpx;
+	}
+
 	.photo_box .school_photo {
 		display: block;
 		width: 100%;
+		height: 404rpx;
 	}
 
 	.photo_box .photo_num {

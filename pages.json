@@ -227,6 +227,38 @@
 				"navigationBarTitleText": "找回密码"
 			}
         }
+        ,{
+            "path" : "pages/my/My-publication/My-publication",
+            "style" : {
+				"navigationBarTitleText": "我的发表",
+				"navigationBarBackgroundColor": "#3860ff",
+				"navigationBarTextStyle": "white"
+			}
+        }
+        ,{
+            "path" : "pages/my/My-order/My-order",
+            "style" : {
+				"navigationBarTitleText": "我的订单",
+				"navigationBarBackgroundColor": "#3860ff",
+				"navigationBarTextStyle": "white"
+			}
+        }
+        ,{
+            "path" : "pages/my/My-collection/My-collection",
+            "style" : {
+				"navigationBarTitleText": "我的收藏",
+				"navigationBarBackgroundColor": "#3860ff",
+				"navigationBarTextStyle": "white"
+			}
+        }
+        ,{
+            "path" : "pages/my/Browse-record/Browse-record",
+            "style" : {
+				"navigationBarTitleText": "浏览记录",
+				"navigationBarBackgroundColor": "#3860ff",
+				"navigationBarTextStyle": "white"
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

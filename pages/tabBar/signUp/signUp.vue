@@ -9,7 +9,7 @@
 		<view class="search_module">
 			<view class="search_warp">
 				<navigator url="" class="location" hover-class="none">{{city}}</navigator>
-				<navigator url="" class="search_input" hover-class="none">请输入关键字</navigator>
+				<navigator url="" class="search_input" hover-class="none">请输入关键字 例如：**驾校</navigator>
 			</view>
 		</view>
 
@@ -20,13 +20,13 @@
 				<!-- banner -->
 				<swiper class="swiper" indicator-dots="true" autoplay="true" indicator-active-color="#3860ff">
 					<swiper-item>
-						<image src="http://iph.href.lu/686x266" class="pic" mode=""></image>
+						<image src="http://iph.href.lu/686x266" :data-url='1' @click="openBrowser" class="pic" mode=""></image>
 					</swiper-item>
 					<swiper-item>
-						<image src="http://iph.href.lu/686x266" class="pic" mode=""></image>
+						<image src="http://iph.href.lu/686x266" :data-url='2' @click="openBrowser" class="pic" mode=""></image>
 					</swiper-item>
 					<swiper-item>
-						<image src="http://iph.href.lu/686x266" class="pic" mode=""></image>
+						<image src="http://iph.href.lu/686x266" :data-url='3' @click="openBrowser" class="pic" mode=""></image>
 					</swiper-item>
 				</swiper>
 			</view>
@@ -126,7 +126,7 @@
 	export default {
 		data() {
 			return {
-				city: '武汉市',
+				city: '武汉',
 				columnData: [{
 					url: '../../signUp/jiaxiao-ranking/jiaxiao-ranking',
 					src: 'jkph',
@@ -144,7 +144,8 @@
 					src: 'jkzn',
 					title: '驾考指南'
 				}, ],
-				listData: []
+				listData: [],
+				adData:[]
 			}
 		},
 		onLoad: function(options) {
@@ -225,6 +226,35 @@
 					}
 				}
 			});
+			//广告
+			uni.request({
+				url: this.$Url + '/api/car/ad',
+				method: 'GET',
+				data: {
+					position:'home'
+				},
+				header: {
+					'content-type': 'application/x-www-form-urlencoded'
+				},
+				success: (res) => {
+					if (res.data.code == 200) {
+						console.log(res.data)
+						let arr = []
+						for (let i in res.data.msg) {
+							res.data.msg[i].coverImg = this.$Url + res.data.msg[i].coverImg
+							arr.push(res.data.msg[i]);
+						}
+						this.adData = arr
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: '网络不给力，请稍后重试',
+							duration: 2000
+						});
+					}
+				}
+			});
+			
 		},
 		onPullDownRefresh() {
 			setTimeout(function() {
@@ -232,7 +262,9 @@
 			}, 1000);
 		},
 		methods: {
-
+			openBrowser: function(e){
+				plus.runtime.openURL(e.currentTarget.dataset.url)
+			}
 		}
 	}
 </script>

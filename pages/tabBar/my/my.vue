@@ -14,7 +14,7 @@
 					{{userName}}
 				</view>
 				<text class="user_tag">
-					开通会员
+					开通会员{{data}}
 				</text>
 			</view>
 		</view>
@@ -30,7 +30,7 @@
 		<view class="line"></view>
 		<!-- 设置列表 -->
 		<view class="setting_list set_one">
-			<block v-for="(item,index) in setData" :key='index' v-if="index < 3">
+			<block v-for="(item,index) in setData" :key='index' v-if="index < 2">
 				<view class="item" :data-idx='index' @click="tapJump">
 					<view class="photo_wrap"></view>
 					<view class="text">
@@ -72,7 +72,8 @@
 					src: 'qhtk',
 					title: '切换题库'
 				}, ],
-				setData: ['我的发表', '我的订单', '题库设置', '收藏', '浏览记录', '设置']
+				setData: ['我的发表', '我的订单', '题库设置', '收藏', '浏览记录', '设置'],
+				data:''
 			}
 		},
 		onLoad: function() {
@@ -147,7 +148,23 @@
 			tapJump: function(e) {
 				let idx = e.currentTarget.dataset.idx
 				if (uni.getStorageSync('logon_status') == 1) {
-					if (idx == 5) {
+					if (idx == 0) {
+						uni.navigateTo({
+							url: '../../my/My-publication/My-publication'
+						});
+					} else if (idx == 1) {
+						uni.navigateTo({
+							url: '../../my/My-order/My-order'
+						});
+					}else if (idx == 3) {
+						uni.navigateTo({
+							url: '../../my/My-collection/My-collection'
+						});
+					}else if (idx == 4) {
+						uni.navigateTo({
+							url: '../../my/Browse-record/Browse-record'
+						});
+					}else if(idx == 5) {
 						uni.navigateTo({
 							url: '../../my/setting/setting'
 						});

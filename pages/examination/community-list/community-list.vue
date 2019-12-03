@@ -1,23 +1,23 @@
 <template>
 	<view class="main_container">
 		<view class="hits_text">
-			关于{{subject == 0?'科一':'科四'}}考试的相关问题的一个问答... 的<text>7</text>个问题
+			关于{{subject == 0?'科一':'科四'}}考试的相关问题的一个问答... 的<text>{{listData.length}}</text>个问题
 		</view>
 		<view class="list">
-			<block v-for="n in 7" :key='n'>
+			<block v-for="item in listData" :key='item'>
 				<view class="item">
 					<view class="key">
-						为什么科目二那么难约？
+						{{item.content}}
 					</view>
 					<view class="val">
-						您好！关于科二预约问题，我您好！关于科二预约问题我
+						{{item.community_ask_to_many_answer[0].replyContent}}
 					</view>
 					<view class="info_box">
 						<view class="num">
-							全部1个回答
+							全部{{item.community_ask_to_many_answer.length}}个回答
 						</view>
 						<view class="time">
-							更新于 2019-09-18
+							{{item.community_ask_to_many_answer[0].created_at}}
 						</view>
 					</view>
 				</view>
@@ -30,7 +30,8 @@
 	export default {
 		data() {
 			return {
-				subject: ''
+				subject: '',
+				listData:[]
 			}
 		},
 		onLoad: function(options) {
@@ -51,6 +52,11 @@
 				success: (res) => {
 					if (res.data.code == 200) {
 						console.log(res.data)
+						var arr = []
+						for (let i in res.data.msg) {
+							arr.push(res.data.msg[i]); //属性
+						}
+						this.listData = arr
 					} else {
 						uni.showToast({
 							icon: 'none',
