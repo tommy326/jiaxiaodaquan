@@ -43,11 +43,12 @@
 			// })
 			// #endif
 			// 检测登录状态
+			var statement = uni.getStorageSync('statement') || 0
 			var logon_status = uni.getStorageSync('logon_status') || 0
 			var cars_mold = uni.getStorageSync('cars_mold') || 'c1'
+			uni.setStorageSync('statement', statement);
 			uni.setStorageSync('logon_status', logon_status);
 			uni.setStorageSync('cars_mold', cars_mold);
-
 		},
 		onShow: function() {
 			console.log('App Show')

@@ -23,7 +23,7 @@
 		<view class="mid_wrap">
 			<view class="sub_title">错题详情</view>
 			<view class="list">
-				<block v-for="item in listData" :key='item'>
+				<block v-for="(item,idx) in listData" :key='idx'>
 					<view class="item" :class="item.mark >= 90?'on':'off'">
 						<view class="num">{{item.mark}}</view>
 						<view class="time">{{item.userTime}}分钟</view>

@@ -1,1 +1,2 @@
+setCssToHead(["wx-image { display: block; width: ",[0,406],"; height: ",[0,292],"; margin: ",[0,285]," 0 ",[0,32]," ",[0,142],"; }\nwx-text { display: block; color: #929292; font-size: ",[0,32],"; text-align: center; line-height: 1.4; }\n",],undefined,{path:"./pages/my/My-publication/My-publication.wxss"})();
 document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/my/My-publication/My-publication.wxml') } }));

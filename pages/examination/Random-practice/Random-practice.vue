@@ -3,7 +3,7 @@
 		<!-- 题目内容 -->
 		<view class="main_wrap">
 			<scroll-view scroll-y="true" class="scroll_box">
-				<block v-for="(item,idx) in listData" :key='idx'>
+				<block v-for="(item,idx) in listData" :key='idx' v-if="idx < 1">
 					<block v-if="item.item3 != '' && item.answer < 6">
 						<view class="sub_title">
 							<text class="title_type">单选</text>
@@ -127,13 +127,13 @@
 			<view class="Answer_card" :class="open?'Answer_card_open':''">
 				<view class="oper_list">
 					<view class="item yes">
-						<text class="text">2000</text>
+						<text class="text">{{yes}}</text>
 					</view>
 					<view class="item wrong">
-						<text class="text">1000</text>
+						<text class="text">{{wrong}}</text>
 					</view>
 					<view class="item card" @click="CloseAnswer">
-						<text class="text">{{questionId}}/{{total}}</text>
+						<text class="text">{{eq}}/{{data.length}}</text>
 					</view>
 					<view class="item collect_off" :class="collect?'collect_on':''" @click="tapCollect">
 						<text class="text">{{collect?'已收藏':'收藏'}}</text>
@@ -147,17 +147,17 @@
 						<block v-for="(items,index) in data" :key='index'>
 							<block v-if="items.sign == 'r'">
 								<view class="item on" @click="tapSelTopic" :data-questionId='items.questionId'>
-									{{items.questionId}}
+									{{index + 1}}
 								</view>
 							</block>
 							<block v-else-if="items.sign == 'w'">
 								<view class="item off" @click="tapSelTopic" :data-questionId='items.questionId'>
-									{{items.questionId}}
+									{{index + 1}}
 								</view>
 							</block>
 							<block v-else>
 								<view class="item" @click="tapSelTopic" :data-questionId='items.questionId'>
-									{{items.questionId}}
+									{{index + 1}}
 								</view>
 							</block>
 
@@ -182,11 +182,13 @@
 				CheckboxSelect: '',
 				open: false,
 				questionId: 0,
-				total: '',
+				eq: 0,
 				data: [],
 				imageShow: false,
 				width: '',
-				height: ''
+				height: '',
+				yes: 0,
+				wrong: 0,
 			}
 		},
 		onLoad(options) {
@@ -194,8 +196,47 @@
 			this.examData()
 		},
 		methods: {
+			// 获取答题卡
+			AnswerCard: function(e) {
+				uni.request({
+					url: this.$Url + '/api/v1/exam/study/card',
+					method: 'GET',
+					data: {
+						'token': uni.getStorageSync('token'),
+						'subject': this.subject,
+						'model': uni.getStorageSync('cars_mold')
+					},
+					header: {
+						'content-type': 'application/x-www-form-urlencoded'
+					},
+					success: (res) => {
+						if (res.data.code == 200) {
+							this.data = res.data.msg.item
+							let arr = []
+							this.yes = 0
+							this.wrong = 0
+							for (let i in res.data.msg.item) {
+								if (this.questionId == res.data.msg.item[i].questionId) {
+									this.eq = Number(i) + 1
+								}
+								if (res.data.msg.item[i].sign == 'r') {
+									this.yes++
+								} else if (res.data.msg.item[i].sign == 'w') {
+									this.wrong++
+								}
+							}
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: '网络不给力，请稍后重试',
+								duration: 2000
+							});
+						}
+					}
+				});
+			},
+			// 获取题目
 			examData: function(e) {
-				// 获取题目
 				uni.request({
 					url: this.$Url + '/api/v1/exam/study/list',
 					method: 'GET',
@@ -215,7 +256,6 @@
 						});
 						uni.hideToast()
 						if (res.data.code == 200) {
-							console.log(res.data.msg)
 							var arr = []
 							for (let i in res.data.msg) {
 								arr.push(res.data.msg[i]);
@@ -223,6 +263,13 @@
 							console.log(arr);
 							this.listData = arr
 							this.questionId = arr[0].questionId
+							if (arr[1] != null) {
+								this.collect = true
+							} else {
+								this.collect = false
+							}
+							console.log(this.collect);
+
 						} else {
 							uni.showToast({
 								icon: 'none',
@@ -232,33 +279,9 @@
 						}
 					}
 				});
-				// 获取答题卡
-				uni.request({
-					url: this.$Url + '/api/v1/exam/study/card',
-					method: 'GET',
-					data: {
-						'token': uni.getStorageSync('token'),
-						'subject': this.subject,
-						'model': uni.getStorageSync('cars_mold')
-					},
-					header: {
-						'content-type': 'application/x-www-form-urlencoded'
-					},
-					success: (res) => {
-						if (res.data.code == 200) {
-							console.log()
-							this.data = res.data.msg.item
-							this.total = res.data.msg.item.length
-						} else {
-							uni.showToast({
-								icon: 'none',
-								title: '网络不给力，请稍后重试',
-								duration: 2000
-							});
-						}
-					}
-				});
+				this.AnswerCard()
 			},
+			//答题
 			DoTitle: function(sign, choose) {
 				uni.request({
 					url: this.$Url + '/api/v1/exam/item/log',
@@ -277,9 +300,124 @@
 					success: (res) => {}
 				});
 			},
+			tapChange: function(str) {
+				uni.request({
+					url: this.$Url + '/api/v1/exam/study/change',
+					method: 'GET',
+					data: {
+						'token': uni.getStorageSync('token'),
+						'questionId': this.questionId,
+						// 'subject': this.subject,
+						'type': str,
+						'model': uni.getStorageSync('cars_mold')
+					},
+					header: {
+						'content-type': 'application/x-www-form-urlencoded'
+					},
+					success: (res) => {
+						// 考题
+						uni.showToast({
+							icon: 'loading',
+							title: '题目加载中...'
+						});
+						uni.hideToast()
+						if (res.data.code == 200) {
+							var arr = []
+							for (let i in res.data.msg) {
+								arr.push(res.data.msg[i]);
+							}
+							if (arr.length > 0) {
+								console.log(arr)
+								this.listData = arr
+								this.questionId = arr[0].questionId
+								if (arr[1] != null) {
+									this.collect = true
+								} else {
+									this.collect = false
+								}
+								// 获取答题卡
+								this.AnswerCard()
+								if (arr[0].item_log != null) {
+									console.log(arr[0].item_log.choose)
+									if (arr[0].item3 != '' && arr[0].answer < 6) {
+										this.radioSelect = Number(arr[0].item_log.choose) - 1
+									} else if (item.item3 == '') {
+										this.judgeSelect = Number(arr[0].item_log.choose) - 1
+									}
+								} else {
+									this.radioSelect = '5'
+									this.judgeSelect = '2'
+								}
+							}
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: '网络不给力，请稍后重试',
+								duration: 2000
+							});
+						}
+					}
+				});
+
+			},
 			tapCollect: function(e) {
 				this.collect = !this.collect
+				if (this.collect) {
+					uni.request({
+						url: this.$Url + '/api/v1/exam/collection/store',
+						method: 'POST',
+						data: {
+							'token': uni.getStorageSync('token'),
+							'questionId': this.questionId
+						},
+						header: {
+							'content-type': 'application/x-www-form-urlencoded'
+						},
+						success: (res) => {
+							if (res.data.code == 200) {
+								uni.showToast({
+									title: '收藏成功',
+									duration: 1000
+								});
+							} else {
+								uni.showToast({
+									icon: 'none',
+									title: '网络不给力，请稍后重试',
+									duration: 2000
+								});
+							}
+						}
+					});
+				} else {
+					uni.request({
+						url: this.$Url + '/api/v1/exam/collection/cancel',
+						method: 'POST',
+						data: {
+							'token': uni.getStorageSync('token'),
+							'questionId': this.questionId
+						},
+						header: {
+							'content-type': 'application/x-www-form-urlencoded'
+						},
+						success: (res) => {
+							if (res.data.code == 200) {
+								uni.showToast({
+									title: '取消成功',
+									duration: 1000
+								});
+							} else {
+								uni.showToast({
+									icon: 'none',
+									title: '网络不给力，请稍后重试',
+									duration: 2000
+								});
+							}
+						}
+					});
+				}
+
 			},
+			//单选题
 			radioChange: function(e) {
 				this.radioSelect = e.target.value
 				if (this.listData[0].answer - 1 == e.target.value) {
@@ -318,6 +456,7 @@
 					});
 				}
 			},
+			//多选题
 			checkboxChange: function(e) {
 				let str = ''
 				switch (e.detail.value.join('')) {
@@ -357,6 +496,7 @@
 				}
 				this.CheckboxSelect = str
 			},
+			//判断题
 			judgeChange: function(e) {
 				this.judgeSelect = e.target.value
 				console.log(this.listData[0].answer)
@@ -396,6 +536,7 @@
 					});
 				}
 			},
+			//多选题提交答案
 			tapCheckbox: function(e) {
 				if (this.listData[0].answer == this.CheckboxSelect) {
 					this.DoTitle('r', this.CheckboxSelect)
@@ -433,186 +574,23 @@
 					});
 				}
 			},
+
 			tapPrev: function(e) {
-				uni.request({
-					url: this.$Url + '/api/v1/exam/study/change',
-					method: 'GET',
-					data: {
-						'token': uni.getStorageSync('token'),
-						'questionId': this.questionId,
-						// 'subject': this.subject,
-						'type': 'back',
-						'model': uni.getStorageSync('cars_mold')
-					},
-					header: {
-						'content-type': 'application/x-www-form-urlencoded'
-					},
-					success: (res) => {
-						// 考题
-						uni.showToast({
-							icon: 'loading',
-							title: '题目加载中...'
-						});
-						uni.hideToast()
-						if (res.data.code == 200) {
-							console.log(res.data.msg)
-							var arr = []
-							for (let i in res.data.msg) {
-								arr.push(res.data.msg[i]);
-							}
-							console.log(arr);
-							if (arr.length > 0) {
-								this.listData = arr
-								this.questionId = arr[0].questionId
-								if (arr[0].item_log != null) {
-									console.log(arr[0].item_log.choose)
-									if (arr[0].item3 != '' && arr[0].answer < 6) {
-										this.radioSelect = Number(arr[0].item_log.choose) - 1
-									} else if (item.item3 == '') {
-										this.judgeSelect = Number(arr[0].item_log.choose) - 1
-									}
-								} else {
-									this.radioSelect = '5'
-									this.judgeSelect = '2'
-								}
-							} else {
-								uni.showToast({
-									icon: 'none',
-									title: '已经到顶了',
-									duration: 2000
-								});
-							}
-						} else {
-							uni.showToast({
-								icon: 'none',
-								title: '网络不给力，请稍后重试',
-								duration: 2000
-							});
-						}
-					}
-				});
-				// 获取答题卡
-				uni.request({
-					url: this.$Url + '/api/v1/exam/study/card',
-					method: 'GET',
-					data: {
-						'token': uni.getStorageSync('token'),
-						'subject': this.subject,
-						'model': uni.getStorageSync('cars_mold')
-					},
-					header: {
-						'content-type': 'application/x-www-form-urlencoded'
-					},
-					success: (res) => {
-						if (res.data.code == 200) {
-							console.log()
-							this.data = res.data.msg.item
-							this.total = res.data.msg.item.length
-						} else {
-							uni.showToast({
-								icon: 'none',
-								title: '网络不给力，请稍后重试',
-								duration: 2000
-							});
-						}
-					}
-				});
+				this.tapChange('back')
 			},
 			tapNext: function(e) {
-				uni.request({
-					url: this.$Url + '/api/v1/exam/study/change',
-					method: 'GET',
-					data: {
-						'token': uni.getStorageSync('token'),
-						'questionId': this.questionId,
-						// 'subject': this.subject,
-						'type': 'next',
-						'model': uni.getStorageSync('cars_mold')
-					},
-					header: {
-						'content-type': 'application/x-www-form-urlencoded'
-					},
-					success: (res) => {
-						// 考题
-						uni.showToast({
-							icon: 'loading',
-							title: '题目加载中...'
-						});
-						uni.hideToast()
-						if (res.data.code == 200) {
-							var arr = []
-							for (let i in res.data.msg) {
-								arr.push(res.data.msg[i]);
-							}
-							if (arr.length > 0) {
-								this.listData = arr
-								this.questionId = arr[0].questionId
-								if (arr[0].item_log != null) {
-									console.log(arr[0].item_log.choose)
-									if (arr[0].item3 != '' && arr[0].answer < 6) {
-										this.radioSelect = Number(arr[0].item_log.choose) - 1
-									} else if (item.item3 == '') {
-										this.judgeSelect = Number(arr[0].item_log.choose) - 1
-									}
-								} else {
-									this.radioSelect = '5'
-									this.judgeSelect = '2'
-								}
-							} else {
-								uni.showToast({
-									icon: 'none',
-									title: '恭喜您已经做完了',
-									duration: 2000
-								});
-							}
-
-						} else {
-							uni.showToast({
-								icon: 'none',
-								title: '网络不给力，请稍后重试',
-								duration: 2000
-							});
-						}
-					}
-				});
-				// 获取答题卡
-				uni.request({
-					url: this.$Url + '/api/v1/exam/study/card',
-					method: 'GET',
-					data: {
-						'token': uni.getStorageSync('token'),
-						'subject': this.subject,
-						'model': uni.getStorageSync('cars_mold')
-					},
-					header: {
-						'content-type': 'application/x-www-form-urlencoded'
-					},
-					success: (res) => {
-						if (res.data.code == 200) {
-							console.log()
-							this.data = res.data.msg.item
-							this.total = res.data.msg.item.length
-						} else {
-							uni.showToast({
-								icon: 'none',
-								title: '网络不给力，请稍后重试',
-								duration: 2000
-							});
-						}
-					}
-				});
+				this.tapChange('next')
 			},
 			tapAnswer: function(e) {
 				this.open = !this.open
+				this.AnswerCard()
 			},
 			CloseAnswer: function(e) {
 				this.open = !this.open
 			},
 			tapSelTopic: function(e) {
 				this.open = !this.open
-				console.log(e)
 				this.questionId = e.currentTarget.dataset.questionid
-				console.log(e.currentTarget.dataset.questionid)
 				uni.request({
 					url: this.$Url + '/api/v1/exam/study/choose',
 					method: 'GET',
@@ -635,6 +613,11 @@
 							console.log(arr);
 							this.listData = arr
 							this.questionId = arr[0].questionId
+							if (arr[1] != null) {
+								this.collect = true
+							} else {
+								this.collect = false
+							}
 							if (arr[0].item_log != null) {
 								console.log(arr[0].item_log.choose)
 								if (arr[0].item3 != '' && arr[0].answer < 6) {
@@ -655,6 +638,8 @@
 						}
 					}
 				});
+				// 获取答题卡
+				this.AnswerCard()
 			},
 			imageLoad: function(e) {
 				console.log('image发生load事件，携带值为' + e.detail.height + e.detail.width)

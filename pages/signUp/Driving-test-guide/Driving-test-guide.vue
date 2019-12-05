@@ -1,9 +1,9 @@
 <template>
 	<view>
-		<view class="banner_box">
+		<!-- <view class="banner_box">
 
-		</view>
-		<view class="sub_title">
+		</view> -->
+		<view class="sub_title" style="margin-top: 32rpx;">
 			官方榜单
 		</view>
 		<scroll-view scroll-x class="listData">

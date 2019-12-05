@@ -149,6 +149,7 @@
 			}
 		},
 		onLoad: function(options) {
+			
 			/* 获取定位 */
 			// #ifdef APP-PLUS
 			uni.getLocation({
@@ -255,6 +256,27 @@
 				}
 			});
 			
+		},
+		onShow:function(){
+			if(uni.getStorageSync('statement') == 0 ){
+				uni.showModal({
+				    title: '驾考隐私声明',
+				    content: '驾考大全APP(以下简称驾考)为您提供登录、注册、浏览等功能。驾考非常重视用户的个人信息和隐私保护，鉴于网络的特性，驾考将无可避免地与您产生直接或间接的互动关系，故特此说明驾考对用户个人信息的收集、使用和保护政策',
+					cancelText:'查看声明',
+					confirmText:'同意并继续',
+				    success: function (res) {
+				        if (res.confirm) {
+				            console.log('用户点击确定');
+							uni.setStorageSync('statement', 1);
+				        } else if (res.cancel) {
+				            console.log('用户点击取消');
+							uni.navigateTo({
+								url:'../../statement/statement'
+							})
+				        }
+				    }
+				});
+			}
 		},
 		onPullDownRefresh() {
 			setTimeout(function() {

@@ -51,6 +51,16 @@
 	background-color: #101014;
 	border-radius: 12rpx;
 	margin: 32rpx auto 40rpx;
+	overflow: hidden;
+}
+.banner_box .swiper {
+	width: 100%;
+	height: 194rpx;
+}
+.banner_box .pic {
+	display: block;
+	width: 100%;
+	height: 194rpx;
 }
 .main_wrap {
 	display: -webkit-box;

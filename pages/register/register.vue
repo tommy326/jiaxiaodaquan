@@ -22,7 +22,7 @@
 					<view class="input_see" :class="password?'':'see_on'" @click="tapSee"></view>
 				</view>
 				<view class="state">
-					未注册将为您创建账号并视为同意<navigator url="" hover-class="none" class="link">网络服务协议</navigator>和<navigator url="" hover-class="none"
+					未注册将为您创建账号并视为同意<navigator url="" hover-class="none" class="link">网络服务协议</navigator>和<navigator url="../statement/statement" hover-class="none"
 					 class="link">隐私政策</navigator>
 				</view>
 				<view class="btn_submit">
@@ -115,7 +115,7 @@
 						},
 						success: (res) => {
 							if (res.statusCode == 200) {
-								this.countdown(60)
+								this.countdown(300)
 								this.disabled = true
 								uni.showToast({
 									title: '发送成功',
@@ -208,7 +208,7 @@
 											});
 										}else{
 											uni.showToast({
-												icon: 'none',
+												icon: res.data.msg,
 												title: '网络不给力，请稍后重试',
 												duration: 1000
 											});

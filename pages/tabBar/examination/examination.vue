@@ -35,7 +35,7 @@
 						错题本
 					</view>
 				</navigator>
-				<navigator url="" class="link_box" hover-class="none">
+				<navigator url="../../my/My-collection/My-collection" class="link_box" hover-class="none">
 					<image src="../../../static/images/item/tmsc.png" class="img" mode=""></image>
 					<view class="text">
 						收藏

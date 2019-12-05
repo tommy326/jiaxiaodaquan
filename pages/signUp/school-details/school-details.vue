@@ -88,9 +88,14 @@
 						<block v-for="n in 5" :key='n'>
 							<view class="item">
 								<view class="rank">
+									<!-- #ifdef H5 -->
+									{{n}}
+									<!-- #endif -->
+									<!-- #ifdef APP-PLUS -->
 									{{n+1}}
+									<!-- #endif -->
 								</view>
-								<image src="http://iph.href.lu/100x100?text=头像" class="head_sculpture" mode=""></image>
+								<image src="../../../static/picture/coachAvatar.png" class="head_sculpture" mode=""></image>
 								<view class="coach_info">
 									<view class="name">
 										周卫
@@ -249,25 +254,27 @@
 	export default {
 		data() {
 			return {
+				schoolId: '',
 				tabs: 0,
 				listData: [],
 				photoData: ['http://jkdq.521che.com/uploads/schoolImage20190918/5d81db86d9662.jpg'],
-				current:0,
+				current: 0,
 				tabsData: ['班型', '教练', '场地', '评价'],
 				num: '2324',
-				collect: true,
+				collect: false,
 				classListData: [],
 				areaListData: [],
 				maskOpen: false,
 				user: '',
 				tel: '',
 				Drivinglicense: '',
-				array: ['C1 小型汽车', 'C2 小型自动挡汽车', 'C3 低速载货汽车', 'A1 大型客车', 'A2 牵引车', 'A3 城市公交车', 'B1 中型客车', 'B2 大型货车'],
+				array: ['C1', 'C2', 'C3', 'A1', 'A2', 'A3', 'B1', 'B2'],
 				location: 0,
 			}
 		},
 		onLoad: function(options) {
 			console.log(options.id);
+			this.schoolId = options.id
 			//驾校信息
 			uni.request({
 				url: this.$Url + '/api/school/details?id=' + options.id,
@@ -285,7 +292,7 @@
 							data[i] = this.$Url + data[i]
 							arr.push(data[i]);
 						}
-						if(arr.length > 0){
+						if (arr.length > 0) {
 							this.photoData = arr
 						}
 					} else {
@@ -348,6 +355,33 @@
 					}
 				}
 			});
+			//检查是否收藏
+			uni.request({
+				url: this.$Url + '/api/v1/exam/collection/check',
+				method: 'POST',
+				data: {
+					'token': uni.getStorageSync('token'),
+					'schoolId': options.id
+				},
+				header: {
+					'content-type': 'application/x-www-form-urlencoded'
+				},
+				success: (res) => {
+					if (res.data.code == 200) {
+						if (res.data.msg != null) {
+							this.collect = true
+						} else {
+							this.collect = false
+						}
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: '网络不给力，请稍后重试',
+							duration: 2000
+						});
+					}
+				}
+			});
 		},
 		onNavigationBarButtonTap: function(e) {
 			if (e.type == 'menu') {
@@ -372,6 +406,59 @@
 			},
 			tapCollect: function(e) {
 				this.collect = !this.collect
+				if (this.collect) {
+					uni.request({
+						url: this.$Url + '/api/v1/exam/collection/store',
+						method: 'POST',
+						data: {
+							'token': uni.getStorageSync('token'),
+							'schoolId': this.schoolId
+						},
+						header: {
+							'content-type': 'application/x-www-form-urlencoded'
+						},
+						success: (res) => {
+							if (res.data.code == 200) {
+								uni.showToast({
+									title: '收藏成功',
+									duration: 1000
+								});
+							} else {
+								uni.showToast({
+									icon: 'none',
+									title: '网络不给力，请稍后重试',
+									duration: 2000
+								});
+							}
+						}
+					});
+				} else {
+					uni.request({
+						url: this.$Url + '/api/v1/exam/collection/cancel',
+						method: 'POST',
+						data: {
+							'token': uni.getStorageSync('token'),
+							'schoolId': this.schoolId
+						},
+						header: {
+							'content-type': 'application/x-www-form-urlencoded'
+						},
+						success: (res) => {
+							if (res.data.code == 200) {
+								uni.showToast({
+									title: '取消成功',
+									duration: 1000
+								});
+							} else {
+								uni.showToast({
+									icon: 'none',
+									title: '网络不给力，请稍后重试',
+									duration: 2000
+								});
+							}
+						}
+					});
+				}
 			},
 			openLocation: function(e) {
 				uni.openLocation({
@@ -448,6 +535,34 @@
 						icon: 'success',
 						title: '提交成功！',
 						duration: 2000
+					});
+					uni.request({
+						url: this.$Url + '/api/school/inquiry',
+						method: 'GET',
+						data: {
+							schoolId: this.schoolId,
+							name: this.user,
+							start: this.location,
+							phone: this.tel,
+							type: this.Drivinglicense
+						},
+						header: {
+							'content-type': 'application/x-www-form-urlencoded'
+						},
+						success: (res) => {
+							if (res.data.code == 200) {
+								uni.showToast({
+									title: res.data.msg,
+									duration: 1000
+								});
+							} else {
+								uni.showToast({
+									icon: 'none',
+									title: '网络不给力，请稍后重试',
+									duration: 2000
+								});
+							}
+						}
 					});
 				}
 

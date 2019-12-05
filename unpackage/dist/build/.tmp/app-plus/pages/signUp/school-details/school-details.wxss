@@ -70,9 +70,14 @@
 	position: relative;
 	overflow: hidden;
 }
+.photo_box .swiper {
+	width: 100%;
+	height: 404rpx;
+}
 .photo_box .school_photo {
 	display: block;
 	width: 100%;
+	height: 404rpx;
 }
 .photo_box .photo_num {
 	position: absolute;

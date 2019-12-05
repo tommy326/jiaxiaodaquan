@@ -92,7 +92,7 @@
 		},
 		methods: {
 			imageError: function(e) {
-				this.listData[e.currentTarget.dataset.id].avatar = 'http://iph.href.lu/100x100'
+				this.listData[e.currentTarget.dataset.id].avatar = '../../../static/picture/coachAvatar.png'
 			},
 			imageLoad:function(e) {
 				console.log('image发生load事件，携带值为' + e.detail.height + e.detail.width)

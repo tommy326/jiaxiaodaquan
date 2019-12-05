@@ -1,1 +1,1 @@
-<view></view>
+<view><image src="../../../static/picture/default.png" mode></image><text>暂无订单记录</text></view>

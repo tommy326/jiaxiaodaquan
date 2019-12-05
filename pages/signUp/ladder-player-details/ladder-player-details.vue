@@ -5,7 +5,7 @@
 				<view class="head_wrap">
 					<view class="user_info">
 						<view class="avatar_wrap">
-							<image :src="item.avatar" class="pic" mode=""></image>
+							<image :src="item.avatar" class="pic" mode="" :data-id = 'idx' @error="imageError"></image>
 						</view>
 						<view class="info_wrap">
 							<view class="name">
@@ -138,7 +138,9 @@
 			});
 		},
 		methods: {
-
+			imageError: function(e) {
+				this.listData[e.currentTarget.dataset.id].avatar = '../../../static/picture/coachAvatar.png'
+			}
 		}
 	}
 </script>

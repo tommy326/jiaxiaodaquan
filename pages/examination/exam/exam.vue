@@ -96,7 +96,7 @@
 			<view class="item answer">
 				<text class="text">解析</text>
 			</view>
-			<view class="btn_wrap"  @click="CloseExam">
+			<view class="btn_wrap" @click="CloseExam">
 				<text class="text">交卷</text>
 			</view>
 		</view>
@@ -202,6 +202,7 @@
 						}
 						this.listData = res.data.msg
 						this.questionId = res.data.msg[0].questionId
+						this.checkCollect()
 						let answerData = []
 						for (let i = 0; i < res.data.msg.length; i++) {
 							let obj = new Object()
@@ -233,8 +234,89 @@
 			console.log(e);
 		},
 		methods: {
+			checkCollect: function(e) {
+				uni.request({
+					url: this.$Url + '/api/v1/exam/collection/check',
+					method: 'POST',
+					data: {
+						'token': uni.getStorageSync('token'),
+						'questionId': this.questionId
+					},
+					header: {
+						'content-type': 'application/x-www-form-urlencoded'
+					},
+					success: (res) => {
+						if (res.data.code == 200) {
+							if (res.data.msg != null) {
+								this.collect = true
+							} else {
+								this.collect = false
+							}
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: '网络不给力，请稍后重试',
+								duration: 2000
+							});
+						}
+					}
+				});
+			},
 			tapCollect: function(e) {
 				this.collect = !this.collect
+				if (this.collect) {
+					uni.request({
+						url: this.$Url + '/api/v1/exam/collection/store',
+						method: 'POST',
+						data: {
+							'token': uni.getStorageSync('token'),
+							'questionId': this.questionId
+						},
+						header: {
+							'content-type': 'application/x-www-form-urlencoded'
+						},
+						success: (res) => {
+							if (res.data.code == 200) {
+								uni.showToast({
+									title: '收藏成功',
+									duration: 1000
+								});
+							} else {
+								uni.showToast({
+									icon: 'none',
+									title: '网络不给力，请稍后重试',
+									duration: 2000
+								});
+							}
+						}
+					});
+				} else {
+					uni.request({
+						url: this.$Url + '/api/v1/exam/collection/cancel',
+						method: 'POST',
+						data: {
+							'token': uni.getStorageSync('token'),
+							'questionId': this.questionId
+						},
+						header: {
+							'content-type': 'application/x-www-form-urlencoded'
+						},
+						success: (res) => {
+							if (res.data.code == 200) {
+								uni.showToast({
+									title: '取消成功',
+									duration: 1000
+								});
+							} else {
+								uni.showToast({
+									icon: 'none',
+									title: '网络不给力，请稍后重试',
+									duration: 2000
+								});
+							}
+						}
+					});
+				}
 			},
 			CountDown: function(e) {
 				if (this.maxTime >= 0) {
@@ -293,6 +375,7 @@
 				this.current = e.detail.current
 				this.questionId = this.listData[e.detail.current].questionId
 				this.disabled = this.answerData[e.detail.current].disabled
+				this.checkCollect()
 			},
 			radioChange: function(e) {
 				this.answerData[this.current].answer = e.target.value
@@ -476,7 +559,7 @@
 					});
 				}
 			},
-			CloseExam:function(e){
+			CloseExam: function(e) {
 				uni.showModal({
 					title: '温馨提示',
 					content: '确定提交试卷？',

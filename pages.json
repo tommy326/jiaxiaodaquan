@@ -1,5 +1,16 @@
 {
 	"pages": [
+		// {
+		//     "path" : "pages/index/index",
+		//     "style" : {
+		// 		"navigationBarTitleText": "驾考大全",
+		// 		"navigationBarTextStyle": "white",
+		// 		"app-plus": {
+		// 			"titleNView": false
+		// 		}
+				
+		// 	}
+		// },
 		/* 报名-tabBar */
 		{
 			"path": "pages/tabBar/signUp/signUp",
@@ -230,33 +241,31 @@
         ,{
             "path" : "pages/my/My-publication/My-publication",
             "style" : {
-				"navigationBarTitleText": "我的发表",
-				"navigationBarBackgroundColor": "#3860ff",
-				"navigationBarTextStyle": "white"
+				"navigationBarTitleText": "我的发表"
 			}
         }
         ,{
             "path" : "pages/my/My-order/My-order",
             "style" : {
-				"navigationBarTitleText": "我的订单",
-				"navigationBarBackgroundColor": "#3860ff",
-				"navigationBarTextStyle": "white"
+				"navigationBarTitleText": "我的订单"
 			}
         }
         ,{
             "path" : "pages/my/My-collection/My-collection",
             "style" : {
-				"navigationBarTitleText": "我的收藏",
-				"navigationBarBackgroundColor": "#3860ff",
-				"navigationBarTextStyle": "white"
+				"navigationBarTitleText": "我的收藏"
 			}
         }
         ,{
             "path" : "pages/my/Browse-record/Browse-record",
             "style" : {
-				"navigationBarTitleText": "浏览记录",
-				"navigationBarBackgroundColor": "#3860ff",
-				"navigationBarTextStyle": "white"
+				"navigationBarTitleText": "浏览记录"
+			}
+        }
+        ,{
+            "path" : "pages/statement/statement",
+            "style" : {
+				"navigationBarTitleText": "驾考隐私声明"
 			}
         }
     ],
