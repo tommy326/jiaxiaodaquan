@@ -241,7 +241,7 @@
 						<view class="location" @click="chooseLocation" :class="location == 0?'':'location_on'">{{location == 0?'从哪出发':location}}</view>
 					</view>
 					<view class="hits_text">
-						*请放心填写，提交即视为同意<navigator class="link" url="">《个人信息保护声明》</navigator>
+						*请放心填写，提交即视为同意<navigator class="link" url="../../statement/statement">《个人信息保护声明》</navigator>
 					</view>
 					<button form-type="submit" class="form_btn">提交</button>
 				</form>
@@ -356,32 +356,34 @@
 				}
 			});
 			//检查是否收藏
-			uni.request({
-				url: this.$Url + '/api/v1/exam/collection/check',
-				method: 'POST',
-				data: {
-					'token': uni.getStorageSync('token'),
-					'schoolId': options.id
-				},
-				header: {
-					'content-type': 'application/x-www-form-urlencoded'
-				},
-				success: (res) => {
-					if (res.data.code == 200) {
-						if (res.data.msg != null) {
-							this.collect = true
+			if (uni.getStorageSync('logon_status') == 1) {
+				uni.request({
+					url: this.$Url + '/api/v1/exam/collection/check',
+					method: 'POST',
+					data: {
+						'token': uni.getStorageSync('token'),
+						'schoolId': options.id
+					},
+					header: {
+						'content-type': 'application/x-www-form-urlencoded'
+					},
+					success: (res) => {
+						if (res.data.code == 200) {
+							if (res.data.msg != null) {
+								this.collect = true
+							} else {
+								this.collect = false
+							}
 						} else {
-							this.collect = false
+							uni.showToast({
+								icon: 'none',
+								title: '网络不给力，请稍后重试',
+								duration: 2000
+							});
 						}
-					} else {
-						uni.showToast({
-							icon: 'none',
-							title: '网络不给力，请稍后重试',
-							duration: 2000
-						});
 					}
-				}
-			});
+				});
+			}
 		},
 		onNavigationBarButtonTap: function(e) {
 			if (e.type == 'menu') {
@@ -405,60 +407,67 @@
 				this.current = e.detail.current
 			},
 			tapCollect: function(e) {
-				this.collect = !this.collect
-				if (this.collect) {
-					uni.request({
-						url: this.$Url + '/api/v1/exam/collection/store',
-						method: 'POST',
-						data: {
-							'token': uni.getStorageSync('token'),
-							'schoolId': this.schoolId
-						},
-						header: {
-							'content-type': 'application/x-www-form-urlencoded'
-						},
-						success: (res) => {
-							if (res.data.code == 200) {
-								uni.showToast({
-									title: '收藏成功',
-									duration: 1000
-								});
-							} else {
-								uni.showToast({
-									icon: 'none',
-									title: '网络不给力，请稍后重试',
-									duration: 2000
-								});
+				if (uni.getStorageSync('logon_status') == 1) {
+					this.collect = !this.collect
+					if (this.collect) {
+						uni.request({
+							url: this.$Url + '/api/v1/exam/collection/store',
+							method: 'POST',
+							data: {
+								'token': uni.getStorageSync('token'),
+								'schoolId': this.schoolId
+							},
+							header: {
+								'content-type': 'application/x-www-form-urlencoded'
+							},
+							success: (res) => {
+								if (res.data.code == 200) {
+									uni.showToast({
+										title: '收藏成功',
+										duration: 1000
+									});
+								} else {
+									uni.showToast({
+										icon: 'none',
+										title: '网络不给力，请稍后重试',
+										duration: 2000
+									});
+								}
 							}
-						}
-					});
+						});
+					} else {
+						uni.request({
+							url: this.$Url + '/api/v1/exam/collection/cancel',
+							method: 'POST',
+							data: {
+								'token': uni.getStorageSync('token'),
+								'schoolId': this.schoolId
+							},
+							header: {
+								'content-type': 'application/x-www-form-urlencoded'
+							},
+							success: (res) => {
+								if (res.data.code == 200) {
+									uni.showToast({
+										title: '取消成功',
+										duration: 1000
+									});
+								} else {
+									uni.showToast({
+										icon: 'none',
+										title: '网络不给力，请稍后重试',
+										duration: 2000
+									});
+								}
+							}
+						});
+					}
 				} else {
-					uni.request({
-						url: this.$Url + '/api/v1/exam/collection/cancel',
-						method: 'POST',
-						data: {
-							'token': uni.getStorageSync('token'),
-							'schoolId': this.schoolId
-						},
-						header: {
-							'content-type': 'application/x-www-form-urlencoded'
-						},
-						success: (res) => {
-							if (res.data.code == 200) {
-								uni.showToast({
-									title: '取消成功',
-									duration: 1000
-								});
-							} else {
-								uni.showToast({
-									icon: 'none',
-									title: '网络不给力，请稍后重试',
-									duration: 2000
-								});
-							}
-						}
+					uni.navigateTo({
+						url: '../../login/login?form=3'
 					});
 				}
+
 			},
 			openLocation: function(e) {
 				uni.openLocation({

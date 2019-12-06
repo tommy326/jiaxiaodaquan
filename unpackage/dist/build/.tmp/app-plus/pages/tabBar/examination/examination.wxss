@@ -48,9 +48,8 @@
 	display: block;
 	width: 686rpx;
 	height: 194rpx;
-	background-color: #101014;
 	border-radius: 12rpx;
-	margin: 32rpx auto 40rpx;
+	margin: 32rpx auto 0;
 	overflow: hidden;
 }
 .banner_box .swiper {
@@ -75,6 +74,7 @@
 	        justify-content: space-between;
 	-webkit-box-sizing: border-box;
 	        box-sizing: border-box;
+	margin-top: 40rpx;
 }
 .main_wrap .side_box {
 	-webkit-box-flex: 0;

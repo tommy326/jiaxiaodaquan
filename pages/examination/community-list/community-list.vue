@@ -41,10 +41,10 @@
 				title: options.tabs == 0 ? '科一社区' : '科四社区'
 			});
 			uni.request({
-				url: this.$Url + '/api/v1/exam/community', //仅为示例，并非真实接口地址。
+				url: this.$Url + '/api/school/community', //仅为示例，并非真实接口地址。
 				method: 'GET',
 				data: {
-					token: uni.getStorageSync('token')
+					// token: uni.getStorageSync('token')
 				},
 				header: {
 					'content-type': 'application/x-www-form-urlencoded'

@@ -135,9 +135,12 @@
 									url: '../tabBar/my/my'
 								})
 							}else if(this.form == 2){
-								console.log(2)
 								uni.switchTab({
 									url: '../tabBar/examination/examination'
+								})
+							}else if(this.form == 3){
+								uni.switchTab({
+									url: '../tabBar/signUp/signUp'
 								})
 							}else{
 								uni.switchTab({

@@ -6,18 +6,14 @@
 			 @click="tapTabs">{{item}}</view>
 		</view>
 		<!-- 广告位 -->
-		<view class="banner_box">
+		<view class="banner_box" v-if="adData.length > 0">
 			<!-- banner -->
 			<swiper class="swiper" indicator-dots="true" autoplay="true" indicator-active-color="#3860ff">
-				<swiper-item>
-					<image src="http://iph.href.lu/686x194" :data-url='1' @click="openBrowser" class="pic" mode=""></image>
-				</swiper-item>
-				<swiper-item>
-					<image src="http://iph.href.lu/686x194" :data-url='2' @click="openBrowser" class="pic" mode=""></image>
-				</swiper-item>
-				<swiper-item>
-					<image src="http://iph.href.lu/686x194" :data-url='3' @click="openBrowser" class="pic" mode=""></image>
-				</swiper-item>
+				<block v-for="item in adData" :key='item.name'>
+					<swiper-item>
+						<image :src="item.image" :data-url='item.link' @click="openBrowser" class="pic" mode=""></image>
+					</swiper-item>
+				</block>
 			</swiper>
 		</view>
 		<!-- 内容 -->
@@ -122,10 +118,10 @@
 			this.adRequest('one')
 			//社区列表
 			uni.request({
-				url: this.$Url + '/api/v1/exam/community', //仅为示例，并非真实接口地址。
+				url: this.$Url + '/api/school/community', //仅为示例，并非真实接口地址。
 				method: 'GET',
 				data: {
-					token: uni.getStorageSync('token')
+					// token: uni.getStorageSync('token')
 				},
 				header: {
 					'content-type': 'application/x-www-form-urlencoded'
@@ -165,7 +161,7 @@
 							console.log(res.data)
 							let arr = []
 							for (let i in res.data.msg) {
-								res.data.msg[i].coverImg = this.$Url + res.data.msg[i].coverImg
+								res.data.msg[i].image = this.$Url + res.data.msg[i].image
 								arr.push(res.data.msg[i]);
 							}
 							this.adData = arr
@@ -261,9 +257,8 @@
 		display: block;
 		width: 686rpx;
 		height: 194rpx;
-		background-color: #101014;
 		border-radius: 12rpx;
-		margin: 32rpx auto 40rpx;
+		margin: 32rpx auto 0;
 		overflow: hidden;
 	}
 
@@ -284,6 +279,7 @@
 		padding: 0 60rpx;
 		justify-content: space-between;
 		box-sizing: border-box;
+		margin-top: 40rpx;
 	}
 
 	.main_wrap .side_box {

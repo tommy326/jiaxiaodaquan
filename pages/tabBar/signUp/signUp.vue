@@ -19,15 +19,11 @@
 			<view class="banner_box">
 				<!-- banner -->
 				<swiper class="swiper" indicator-dots="true" autoplay="true" indicator-active-color="#3860ff">
-					<swiper-item>
-						<image src="http://iph.href.lu/686x266" :data-url='1' @click="openBrowser" class="pic" mode=""></image>
-					</swiper-item>
-					<swiper-item>
-						<image src="http://iph.href.lu/686x266" :data-url='2' @click="openBrowser" class="pic" mode=""></image>
-					</swiper-item>
-					<swiper-item>
-						<image src="http://iph.href.lu/686x266" :data-url='3' @click="openBrowser" class="pic" mode=""></image>
-					</swiper-item>
+					<block v-for="item in adData" :key='item.name'>
+						<swiper-item>
+							<image :src="item.image" :data-url='item.link' @click="openBrowser" class="pic" mode=""></image>
+						</swiper-item>
+					</block>
 				</swiper>
 			</view>
 
@@ -145,11 +141,11 @@
 					title: '驾考指南'
 				}, ],
 				listData: [],
-				adData:[]
+				adData: []
 			}
 		},
 		onLoad: function(options) {
-			
+
 			/* 获取定位 */
 			// #ifdef APP-PLUS
 			uni.getLocation({
@@ -217,6 +213,7 @@
 							res.data.msg[i].coverImg = this.$Url + res.data.msg[i].coverImg
 							arr.push(res.data.msg[i]); //属性
 						}
+
 						this.listData = arr
 					} else {
 						uni.showToast({
@@ -232,7 +229,7 @@
 				url: this.$Url + '/api/car/ad',
 				method: 'GET',
 				data: {
-					position:'home'
+					position: 'home'
 				},
 				header: {
 					'content-type': 'application/x-www-form-urlencoded'
@@ -242,9 +239,10 @@
 						console.log(res.data)
 						let arr = []
 						for (let i in res.data.msg) {
-							res.data.msg[i].coverImg = this.$Url + res.data.msg[i].coverImg
+							res.data.msg[i].image = this.$Url + res.data.msg[i].image
 							arr.push(res.data.msg[i]);
 						}
+						console.log(arr)
 						this.adData = arr
 					} else {
 						uni.showToast({
@@ -255,28 +253,10 @@
 					}
 				}
 			});
-			
+
 		},
-		onShow:function(){
-			if(uni.getStorageSync('statement') == 0 ){
-				uni.showModal({
-				    title: '驾考隐私声明',
-				    content: '驾考大全APP(以下简称驾考)为您提供登录、注册、浏览等功能。驾考非常重视用户的个人信息和隐私保护，鉴于网络的特性，驾考将无可避免地与您产生直接或间接的互动关系，故特此说明驾考对用户个人信息的收集、使用和保护政策',
-					cancelText:'查看声明',
-					confirmText:'同意并继续',
-				    success: function (res) {
-				        if (res.confirm) {
-				            console.log('用户点击确定');
-							uni.setStorageSync('statement', 1);
-				        } else if (res.cancel) {
-				            console.log('用户点击取消');
-							uni.navigateTo({
-								url:'../../statement/statement'
-							})
-				        }
-				    }
-				});
-			}
+		onShow: function() {
+			
 		},
 		onPullDownRefresh() {
 			setTimeout(function() {
@@ -284,7 +264,7 @@
 			}, 1000);
 		},
 		methods: {
-			openBrowser: function(e){
+			openBrowser: function(e) {
 				plus.runtime.openURL(e.currentTarget.dataset.url)
 			}
 		}
