@@ -8,24 +8,20 @@
 	color: #1f1f1f;
 	padding: 40rpx 32rpx 30rpx;
 	line-height: 64rpx;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 	font-weight: bold;
 }
 .news_time {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	width: 100%;
 	font-size: 26rpx;
 	color: #949494;
 	padding: 0 32rpx;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
-	    -ms-flex-align: center;
 	        align-items: center;
 }
 .news_time .time {
@@ -37,8 +33,7 @@
 	font-size: 32rpx;
 	color: #949494;
 	padding: 32rpx;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 	letter-spacing: 1px;
 	color: #131c21;
 	line-height: 48rpx;

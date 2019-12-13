@@ -9,13 +9,19 @@
 		<scroll-view scroll-x class="listData">
 			<view class="list">
 				<view class="item">
-					<image src="../../../static/images/item/1.png" class="pic" mode=""></image>
+					<navigator url="../jiaxiao-ranking/jiaxiao-ranking">
+						<image src="../../../static/images/item/1.png" class="pic" mode=""></image>
+					</navigator>
 				</view>
 				<view class="item">
-					<image src="../../../static/images/item/2.png" class="pic" mode=""></image>
+					<navigator url="../jiaxiao-ranking/jiaxiao-ranking">
+						<image src="../../../static/images/item/2.png" class="pic" mode=""></image>
+					</navigator>
 				</view>
 				<view class="item">
-					<image src="../../../static/images/item/3.png" class="pic" mode=""></image>
+					<navigator url="../Coach-ranking/Coach-ranking">
+						<image src="../../../static/images/item/3.png" class="pic" mode=""></image>
+					</navigator>
 				</view>
 			</view>
 

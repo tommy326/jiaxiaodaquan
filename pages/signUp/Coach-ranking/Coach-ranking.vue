@@ -49,7 +49,8 @@
 								￥2620
 							</view>
 							<view class="cost_text">
-								{{item.school}}
+								<!-- {{item.school}} -->
+								驾校
 							</view>
 						</view>
 						<view class="tag_list">

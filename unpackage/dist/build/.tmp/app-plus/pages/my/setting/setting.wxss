@@ -17,28 +17,23 @@ uni-page-body {
 	width: 100%;
 	background: #ffffff;
 	padding: 0 40rpx;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 	margin-bottom: 24rpx;
 }
 .item {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	width: 100%;
 	height: 132rpx;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
-	    -ms-flex-align: center;
 	        align-items: center;
 	-webkit-box-pack: justify;
 	-webkit-justify-content: space-between;
-	    -ms-flex-pack: justify;
 	        justify-content: space-between;
 	padding-right: 48rpx;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAaCAYAAACHD21cAAABWElEQVQ4jZXUXUtUURQG4MdBRSIxBI00FIsQhW4kECL6IEHFIPynBTEVKH0QghDeBEWGWVKKCpIoEV1ELFgHhsGZ2S44rDnMfnjn7Flnd9Xrdajhn3NUgFEc4Ql6S2nAv3k9xlP0lcJDPMQBFjL5QgmM+oAH2Md8JrfFtYbPHxPvYQ7P2uFa0/2nxLvZn+NiCYz6jPv4gbuJ+0tg1Bfcww7u4AUGSmDU10z+htt42YjbwajtxNFnsYJLJTDqe+It3MIqBkugfNbAm5iJv6oUVtVV9e5CMIZXuIYNLJUkjuN1ovc510ed4ATeZF/PUfylw65ez6RIXMvhP66+bAVvJIpne5ev23HjgrPgZKKreItFnDQvaoZTuXsj2QOdnvWTGuF0Lr6So/UIv1ttQAVvJrqcwxznT0sUFQMwnPM3lK/PMv60Q1ViTx6Lcc5EUkdUJf6MaT/XgYz/fdtHDQ4xBl8AAAAASUVORK5CYII=) no-repeat right center;
 	background-size: 14rpx 26rpx;
 }
@@ -48,7 +43,6 @@ uni-page-body {
 .key {
 	-webkit-box-flex: 0;
 	-webkit-flex: 0 0 auto;
-	    -ms-flex: 0 0 auto;
 	        flex: 0 0 auto;
 	color: #1f1f1f;
 	font-size: 32rpx;
@@ -56,7 +50,6 @@ uni-page-body {
 .val {
 	-webkit-box-flex: 0;
 	-webkit-flex: 0 0 auto;
-	    -ms-flex: 0 0 auto;
 	        flex: 0 0 auto;
 	color: #5c5c5c;
 	font-size: 28rpx;
@@ -64,7 +57,6 @@ uni-page-body {
 .pic {
 	-webkit-box-flex: 0;
 	-webkit-flex: 0 0 auto;
-	    -ms-flex: 0 0 auto;
 	        flex: 0 0 auto;
 	width: 96rpx;
 	height: 96rpx;
@@ -74,17 +66,14 @@ uni-page-body {
 .Sign_out {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	width: 100%;
 	height: 132rpx;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
-	    -ms-flex-align: center;
 	        align-items: center;
 	-webkit-box-pack: center;
 	-webkit-justify-content: center;
-	    -ms-flex-pack: center;
 	        justify-content: center;
 	color: #3860ff;
 	font-size: 32rpx;

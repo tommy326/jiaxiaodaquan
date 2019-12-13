@@ -32,16 +32,26 @@
 			<view class="sub_title">
 				错题详情
 			</view>
-			<!-- <view class="list">
+			<view class="list">
 				<view class="item">
 					<view class="text">
-						交通处罚题
+						科目一错题数
+					</view>
+					<view class="num">
+						0
+					</view>
+				</view>
+			</view>
+			<view class="list">
+				<view class="item">
+					<view class="text">
+						科目四错题数
 					</view>
 					<view class="num">
 						6
 					</view>
 				</view>
-			</view> -->
+			</view>
 		</view>
 	</view>
 </template>

@@ -5,7 +5,14 @@
 				<view class="key">
 					头像
 				</view>
+				<!-- #ifdef APP-PLUS -->
 				<image :src="userAvatar" class="pic" mode=""></image>
+				<!-- #endif -->
+				<!-- #ifdef H5 -->
+				<avatar class="pic" selWidth="300px" selHeight="300px" :avatarSrc="userAvatar" @upload="myUpload" noTab='true'
+				 avatarStyle="width:96rpx;height:96rpx; border-radius: 50% !important;">
+				</avatar>
+				<!-- #endif -->
 			</view>
 			<view class="item" @click="changeName">
 				<view class="key">
@@ -36,7 +43,12 @@
 </template>
 
 <script>
+	import avatar from "../../../components/yq-avatar/yq-avatar.vue";
 	export default {
+
+		components: {
+			avatar
+		},
 		data() {
 			return {
 				userName: '用户名',
@@ -60,7 +72,8 @@
 						if (res.data.code == 200) {
 							uni.setStorageSync('userData', res.data.data);
 							this.userName = res.data.data.username
-							this.userAvatar = res.data.data.avatar == null ? '../../../static/picture/userAvatar.png' : res.data.data.avatar
+							this.userAvatar = res.data.data.avatar == null ? '../../../static/picture/userAvatar.png' : this.$Url + '/' +
+								res.data.data.avatar
 							this.userTel = res.data.data.phone.substr(0, 3) + '****' + res.data.data.phone.substr(7)
 						} else {
 							uni.showToast({
@@ -111,6 +124,85 @@
 				uni.navigateTo({
 					url: '../changePass/changePass'
 				});
+			},
+			base(filePath) {
+				plus.io.resolveLocalFileSystemURL(filePath, entry => {
+					entry.file(file => {
+						let reader = new plus.io.FileReader();
+						reader.onload = e => {
+							if (title) {
+								uni.hideLoading();
+							}
+							resolve(e.target.result);
+						};
+						reader.onerror = err => {
+							if (title) {
+								uni.hideLoading();
+							}
+							reject(err)
+						};
+						reader.readAsDataURL(file, 'UTF-8');
+					}, err => {
+						if (title) {
+							uni.hideLoading();
+						}
+						reject(err)
+					})
+				})
+			},
+			myUpload(rsp) {
+				this.userAvatar = rsp.path
+				console.log(rsp)
+				var path = rsp.path
+				// #ifdef APP-PLUS
+				uni.uploadFile({
+					url: this.$Url + '/api/v1/avatar/upload', //仅为示例，非真实的接口地址
+					filePath: path,
+					fileType: 'image',
+					name: 'file',
+					formData: {
+						token: uni.getStorageSync('token')
+					},
+					success: (uploadFileRes) => {
+						console.log(uploadFileRes);
+					}
+				});
+				// #endif
+				// #ifdef H5
+				fetch(path).then(data => {
+					let blob = data.blob();
+					return blob;
+				}).then(blob => {
+					let reader = new window.FileReader();
+					reader.onloadend = function() {
+						let data = reader.result;
+						console.log(data)
+						console.log(this.$Url)
+						uni.request({
+							url: 'https://jkdq.521che.com/api/v1/avatar',
+							method: "POST",
+							data: {
+								token: uni.getStorageSync('token'),
+								'avatar': data
+							},
+							header: {
+								"Content-Type": "application/x-www-form-urlencoded"
+							},
+							success: (res) => {
+								console.log(res.data.code)
+								if (res.data.code == 200) {
+									uni.showToast({
+										title: res.data.msg,
+										duration: 1000
+									});
+
+								}
+							}
+						});
+					};
+					reader.readAsDataURL(blob);
+				})
+				// #endif
 			}
 		}
 	}

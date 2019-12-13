@@ -52,13 +52,13 @@
 						<view class="item active">
 							班型
 						</view>
-						<view class="item">
+						<!-- <view class="item">
 							简介
 						</view>
 						<view class="item">
 							评价
 							<text class="num">2425</text>
-						</view>
+						</view> -->
 					</view>
 					<view class="content_wrap">
 						<!-- 班型 -->

@@ -58,7 +58,31 @@
 						duration: 1000
 					});
 				} else {
-					console.log('form发生了submit事件，携带数据为：' + JSON.stringify(e.detail.value))
+					uni.request({
+						url: this.$Url + '/api/v1/change/user/name', //仅为示例，并非真实接口地址。
+						method: 'POST',
+						data: {
+							token: uni.getStorageSync('token'),
+							username: this.userName
+						},
+						header: {
+							'content-type': 'application/x-www-form-urlencoded'
+						},
+						success: (res) => {
+							if (res.data.code == 200) {
+								uni.showToast({
+									title: res.data.msg,
+									duration: 1000
+								});
+							} else {
+								uni.showToast({
+									icon: 'none',
+									title: res.data.msg,
+									duration: 1000
+								});
+							}
+						},
+					})
 				}
 			}
 		}

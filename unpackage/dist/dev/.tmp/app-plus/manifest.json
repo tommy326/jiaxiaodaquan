@@ -7,8 +7,8 @@
   "id": "__UNI__1E9A162",
   "name": "驾考大全",
   "version": {
-    "name": "1.0.2",
-    "code": 102
+    "name": "1.1.2",
+    "code": 112
   },
   "description": "",
   "launch_path": "__uniappview.html",
@@ -170,7 +170,7 @@
       }
     },
     "uni-app": {
-      "compilerVersion": "2.4.2",
+      "compilerVersion": "2.4.6",
       "control": "v8",
       "nvueCompiler": "uni-app",
       "renderer": "auto",
@@ -203,11 +203,7 @@
           "text": "我的"
         }
       ],
-      "height": "50px",
-      "child": [
-        "lauchwebview"
-      ],
-      "selected": 0
+      "height": "50px"
     }
   }
 }

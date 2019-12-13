@@ -1,2 +1,0 @@
-setCssToHead([".",[1],"main_container { display: block; padding: ",[0,32],"; font-size: ",[0,30],"; line-height: 1.4; }\n",],undefined,{path:"./pages/statement/statement.wxss"})();
-document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/statement/statement.wxml') } }));

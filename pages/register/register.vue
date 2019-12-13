@@ -22,8 +22,7 @@
 					<view class="input_see" :class="password?'':'see_on'" @click="tapSee"></view>
 				</view>
 				<view class="state">
-					未注册将为您创建账号并视为同意<navigator url="" hover-class="none" class="link">网络服务协议</navigator>和<navigator url="../statement/statement" hover-class="none"
-					 class="link">隐私政策</navigator>
+					未注册将为您创建账号并视为同意<navigator url="../Network-user-protocol/Network-user-protocol" hover-class="none" class="link">网络服务协议</navigator>和<navigator url="../Privacy-policy/Privacy-policy" hover-class="none"class="link">隐私政策</navigator>
 				</view>
 				<view class="btn_submit">
 					<button type="primary" formType="submit">注册</button>

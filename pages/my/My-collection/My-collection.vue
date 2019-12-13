@@ -10,13 +10,13 @@
 		</view>
 		<!-- 驾校列表 -->
 		<view class="service_list">
-			<block v-for="(item,idx) in listData" :key='idx'>
-				<navigator :url="'../../signUp/school-details/school-details?id='+item.id" class="item">
+			<block v-for="(item,idx) in listData" :key='idx' v-if="item.schoolId != null">
+				<navigator :url="'../../signUp/school-details/school-details?id='+item.collection_of_school.id" class="item">
 					<view class="main_item">
-						<image :src="item.coverImg" mode="" class="photo"></image>
+						<image :src="'https://jkdq.521che.com'+item.collection_of_school.coverImg" mode="" class="photo"></image>
 						<view class="right_box">
 							<view class="user_info">
-								{{item.schoolName}}
+								{{item.collection_of_school.schoolName}}
 							</view>
 							<view class="comment_box">
 								<view class="comment_stars">
@@ -55,9 +55,11 @@
 		onLoad:function(){
 			//驾校列表
 			uni.request({
-				url: this.$Url + '/api/school/home',
+				url: this.$Url + '/api/v1/exam/collection/list',
 				method: 'GET',
-				data: {},
+				data: {
+					token:uni.getStorageSync('token')
+				},
 				header: {
 					'content-type': 'application/x-www-form-urlencoded'
 				},

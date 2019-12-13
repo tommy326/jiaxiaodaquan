@@ -160,7 +160,7 @@
 					</view>
 					<!-- 评价 -->
 					<view class="assess_list" v-else-if="tabs == 3">
-						<view class="menu_tabs">
+						<!-- <view class="menu_tabs">
 							<view class="item active">
 								全部
 							</view>
@@ -176,7 +176,7 @@
 							<view class="item">
 								差评(11)
 							</view>
-						</view>
+						</view> -->
 						<view class="assess_wrap">
 							<block v-for="n in 5" :key='n'>
 								<view class="item">
@@ -241,7 +241,7 @@
 						<view class="location" @click="chooseLocation" :class="location == 0?'':'location_on'">{{location == 0?'从哪出发':location}}</view>
 					</view>
 					<view class="hits_text">
-						*请放心填写，提交即视为同意<navigator class="link" url="../../statement/statement">《个人信息保护声明》</navigator>
+						*请放心填写，提交即视为同意<navigator class="link" url="../../Privacy-policy/Privacy-policy">《个人信息保护声明》</navigator>
 					</view>
 					<button form-type="submit" class="form_btn">提交</button>
 				</form>

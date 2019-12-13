@@ -6,14 +6,13 @@
 					<text class="oldTel">{{oldTel}}</text>
 				</view>
 				<view class="form_item">
-					<input type="number" class="uni_input" :value="code" placeholder="输入动态密码" placeholder-class="pla_class"
-					 @input="tapCode" />
+					<input type="number" class="uni_input" :value="code" placeholder="输入动态密码" placeholder-class="pla_class" @input="tapCode" />
 					<view class="input_clear" v-if="codeIcon" @click="clearCodeIcon"></view>
 					<button type="default" :disabled="disabled" class="input_code" :style="disabled?'':'color: #317ceb!important;'"
 					 @click="gainCode">{{btnData}}</button>
 				</view>
 				<view class="form_item">
-					<input class="uni_input" :value="userTel" placeholder="请输入新手机号" placeholder-class="pla_class" @input="tapUser"/>
+					<input class="uni_input" :value="userTel" placeholder="请输入新手机号" placeholder-class="pla_class" @input="tapUser" />
 					<view class="input_clear" v-if="TelIcon" @click="clearUserIcon"></view>
 				</view>
 				<button form-type="submit" class="form_btn" :disabled="formBtn">确认</button>
@@ -33,7 +32,8 @@
 				disabled: false,
 				userTel: '',
 				TelIcon: false,
-				formBtn: true
+				formBtn: true,
+				timer:''
 			}
 		},
 		onLoad: function(options) {
@@ -42,7 +42,7 @@
 		methods: {
 			gainCode: function() {
 				uni.request({
-					url: this.$Url+'/api/sms?mobile='+uni.getStorageSync('userData').phone,
+					url: this.$Url + '/api/sms?mobile=' + uni.getStorageSync('userData').phone,
 					method: 'GET',
 					data: {},
 					header: {
@@ -73,7 +73,7 @@
 				} else {
 					this.codeIcon = false;
 				}
-				if(this.code.length == 6 && this.userTel.length == 11){
+				if (this.code.length == 6 && this.userTel.length == 11) {
 					this.formBtn = false
 				}
 			},
@@ -90,7 +90,7 @@
 					time--
 					that.btnData = time + 's后获取'
 					that.disabled = true
-					setTimeout(function() {
+					that.timer = setTimeout(function() {
 						that.countdown(time)
 					}, 1000)
 				}
@@ -102,13 +102,91 @@
 				} else {
 					this.TelIcon = false;
 				}
-				if(this.code.length == 6 && this.userTel.length == 11){
+				if (this.code.length == 6 && this.userTel.length == 11) {
 					this.formBtn = false
 				}
 			},
 			clearUserIcon: function() {
 				this.userTel = '';
 				this.TelIcon = false;
+			},
+			formSubmit: function(e) {
+				if (this.code.length < 1) {
+					uni.showToast({
+						icon: 'none',
+						title: '请输入昵称！',
+						duration: 1000
+					});
+				} else if (this.userTel.length < 1) {
+					uni.showToast({
+						icon: 'none',
+						title: '请输入新手机号！',
+						duration: 1000
+					});
+				} else if (!(/^[1][3,4,5,7,8][0-9]{9}$/).test(this.userTel)) {
+					uni.showToast({
+						icon: 'none',
+						title: '手机号格式不正确！',
+						duration: 1000
+					});
+				} else {
+					uni.request({
+						url:  this.$Url+'/api/check',
+						method: 'POST',
+						data: {
+							mobile:uni.getStorageSync('userData').phone,
+							code:this.code
+						},
+						header: {
+							'content-type': 'application/x-www-form-urlencoded'
+						},
+						success: (res) => {
+							if(res.data.status_code == 200){
+								uni.request({
+									url: this.$Url + '/api/v1/change/user/phone', //仅为示例，并非真实接口地址。
+									method: 'POST',
+									data: {
+										token: uni.getStorageSync('token'),
+										phone: this.userTel
+									},
+									header: {
+										'content-type': 'application/x-www-form-urlencoded'
+									},
+									success: (res) => {
+										if (res.data.code == 200) {
+											uni.showToast({
+												title: res.data.msg,
+												duration: 1000
+											});
+											this.code = ''
+											this.oldTel = this.userTel
+											this.userTel = ''
+											this.disabled = false
+											this.btnData =  '获取验证码'
+											clearTimeout(this.timer)
+											this.timer = ''
+											
+										} else {
+											uni.showToast({
+												icon: 'none',
+												title: res.data.msg,
+												duration: 1000
+											});
+										}
+									},
+								})
+							
+							}else{
+								uni.showToast({
+									icon: 'none',
+									title: res.data.msg,
+									duration: 1000
+								});
+							}
+						}
+					});
+					
+				}
 			}
 		}
 	}
@@ -122,7 +200,7 @@
 		height: 100%;
 		background: #f8f8f8;
 	}
-	
+
 	.main_container {
 		/* #ifdef APP-PLUS */
 		min-height: 100vh;
@@ -147,8 +225,8 @@
 		justify-content: space-between;
 	}
 
-	.uni_input ,
-	.oldTel{
+	.uni_input,
+	.oldTel {
 		flex: 1 1 auto;
 		width: 100%;
 		height: 100rpx;
@@ -166,8 +244,8 @@
 		background-size: 28rpx 28rpx;
 		padding: 25rpx;
 	}
-	
-	.input_code{
+
+	.input_code {
 		flex: 0 0 auto;
 		width: 160rpx;
 		height: 98rpx;
@@ -177,7 +255,7 @@
 		text-align: center;
 		font-size: 28rpx;
 	}
-	
+
 	.input_code[disabled]:not([type]),
 	.input_code[disabled][type=default] {
 		color: #b2b2b2;
@@ -200,8 +278,7 @@
 	}
 
 	.form_btn:after,
-	.input_code:after{
+	.input_code:after {
 		display: none !important;
 	}
-	
 </style>

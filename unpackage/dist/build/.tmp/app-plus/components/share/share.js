@@ -7,4 +7,4 @@
         })
     },
     [['components/share/share-create-component']]
-]);                
+]);

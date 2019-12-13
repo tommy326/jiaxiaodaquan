@@ -1,0 +1,2 @@
+setCssToHead([".",[1],"main_container { display: block; padding: ",[0,30],"; font-size: ",[0,30],"; line-height: 1.4; line-height: ",[0,40],"; font-size: ",[0,28],"; border-top: ",[0,1]," solid #f2f2f2; }\n.",[1],"text{ color: #666666; }\n.",[1],"title{ color: #333333; font-weight: bold; line-height: ",[0,44],"; }\n.",[1],"br{ height: ",[0,30],"; }\n",],undefined,{path:"./pages/Privacy-policy/Privacy-policy.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/Privacy-policy/Privacy-policy.wxml') } }));

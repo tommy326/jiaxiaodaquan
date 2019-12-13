@@ -22,26 +22,22 @@
 	width: 100%;
 	height: 208rpx;
 	padding-top: 40rpx;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 }
 .listData .list {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	width: auto;
 	height: 168rpx;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
-	    -ms-flex-align: center;
 	        align-items: center;
 	padding: 0 32rpx;
 }
 .listData .item {
 	-webkit-box-flex: 0;
 	-webkit-flex: 0 0 auto;
-	    -ms-flex: 0 0 auto;
 	        flex: 0 0 auto;
 	width: 328rpx;
 	height: 168rpx;
@@ -55,17 +51,14 @@
 .news_list .item {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	width: 100%;
 	padding: 32rpx;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 }
 .news_list .item .photo_wrap {
 	-webkit-box-flex: 0;
 	-webkit-flex: 0 0 auto;
-	    -ms-flex: 0 0 auto;
 	        flex: 0 0 auto;
 	width: 240rpx;
 	height: 160rpx;
@@ -82,7 +75,6 @@
 .news_list .item .info_wrap {
 	-webkit-box-flex: 1;
 	-webkit-flex: 1 1 auto;
-	    -ms-flex: 1 1 auto;
 	        flex: 1 1 auto;
 	color: #333333;
 	font-size: 32rpx;

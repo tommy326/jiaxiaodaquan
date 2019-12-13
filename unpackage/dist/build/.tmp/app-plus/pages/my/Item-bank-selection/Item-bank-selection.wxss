@@ -6,8 +6,7 @@
 	background: url(data:image/png;base64,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) no-repeat center;
 	background-size: 100%;
 	padding-top: 40rpx;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 }
 .head_wrap .title {
 	display: block;
@@ -31,13 +30,11 @@
 	border-radius: 40rpx 40rpx 0 0;
 	margin-top: -40rpx;
 	padding: 40rpx 32rpx;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 }
 .mid_wrap .city_change {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	width: 100%;
 	height: 56rpx;
@@ -45,7 +42,6 @@
 	background-size: 14rpx 28rpx;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
-	    -ms-flex-align: center;
 	        align-items: center;
 	font-size: 32rpx;
 }
@@ -60,31 +56,26 @@
 .mid_wrap .cars_list {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	width: 100%;
 	height: 200rpx;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
-	    -ms-flex-align: center;
 	        align-items: center;
 	-webkit-box-pack: justify;
 	-webkit-justify-content: space-between;
-	    -ms-flex-pack: justify;
 	        justify-content: space-between;
 	margin-top: 20rpx;
 }
 .mid_wrap .cars_list .item {
 	-webkit-box-flex: 0;
 	-webkit-flex: 0 0 auto;
-	    -ms-flex: 0 0 auto;
 	        flex: 0 0 auto;
 	width: 170rpx;
 	height: 200rpx;
 	color: #999999;
 	padding-top: 36rpx;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 	border-radius: 30rpx;
 	position: relative;
 }
@@ -133,29 +124,24 @@
 .mid_wrap .cer_list {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	width: 100%;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
-	    -ms-flex-align: center;
 	        align-items: center;
 	margin-top: 20rpx;
 	-webkit-flex-wrap: wrap;
-	    -ms-flex-wrap: wrap;
 	        flex-wrap: wrap;
 }
 .mid_wrap .cer_list .item {
 	-webkit-box-flex: 0;
 	-webkit-flex: 0 0 auto;
-	    -ms-flex: 0 0 auto;
 	        flex: 0 0 auto;
 	width: 170rpx;
 	height: 170rpx;
 	color: #999999;
 	padding-top: 110rpx;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 	border-radius: 30rpx;
 	position: relative;
 }
@@ -191,7 +177,6 @@
 .mid_wrap .btn {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	width: 100%;
 	height: 100rpx;
@@ -199,11 +184,9 @@
 	border-radius: 50rpx;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
-	    -ms-flex-align: center;
 	        align-items: center;
 	-webkit-box-pack: center;
 	-webkit-justify-content: center;
-	    -ms-flex-pack: center;
 	        justify-content: center;
 	font-size: 36rpx;
 	color: #ffffff;

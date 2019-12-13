@@ -26,15 +26,13 @@ uni-page-refresh {
 	display: block;
 	width: 100%;
 	padding: 0 32rpx 1rpx;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 }
 .list .item {
 	display: block;
 	width: 100%;
 	padding: 36rpx 22rpx;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 	background-color: #ffffff;
 	border-radius: 16rpx;
 	margin-bottom: 24rpx;
@@ -48,8 +46,7 @@ uni-page-refresh {
 	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACSElEQVRYhcWXT0hUURSHP22QstRNFi1yY5G2kBQk7R+EIJaQ0CbbGdWm0lxYgW1yObsIIkhFcOOmrBZBFBWCYZvKTaBkCLVok1A5WdKi+Dn3wfDyvbnXueP8YBbz7jvvfPfce889p6ip6y+WqgHagcPAXmAbUAEsA9+BeWAaeAk8BlI2n80GUAR0AFeAA7akwE9gDEgCc3EvFseM7QKeAw8cnUubgXPAewOx0RXgJPAGOOroOKwS4CowZSZkBXAeuAeU5+g8U/uASaAhG4DW+45Ze9/aDjwJRyITQAOjwIaw4y2l0FDjBacSuA9sCgNoxnejwr5jKyS7YXeVF4g64EbwJziGCv3DOKtTrdB+EC4kIbWUjsjta/Ge3s7AxeSqQ39MLpkLAF7ZHDU5fDcLQ7GoaQnwbEckgDSso6ol2BPlPDzLm2PZHTuoEyhLACdsbT58Sv88ScnquCJwyOu83NSiCNS6mGhJoo5k8xlngLqESRBO0sbSDs/U1MiaIlBd7DnluqpcAD8KCFAigIUCAqyk4hmL9/ImbcLXwDEXB72nYXHJD5IAngEDtgbKhmWl/z8ffrR2AEXgo46EjYHHTLgi7QHdRrf8fjZ9hdsoYd4ZBPqAnbk4Vb0QLM+RevjyNbtNAPALuAyM5wKgeiEoWlQz2OyLcF8waMrpdVO4KL0EvCgkwLLpCSYKBYDp89qAoXXwn4rqjH6bBkXR+JxHgKdxvaGkvlDlR49JVj71Dbju0p6rd2g098Z+U8wq3bjWE4sm/fcDs/8AZxFxFkHFw08AAAAASUVORK5CYII=) no-repeat left top 8rpx;
 	background-size: 32rpx 32rpx;
 	line-height: 48rpx;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 	font-weight: bold;
 }
 .list .item .val {
@@ -62,22 +59,18 @@ uni-page-refresh {
 	background-size: 32rpx 32rpx;
 	line-height: 44rpx;
 	margin-top: 16rpx;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 }
 .list .item .info_box {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	width: 100%;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
-	    -ms-flex-align: center;
 	        align-items: center;
 	-webkit-box-pack: justify;
 	-webkit-justify-content: space-between;
-	    -ms-flex-pack: justify;
 	        justify-content: space-between;
 	color: #929292;
 	font-size: 20rpx;

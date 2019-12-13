@@ -2,7 +2,6 @@
 .back{
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	width: 100%;
 	height: 80rpx;
@@ -10,7 +9,6 @@
 .back .btn{
 	-webkit-box-flex: 0;
 	-webkit-flex: 0 0auto;
-	    -ms-flex: 0 0auto;
 	        flex: 0 0auto;
 	width: 80rpx;
 	height: 80rpx;
@@ -30,20 +28,17 @@
 	display: block;
 	width: 100%;
 	padding: 0 60rpx;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 }
 .form_item {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	width: 100%;
 	height: 92rpx;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 	-webkit-box-align: center;
 	-webkit-align-items: center;
-	    -ms-flex-align: center;
 	        align-items: center;
 	margin-top: 28px;
 }
@@ -53,7 +48,6 @@
 .form_input {
 	-webkit-box-flex: 1;
 	-webkit-flex: 1 1 auto;
-	    -ms-flex: 1 1 auto;
 	        flex: 1 1 auto;
 	font-size: 30rpx;
 	color: #262626;
@@ -61,7 +55,6 @@
 .input_clear {
 	-webkit-box-flex: 0;
 	-webkit-flex: 0 0 auto;
-	    -ms-flex: 0 0 auto;
 	        flex: 0 0 auto;
 	width: 40rpx;
 	height: 40rpx;
@@ -72,7 +65,6 @@
 .input_see {
 	-webkit-box-flex: 0;
 	-webkit-flex: 0 0 auto;
-	    -ms-flex: 0 0 auto;
 	        flex: 0 0 auto;
 	width: 40rpx;
 	height: 40rpx;
@@ -87,7 +79,6 @@
 .input_code {
 	-webkit-box-flex: 0;
 	-webkit-flex: 0 0 auto;
-	    -ms-flex: 0 0 auto;
 	        flex: 0 0 auto;
 	width: 160rpx;
 	text-align: center;
@@ -106,7 +97,6 @@
 .state {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	font-size: 24rpx;
 	color: #949494;
@@ -115,7 +105,6 @@
 .link {
 	-webkit-box-flex: 0;
 	-webkit-flex: 0 0 auto;
-	    -ms-flex: 0 0 auto;
 	        flex: 0 0 auto;
 	color: #262626;
 	text-decoration: underline;
@@ -123,44 +112,35 @@
 .btn_submit button {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	height: 90rpx;
 	background-color: #1c76ee;
-	-webkit-box-shadow: 0px 4rpx 16rpx 0px rgba(0, 0, 0, 0.12),
-		inset 0px 1rpx 1rpx 0px rgba(255, 255, 255, 0.2);
-	        box-shadow: 0px 4rpx 16rpx 0px rgba(0, 0, 0, 0.12),
+	box-shadow: 0px 4rpx 16rpx 0px rgba(0, 0, 0, 0.12),
 		inset 0px 1rpx 1rpx 0px rgba(255, 255, 255, 0.2);
 	border-radius: 45rpx;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
-	    -ms-flex-align: center;
 	        align-items: center;
 	-webkit-box-pack: center;
 	-webkit-justify-content: center;
-	    -ms-flex-pack: center;
 	        justify-content: center;
 	font-size: 36rpx;
 }
 .btn_link {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
-	    -ms-flex-align: center;
 	        align-items: center;
 	-webkit-box-pack: center;
 	-webkit-justify-content: center;
-	    -ms-flex-pack: center;
 	        justify-content: center;
 	margin-top: 55rpx;
 }
 .btn_link .text {
 	-webkit-box-flex: 0;
 	-webkit-flex: 0 0 auto;
-	    -ms-flex: 0 0 auto;
 	        flex: 0 0 auto;
 	font-size: 32rpx;
 	color: #262626;
@@ -169,7 +149,6 @@
 .pic {
 	-webkit-box-flex: 0;
 	-webkit-flex: 0 0 auto;
-	    -ms-flex: 0 0 auto;
 	        flex: 0 0 auto;
 	width: 9rpx;
 	height: 20rpx;

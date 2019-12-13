@@ -150,7 +150,7 @@
 						} else {
 							uni.showToast({
 								icon: 'none',
-								title: '网络不给力，请稍后重试',
+								title: res.data.msg,
 								duration: 1000
 							});
 						}

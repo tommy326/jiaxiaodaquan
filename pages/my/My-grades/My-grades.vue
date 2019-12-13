@@ -26,7 +26,7 @@
 				<block v-for="(item,idx) in listData" :key='idx'>
 					<view class="item" :class="item.mark >= 90?'on':'off'">
 						<view class="num">{{item.mark}}</view>
-						<view class="time">{{item.userTime}}分钟</view>
+						<view class="time">{{item.useTime}}分钟</view>
 						<view class="date">{{item.time}}</view>
 						<view class="grade">{{item.mark >= 90?'高手':'马路杀手'}}</view>
 					</view>

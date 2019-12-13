@@ -1,8 +1,0 @@
-
-.main_container {
-	display: block;
-	padding: 32rpx;
-	font-size: 30rpx;
-	line-height: 1.4;
-}
-

@@ -9,7 +9,7 @@
 		<view class="search_module">
 			<view class="search_warp">
 				<navigator url="" class="location" hover-class="none">{{city}}</navigator>
-				<navigator url="" class="search_input" hover-class="none">请输入关键字 例如：**驾校</navigator>
+				<navigator url="../../signUp/search/search" class="search_input" hover-class="none">请输入关键字 例如：**驾校</navigator>
 			</view>
 		</view>
 
@@ -257,6 +257,9 @@
 		},
 		onShow: function() {
 			
+		},
+		onReachBottomDistance(e){
+			console.log(e)
 		},
 		onPullDownRefresh() {
 			setTimeout(function() {

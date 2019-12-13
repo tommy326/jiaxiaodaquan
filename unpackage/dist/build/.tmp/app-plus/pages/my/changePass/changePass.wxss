@@ -3,20 +3,17 @@
 	display: block;
 	width: 100%;
 	padding: 32rpx 60rpx;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 }
 .form_item {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	width: 100%;
 	height: 98rpx;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 	-webkit-box-align: center;
 	-webkit-align-items: center;
-	    -ms-flex-align: center;
 	        align-items: center;
 	margin-bottom: 32rpx;
 }
@@ -26,7 +23,6 @@
 .form_input {
 	-webkit-box-flex: 1;
 	-webkit-flex: 1 1 auto;
-	    -ms-flex: 1 1 auto;
 	        flex: 1 1 auto;
 	font-size: 30rpx;
 	color: #262626;
@@ -34,7 +30,6 @@
 .input_clear {
 	-webkit-box-flex: 0;
 	-webkit-flex: 0 0 auto;
-	    -ms-flex: 0 0 auto;
 	        flex: 0 0 auto;
 	width: 40rpx;
 	height: 40rpx;
@@ -45,7 +40,6 @@
 .input_see {
 	-webkit-box-flex: 0;
 	-webkit-flex: 0 0 auto;
-	    -ms-flex: 0 0 auto;
 	        flex: 0 0 auto;
 	width: 40rpx;
 	height: 40rpx;
@@ -60,22 +54,17 @@
 .btn_submit button {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	height: 90rpx;
 	background-color: #1c76ee;
-	-webkit-box-shadow: 0px 4rpx 16rpx 0px rgba(0, 0, 0, 0.12),
-		inset 0px 1rpx 1rpx 0px rgba(255, 255, 255, 0.2);
-	        box-shadow: 0px 4rpx 16rpx 0px rgba(0, 0, 0, 0.12),
+	box-shadow: 0px 4rpx 16rpx 0px rgba(0, 0, 0, 0.12),
 		inset 0px 1rpx 1rpx 0px rgba(255, 255, 255, 0.2);
 	border-radius: 45rpx;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
-	    -ms-flex-align: center;
 	        align-items: center;
 	-webkit-box-pack: center;
 	-webkit-justify-content: center;
-	    -ms-flex-pack: center;
 	        justify-content: center;
 	font-size: 36rpx;
 	margin-top: 70rpx;

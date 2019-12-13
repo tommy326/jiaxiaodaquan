@@ -8,26 +8,22 @@
 	min-height: 100vh;
 	
 	background: #f6f6f6;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 }
 .tabs_box {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	width: 100%;
 	height: 88rpx;
 	padding: 24rpx 32rpx 0;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 	background: #ffffff;
 	border-top: 1rpx solid #ededed;
 }
 .tabs_box .item {
 	-webkit-box-flex: 0;
 	-webkit-flex: 0 0 auto;
-	    -ms-flex: 0 0 auto;
 	        flex: 0 0 auto;
 	width: 110rpx;
 	height: 64rpx;
@@ -56,8 +52,7 @@
 	display: block;
 	width: 100%;
 	padding: 32rpx 32rpx 1rpx;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 }
 .service_list .item {
 	display: block;
@@ -70,22 +65,18 @@
 .service_list .item .main_item {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	width: 100%;
 	height: 170rpx;
 	border-radius: 16rpx;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
-	    -ms-flex-align: center;
 	        align-items: center;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 }
 .service_list .item .main_item .photo {
 	-webkit-box-flex: 0;
 	-webkit-flex: 0 0 auto;
-	    -ms-flex: 0 0 auto;
 	        flex: 0 0 auto;
 	width: 170rpx;
 	height: 170rpx;
@@ -96,21 +87,17 @@
 .service_list .item .main_item .right_box {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	width: 100%;
 	height: 170rpx;
 	padding: 0 20rpx;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 	-webkit-box-align: start;
 	-webkit-align-items: flex-start;
-	    -ms-flex-align: start;
 	        align-items: flex-start;
 	-webkit-box-orient: vertical;
 	-webkit-box-direction: normal;
 	-webkit-flex-direction: column;
-	    -ms-flex-direction: column;
 	        flex-direction: column;
 	position: relative;
 }
@@ -124,33 +111,27 @@
 .service_list .item .main_item .comment_box {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	width: 100%;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
-	    -ms-flex-align: center;
 	        align-items: center;
 	-webkit-box-pack: justify;
 	-webkit-justify-content: space-between;
-	    -ms-flex-pack: justify;
 	        justify-content: space-between;
 	margin-top: 24rpx;
 }
 .service_list .item .main_item .comment_box .comment_stars {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
-	    -ms-flex-align: center;
 	        align-items: center;
 }
 .service_list .item .main_item .comment_box .comment_stars .pic {
 	-webkit-box-flex: 0;
 	-webkit-flex: 0 0 auto;
-	    -ms-flex: 0 0 auto;
 	        flex: 0 0 auto;
 	width: 21rpx;
 	height: 20rpx;
@@ -159,7 +140,6 @@
 .service_list .item .main_item .comment_box .comment_stars .fraction {
 	-webkit-box-flex: 0;
 	-webkit-flex: 0 0 auto;
-	    -ms-flex: 0 0 auto;
 	        flex: 0 0 auto;
 	color: #929292;
 	font-size: 22rpx;
@@ -169,7 +149,6 @@
 .service_list .item .main_item .comment_box .region {
 	-webkit-box-flex: 0;
 	-webkit-flex: 0 0 auto;
-	    -ms-flex: 0 0 auto;
 	        flex: 0 0 auto;
 	color: #929292;
 	font-size: 24rpx;
@@ -178,22 +157,18 @@
 .service_list .item .main_item .cost_box {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: end;
 	-webkit-align-items: flex-end;
-	    -ms-flex-align: end;
 	        align-items: flex-end;
 	-webkit-box-pack: justify;
 	-webkit-justify-content: space-between;
-	    -ms-flex-pack: justify;
 	        justify-content: space-between;
 	margin-top: 20rpx;
 	width: 100%;
 	overflow: hidden;
 	padding: 0 20rpx;
-	-webkit-box-sizing: border-box;
-	        box-sizing: border-box;
+	box-sizing: border-box;
 	position: absolute;
 	bottom: 10rpx;
 	left: 0rpx;
@@ -201,15 +176,13 @@
 .service_list .item .main_item .cost_box .price {
 	-webkit-box-flex: 0;
 	-webkit-flex: 0 0 auto;
-	    -ms-flex: 0 0 auto;
 	        flex: 0 0 auto;
 	color: #666666;
 	font-size: 24rpx;
 	line-height: 1;
 	min-width: 120rpx;
 	overflow: hidden;
-	-o-text-overflow: ellipsis;
-	   text-overflow: ellipsis;
+	text-overflow: ellipsis;
 	white-space: nowrap;
 	margin-right: 20rpx;
 }
@@ -221,7 +194,6 @@
 .service_list .item .main_item .cost_box .cost_text {
 	-webkit-box-flex: 0;
 	-webkit-flex: 0 0 auto;
-	    -ms-flex: 0 0 auto;
 	        flex: 0 0 auto;
 	color: #333333;
 	font-size: 26rpx;

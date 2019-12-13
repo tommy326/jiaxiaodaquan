@@ -64,7 +64,7 @@
 					title: '我的错题'
 				}, {
 					src: 'plfw',
-					title: '陪练服务'
+					title: '我的陪练'
 				}, {
 					src: 'wdcj',
 					title: '我的成绩'
@@ -95,7 +95,7 @@
 						if (res.data.code == 200) {
 							uni.setStorageSync('userData', res.data.data);
 							this.userName = res.data.data.username
-							this.userAvatar = res.data.data.avatar == null ? '../../../static/picture/userAvatar.png' : res.data.data.avatar
+							this.userAvatar = res.data.data.avatar == null ? '../../../static/picture/userAvatar.png' : this.$Url+'/'+res.data.data.avatar
 						} else {
 							uni.showToast({
 								icon: 'none',
@@ -128,7 +128,7 @@
 						});
 					} else if (idx == 1) {
 						uni.navigateTo({
-							url: '../../signUp/Partner-service/Partner-service'
+							url: '../../my/my-accompany/my-accompany'
 						});
 					} else if (idx == 2) {
 						uni.navigateTo({
