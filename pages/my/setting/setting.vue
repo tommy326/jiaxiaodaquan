@@ -38,6 +38,13 @@
 				</view>
 			</view>
 		</view>
+		<view class="list">
+			<view class="item" @click="tapAbout">
+				<view class="key" >
+					关于我们
+				</view>
+			</view>
+		</view>
 		<view class="Sign_out" @click="SignOut">退出登录</view>
 	</view>
 </template>
@@ -123,6 +130,11 @@
 			changePass: function(e) {
 				uni.navigateTo({
 					url: '../changePass/changePass'
+				});
+			},
+			tapAbout:function(e){
+				uni.navigateTo({
+					url: '../about/about'
 				});
 			},
 			base(filePath) {

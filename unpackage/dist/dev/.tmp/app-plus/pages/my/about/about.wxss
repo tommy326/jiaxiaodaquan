@@ -1,0 +1,89 @@
+
+.head_box {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	width: 100%;
+	padding: 84rpx 0 0 0;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+}
+.head_box .logo {
+	-webkit-box-flex: 0;
+	-webkit-flex: 0 0 auto;
+	        flex: 0 0 auto;
+	width: 160rpx;
+	height: 160rpx;
+}
+.head_box .name {
+	-webkit-box-flex: 0;
+	-webkit-flex: 0 0 auto;
+	        flex: 0 0 auto;
+	color: #333333;
+	font-size: 34rpx;
+	letter-spacing: 1px;
+	line-height: 1;
+	margin-top: 40rpx;
+}
+.head_box .version {
+	-webkit-box-flex: 0;
+	-webkit-flex: 0 0 auto;
+	        flex: 0 0 auto;
+	color: #666666;
+	font-size: 28rpx;
+	letter-spacing: 1px;
+	line-height: 1;
+	margin-top: 20rpx;
+}
+.list {
+	display: block;
+	width: 100%;
+	padding: 68rpx 40rpx 0;
+	box-sizing: border-box;
+}
+.list .item {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	width: 100%;
+	height: 108rpx;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	border-bottom: 1px solid #ededed;
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAcCAYAAABRVo5BAAABj0lEQVQ4jY3UTYhOcRTH8c/MeCmzmEJmw0a2k8VDykZemkhJGouhxig9ZVZK7BRWSsZG8lJigVI0yERMYiXb2dqxsLCxkWaITp1b/8Xz3Ht/u9+553vv/Z9z/meg2+3CJNbiLpa00Arsx6NM3YcJ/G1CB/Gn8IfxIOON4DtcLWLHcRMDdeBQp9OR8AZsz/g2DONtExiax2ZsTb8T//Ch369WiqSTeFbELuFMEyirGa15U8RmcaoJlH08go/po0i38oW1YOgXDuFz+iHcz1gtGPqJg1hMvwpPsKcJDP3AOL6kX42XGGucEHzPr3xLvwaX24ChrzhQ+N1tQXnGSr/bghsxV/hPbcBRvMem9NGqC03guhz0LemXspeLdeAIXkXp0y/jKBbU9DFK/hw70scMT+NFldALjOo9xa70cWtOF+ulJxgz+Tj3UKWzucT0A+MW3MubUekirvc6y2AB3cBU8exaXuSeqsArmCky7uBcP6gC9+J8EXuYL4mi1IIrCx8tONFmIccmf41jWI/bbSD4D4uVRuYX2fh6AAAAAElFTkSuQmCC) no-repeat right center;
+	background-size: 10rpx 22rpx;
+	color: #222222;
+	font-size: 30rpx;
+}
+.footer_box{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	width: 100%;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+	color: #929292;
+	line-height: 37rpx;
+	font-size: 24rpx;
+	position: fixed;
+	left: 0;
+	bottom: 98rpx;
+}
+

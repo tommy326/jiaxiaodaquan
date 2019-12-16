@@ -281,6 +281,18 @@
 				
 			}
         }
+        ,{
+            "path" : "pages/my/about/about",
+            "style" : {
+				"navigationBarTitleText": "关于我们"
+			}
+        }
+        ,{
+            "path" : "pages/my/Business-license/Business-license",
+            "style" : {
+				"navigationBarTitleText": "营业执照"
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

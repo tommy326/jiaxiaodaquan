@@ -1,0 +1,2 @@
+setCssToHead([".",[1],"pic{ display: block; width: 100%; margin-top: ",[0,100],"; }\n",],undefined,{path:"./pages/my/Business-license/Business-license.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/my/Business-license/Business-license.wxml') } }));

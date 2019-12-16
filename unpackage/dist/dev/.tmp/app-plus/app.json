@@ -33,7 +33,9 @@
     "pages/Privacy-policy/Privacy-policy",
     "pages/my/my-accompany/my-accompany",
     "pages/Network-user-protocol/Network-user-protocol",
-    "pages/signUp/search/search"
+    "pages/signUp/search/search",
+    "pages/my/about/about",
+    "pages/my/Business-license/Business-license"
   ],
   "window": {
     "navigationBarTextStyle": "black",

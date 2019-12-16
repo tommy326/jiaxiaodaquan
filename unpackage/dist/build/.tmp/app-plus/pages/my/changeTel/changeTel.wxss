@@ -34,7 +34,7 @@ uni-page-body {
 	        justify-content: space-between;
 }
 .uni_input,
-.oldTel{
+.oldTel {
 	-webkit-box-flex: 1;
 	-webkit-flex: 1 1 auto;
 	        flex: 1 1 auto;
@@ -55,7 +55,7 @@ uni-page-body {
 	background-size: 28rpx 28rpx;
 	padding: 25rpx;
 }
-.input_code{
+.input_code {
 	-webkit-box-flex: 0;
 	-webkit-flex: 0 0 auto;
 	        flex: 0 0 auto;
@@ -86,8 +86,7 @@ uni-page-body {
 	color: #9f9f9f;
 }
 .form_btn:after,
-.input_code:after{
+.input_code:after {
 	display: none !important;
 }
-
 
