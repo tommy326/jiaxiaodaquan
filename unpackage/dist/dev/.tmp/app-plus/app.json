@@ -35,7 +35,8 @@
     "pages/Network-user-protocol/Network-user-protocol",
     "pages/signUp/search/search",
     "pages/my/about/about",
-    "pages/my/Business-license/Business-license"
+    "pages/my/Business-license/Business-license",
+    "pages/developing/developing"
   ],
   "window": {
     "navigationBarTextStyle": "black",

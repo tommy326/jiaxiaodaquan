@@ -1,0 +1,1 @@
+<view><view class="news_title">{{''+title+''}}</view><view class="news_time"><text class="author">{{"原创："+author}}</text><text class="time">{{time}}</text></view><view class="news_content"><rich-text nodes="{{content}}"></rich-text></view></view>

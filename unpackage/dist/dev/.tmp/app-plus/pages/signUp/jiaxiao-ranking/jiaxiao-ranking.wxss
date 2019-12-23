@@ -81,7 +81,7 @@
 	-webkit-flex: 0 0 auto;
 	        flex: 0 0 auto;
 	font-size: 36rpx;
-	width: 80rpx;
+	width: 60rpx;
 	height: 170rpx;
 	color: #999999;
 	line-height: 1;
@@ -89,7 +89,7 @@
 	text-align: center;
 }
 .service_list .item .main_item .eq_on {
-	font-size: 72rpx;
+	/* font-size: 72rpx; */
 	color: #3860ff;
 }
 .service_list .item .main_item .photo {
@@ -216,7 +216,7 @@
 .service_list .item .bottom_item{
 	display: block;
 	width: 100%;
-	padding-left: 270rpx;
+	padding-left: 250rpx;
 	box-sizing: border-box;
 }
 .service_list .item .bottom_item .tag_list {

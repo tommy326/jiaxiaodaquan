@@ -20,21 +20,17 @@
 						{{item.schoolName}}
 					</view>
 					<view class="label_list">
-						<view class="item">
-							拿本快
-						</view>
-						<view class="item">
-							有接送
-						</view>
-						<view class="item">
-							自由考场
-						</view>
+						<block v-for="(items,idx) in item.label" :key='items' v-if="idx < 3">
+							<view class="item">
+								{{items}}
+							</view>
+						</block>
 					</view>
 					<view class="introduce">
-						<block v-for="n in 5" :key='n'>
+						<block v-for="n in item.score" :key='n'>
 							<image src="../../../static/images/icon/icon-stars-1.png" class="stars" mode=""></image>
 						</block>
-						<view class="score">5.0分 <text class="b">(1023人评）</text></view>
+						<view class="score">{{item.score}}.0分 <text class="b">(1023人评）</text></view>
 						<view class="price">￥2100</view>
 						<view class="class">C1班</view>
 					</view>
@@ -87,14 +83,14 @@
 					<view class="coach_list" v-else-if="tabs == 1">
 						<block v-for="n in 5" :key='n'>
 							<view class="item">
-								<view class="rank">
+								<!-- <view class="rank"> -->
 									<!-- #ifdef H5 -->
-									{{n}}
+									<!-- {{n}} -->
 									<!-- #endif -->
 									<!-- #ifdef APP-PLUS -->
-									{{n+1}}
+									<!-- {{n+1}} -->
 									<!-- #endif -->
-								</view>
+								<!-- </view> -->
 								<image src="../../../static/picture/coachAvatar.png" class="head_sculpture" mode=""></image>
 								<view class="coach_info">
 									<view class="name">
@@ -285,7 +281,14 @@
 				},
 				success: (res) => {
 					if (res.data.code == 200) {
-						this.listData = res.data.msg
+						var listData = []
+						for (let i in res.data.msg) {
+							res.data.msg[i].coverImg = this.$Url + res.data.msg[i].coverImg
+							res.data.msg[i].label = res.data.msg[i].label.split(",")
+							res.data.msg[i].score = res.data.msg[i].score == null ? 5 : res.data.msg[i].score
+							listData.push(res.data.msg[i]); //属性
+						}
+						this.listData = listData
 						let arr = [],
 							data = JSON.parse(this.listData[0].showImg)
 						for (let i in data) {

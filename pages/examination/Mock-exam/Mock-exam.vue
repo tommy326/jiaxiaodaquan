@@ -67,7 +67,7 @@
 		},
 		onLoad(options) {
 			this.subject = options.subject
-			this.userAvatar = uni.getStorageSync('userData').avatar == null?'../../../static/picture/userAvatar.png':uni.getStorageSync('userData').avatar 
+			this.userAvatar = uni.getStorageSync('userData').avatar == null?'../../../static/picture/userAvatar.png':this.$Url+'/'+uni.getStorageSync('userData').avatar 
 			this.userName = uni.getStorageSync('userData').username
 		},
 		onNavigationBarButtonTap: function(e) {

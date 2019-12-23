@@ -39,7 +39,7 @@
 			</view>
 		</view>
 		<view class="list">
-			<view class="item" @click="tapAbout">
+			<view class="item line" @click="tapAbout">
 				<view class="key" >
 					关于我们
 				</view>
@@ -65,7 +65,6 @@
 		},
 		onShow: function() {
 			if (uni.getStorageSync('logon_status') == 1) {
-				console.log()
 				uni.request({
 					url: this.$Url + '/api/v1/get/user', //仅为示例，并非真实接口地址。
 					method: 'POST',

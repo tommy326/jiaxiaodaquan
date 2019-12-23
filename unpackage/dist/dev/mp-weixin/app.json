@@ -1,0 +1,75 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/tabBar/signUp/signUp",
+    "pages/tabBar/examination/examination",
+    "pages/tabBar/my/my",
+    "pages/signUp/school-details/school-details",
+    "pages/login/login",
+    "pages/register/register",
+    "pages/examination/Random-practice/Random-practice",
+    "pages/examination/Mock-exam/Mock-exam",
+    "pages/examination/exam/exam",
+    "pages/signUp/Partner-service/Partner-service",
+    "pages/signUp/jiaxiao-ranking/jiaxiao-ranking",
+    "pages/signUp/Coach-ranking/Coach-ranking",
+    "pages/my/My-mistake/My-mistake",
+    "pages/my/My-grades/My-grades",
+    "pages/my/Item-bank-selection/Item-bank-selection",
+    "pages/signUp/Driving-test-guide/Driving-test-guide",
+    "pages/signUp/ladder-player-details/ladder-player-details",
+    "pages/examination/community-list/community-list",
+    "pages/signUp/news-details/news-details",
+    "pages/signUp/coach-details/coach-details",
+    "pages/my/setting/setting",
+    "pages/my/changeName/changeName",
+    "pages/my/changeTel/changeTel",
+    "pages/my/changePass/changePass",
+    "pages/my/reset-pass/reset-pass",
+    "pages/my/My-publication/My-publication",
+    "pages/my/My-order/My-order",
+    "pages/my/My-collection/My-collection",
+    "pages/my/Browse-record/Browse-record",
+    "pages/Privacy-policy/Privacy-policy",
+    "pages/my/my-accompany/my-accompany",
+    "pages/Network-user-protocol/Network-user-protocol",
+    "pages/signUp/search/search",
+    "pages/my/about/about",
+    "pages/my/Business-license/Business-license",
+    "pages/developing/developing"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "驾考大全",
+    "navigationBarBackgroundColor": "#ffffff",
+    "backgroundColor": "#F6F6F6"
+  },
+  "tabBar": {
+    "color": "#929292",
+    "selectedColor": "#1c76ee",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/tabBar/signUp/signUp",
+        "iconPath": "static/tabBar/signUp.png",
+        "selectedIconPath": "static/tabBar/signUp-on.png",
+        "text": "报名"
+      },
+      {
+        "pagePath": "pages/tabBar/examination/examination",
+        "iconPath": "static/tabBar/examination.png",
+        "selectedIconPath": "static/tabBar/examination-on.png",
+        "text": "考试"
+      },
+      {
+        "pagePath": "pages/tabBar/my/my",
+        "iconPath": "static/tabBar/my.png",
+        "selectedIconPath": "static/tabBar/my-on.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {}
+}

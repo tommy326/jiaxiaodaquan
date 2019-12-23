@@ -63,11 +63,11 @@
 				"app-plus": {
 					"bounce": "none",
 					"titleNView": {
-						"type": "transparent",
-						"buttons": [{
+						"type": "transparent"
+						/* "buttons": [{
 							"type": "menu",
 							"background": "rgba(0,0,0,0)"
-						}]
+						}] */
 					}
 				}
 			}
@@ -291,6 +291,12 @@
             "path" : "pages/my/Business-license/Business-license",
             "style" : {
 				"navigationBarTitleText": "营业执照"
+			}
+        }
+        ,{
+            "path" : "pages/developing/developing",
+            "style" : {
+				"navigationBarTitleText": "页面正在开发"
 			}
         }
     ],

@@ -27,13 +27,13 @@
 							</view>
 							<view class="comment_box">
 								<view class="comment_stars">
-									<block v-for="n in 5" :key='n'>
+									<block v-for="n in item.score" :key='n'>
 										<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
 									</block>
-									<text class="fraction">5.0分</text>
+									<text class="fraction">{{item.score}}.0分</text>
 								</view>
 								<view class="region">
-									汉阳区
+									{{item.location}}
 								</view>
 							</view>
 							<view class="cost_box">
@@ -47,27 +47,20 @@
 						</view>
 					</view>
 					<view class="bottom_item">
-						<view class="tag_list">
-							<view class="tag_item">
-								规模大
-							</view>
-							<view class="tag_item">
-								拿本快
-							</view>
-							<view class="tag_item">
-								有接送
-							</view>
-							<view class="tag_item">
-								约课方便
-							</view>
+						<view class="tag_list" >
+							<block v-for="(items,idx) in item.label" :key='items' v-if="idx < 3">
+								<view class="tag_item">
+									{{items}}
+								</view>
+							</block>
 						</view>
-						<view class="activity_item" v-if="idx ==0">
+						<view class="activity_item" v-if="item.freeLearn != null">
 							<text class="tag_info">免</text>
-							<text class="tag_text">免费试学4小时</text>
+							<text class="tag_text">{{item.freeLearn}}</text>
 						</view>
-						<view class="activity_item" v-if="idx == 1">
+						<view class="activity_item" v-if="item.reduction != null">
 							<text class="tag_info">减</text>
-							<text class="tag_text">报名立减500</text>
+							<text class="tag_text">{{item.reduction}}</text>
 						</view>
 					</view>
 				</navigator>
@@ -96,6 +89,8 @@
 						var arr = []
 						for (let i in res.data.msg) {
 							res.data.msg[i].coverImg = this.$Url + res.data.msg[i].coverImg
+							res.data.msg[i].label = res.data.msg[i].label.split(",")
+							res.data.msg[i].score = res.data.msg[i].score == null ? 5 : res.data.msg[i].score
 							arr.push(res.data.msg[i]); //属性
 						}
 						this.listData = arr
@@ -192,7 +187,7 @@
 	.service_list .item .main_item .eq {
 		flex: 0 0 auto;
 		font-size: 36rpx;
-		width: 80rpx;
+		width: 60rpx;
 		height: 170rpx;
 		color: #999999;
 		line-height: 1;
@@ -201,7 +196,7 @@
 	}
 
 	.service_list .item .main_item .eq_on {
-		font-size: 72rpx;
+		/* font-size: 72rpx; */
 		color: #3860ff;
 	}
 
@@ -308,7 +303,7 @@
 	.service_list .item .bottom_item{
 		display: block;
 		width: 100%;
-		padding-left: 270rpx;
+		padding-left: 250rpx;
 		box-sizing: border-box;
 	}
 

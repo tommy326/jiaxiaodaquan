@@ -193,7 +193,7 @@
 	.service_list {
 		display: block;
 		width: 100%;
-		height: calc(100vh - 80rpx);
+		height: calc(100vh - 118rpx - var(--status-bar-height));
 		padding: 30rpx 32rpx;
 		box-sizing: border-box;
 		overflow-y: scroll;

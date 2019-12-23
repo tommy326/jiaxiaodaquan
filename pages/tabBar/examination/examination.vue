@@ -6,7 +6,7 @@
 			 @click="tapTabs">{{item}}</view>
 		</view>
 		<!-- 广告位 -->
-		<view class="banner_box" v-if="adData.length > 0">
+		<view class="banner_box">
 			<!-- banner -->
 			<swiper class="swiper" indicator-dots="true" autoplay="true" indicator-active-color="#3860ff">
 				<block v-for="item in adData" :key='item.name'>
@@ -19,18 +19,18 @@
 		<!-- 内容 -->
 		<view class="main_wrap">
 			<view class="side_box">
-				<navigator url="" class="link_box" hover-class="none">
+				<view class="link_box" @click="RandomPractice" hover-class="none">
+					<image src="../../../static/images/item/zxlx.png" class="img" mode=""></image>
+					<view class="text">
+						专项练习
+					</view>
+				</view>
+				<!-- <navigator url="../../developing/developing?title=VIP课程" class="link_box" hover-class="none">
 					<image src="../../../static/images/item/vipkc.png" class="img" mode=""></image>
 					<view class="text">
 						VIP课程
 					</view>
-				</navigator>
-				<navigator url="../../my/My-mistake/My-mistake" class="link_box" hover-class="none">
-					<image src="../../../static/images/item/dct.png" class="img" mode=""></image>
-					<view class="text">
-						错题本
-					</view>
-				</navigator>
+				</navigator> -->
 				<navigator url="../../my/My-collection/My-collection" class="link_box" hover-class="none">
 					<image src="../../../static/images/item/tmsc.png" class="img" mode=""></image>
 					<view class="text">
@@ -58,18 +58,18 @@
 				</view>
 			</view>
 			<view class="side_box">
-				<navigator url="" class="link_box" hover-class="none">
+				<navigator url="../../my/My-mistake/My-mistake" class="link_box" hover-class="none">
+					<image src="../../../static/images/item/dct.png" class="img" mode=""></image>
+					<view class="text">
+						错题本
+					</view>
+				</navigator>
+				<!-- <navigator url="../../developing/developing?title=练习题" class="link_box" hover-class="none">
 					<image src="../../../static/images/item/lxt.png" class="img" mode=""></image>
 					<view class="text">
 						练习题
 					</view>
-				</navigator>
-				<navigator url="" class="link_box" hover-class="none">
-					<image src="../../../static/images/item/zxlx.png" class="img" mode=""></image>
-					<view class="text">
-						专项练习
-					</view>
-				</navigator>
+				</navigator> -->
 				<navigator url="../../my/My-grades/My-grades" class="link_box" hover-class="none">
 					<image src="../../../static/images/item/wdcj.png" class="img" mode=""></image>
 					<view class="text">
@@ -128,7 +128,6 @@
 				},
 				success: (res) => {
 					if (res.data.code == 200) {
-						console.log(res.data)
 						var arr = []
 						for (let i in res.data.msg) {
 							arr.push(res.data.msg[i]); //属性
@@ -151,14 +150,13 @@
 					url: this.$Url + '/api/car/ad',
 					method: 'GET',
 					data: {
-						position: e
+						position: 'one'
 					},
 					header: {
 						'content-type': 'application/x-www-form-urlencoded'
 					},
 					success: (res) => {
 						if (res.data.code == 200) {
-							console.log(res.data)
 							let arr = []
 							for (let i in res.data.msg) {
 								res.data.msg[i].image = this.$Url + res.data.msg[i].image
@@ -276,15 +274,15 @@
 	.main_wrap {
 		display: flex;
 		width: 100%;
-		padding: 0 60rpx;
+		padding: 40rpx 60rpx;
 		justify-content: space-between;
 		box-sizing: border-box;
-		margin-top: 40rpx;
 	}
 
 	.main_wrap .side_box {
 		flex: 0 0 auto;
 		width: 132rpx;
+		padding-top: 80rpx;
 	}
 
 	.main_wrap .mid_box {
@@ -302,7 +300,8 @@
 	}
 
 	.main_wrap .side_box .link_box:last-child {
-		margin-bottom: 40rpx;
+		margin-top: 160rpx;
+		margin-bottom: 0;
 	}
 
 	.main_wrap .side_box .link_box .img {

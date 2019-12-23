@@ -1,0 +1,79 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*每个页面公共css */
+/* uni.css - 通用组件、模板样式库，可以当作一套ui库应用 */
+/* @import './common/uni.css'; */
+.status_bar {
+	display: block;
+	height: 25px;
+	width: 100%;
+	background-color: #ffffff;
+}
+.top_view {
+	height: 25px;
+	width: 100%;
+	position: fixed;
+	background-color: #ffffff;
+	top: 0;
+	z-index: 999;
+}
+

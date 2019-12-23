@@ -78,7 +78,6 @@
 							arr.push(res.data.msg[i]); //属性
 						}
 						this.listData = arr
-						console.log(arr)
 					} else {
 						uni.showToast({
 							icon: 'none',

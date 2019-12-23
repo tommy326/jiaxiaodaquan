@@ -64,7 +64,7 @@
 	color: #222222;
 	font-size: 30rpx;
 }
-.footer_box{
+.footer_box {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: flex;

@@ -59,12 +59,12 @@
 				},
 				success: (res) => {
 					if (res.data.code == 200) {
-						console.log(res.data.msg)
-						this.Highest = res.data.msg.top.mark
+						if(res.data.msg.top != null){
+							this.Highest = res.data.msg.top.mark
+						}
 						this.error = res.data.msg.error
 						this.total = res.data.msg.total
 						this.right = res.data.msg.right
-						// this.listData = res.data.msg
 						var arr = []
 						for (let i in res.data.msg.list) {
 							res.data.msg.list[i].time = res.data.msg.list[i].time.substr(5, 2)+'月'+res.data.msg.list[i].time.substr(8, 2)+'日'

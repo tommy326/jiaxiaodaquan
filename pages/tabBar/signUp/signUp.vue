@@ -68,13 +68,13 @@
 								</view>
 								<view class="comment_box">
 									<view class="comment_stars">
-										<block v-for="n in 5" :key='n'>
+										<block v-for="n in item.score" :key='n'>
 											<image src="../../../static/images/icon/icon-stars-1.png" class="pic" mode=""></image>
 										</block>
-										<text class="fraction">5.0分</text>
+										<text class="fraction">{{item.score}}.0分</text>
 									</view>
 									<view class="region">
-										汉阳区
+										{{item.location}}
 									</view>
 								</view>
 								<view class="cost_box">
@@ -88,27 +88,20 @@
 							</view>
 						</view>
 						<view class="bottom_item">
-							<view class="tag_list">
-								<view class="tag_item">
-									规模大
-								</view>
-								<view class="tag_item">
-									拿本快
-								</view>
-								<view class="tag_item">
-									有接送
-								</view>
-								<view class="tag_item">
-									约课方便
-								</view>
+							<view class="tag_list" >
+								<block v-for="(items,idx) in item.label" :key='items' v-if="idx < 3">
+									<view class="tag_item">
+										{{items}}
+									</view>
+								</block>
 							</view>
-							<view class="activity_item" v-if="idx ==0">
+							<view class="activity_item" v-if="item.freeLearn != null">
 								<text class="tag_info">免</text>
-								<text class="tag_text">免费试学4小时</text>
+								<text class="tag_text">{{item.freeLearn}}</text>
 							</view>
-							<view class="activity_item" v-if="idx == 1">
+							<view class="activity_item" v-if="item.reduction != null">
 								<text class="tag_info">减</text>
-								<text class="tag_text">报名立减500</text>
+								<text class="tag_text">{{item.reduction}}</text>
 							</view>
 						</view>
 					</navigator>
@@ -153,7 +146,6 @@
 				geocode: true,
 				altitude: true,
 				success: (res) => {
-					console.log(res);
 					// 检测是否获取位置
 					var address = uni.getStorageSync('address') || '0'
 					/* 没有定位信息 */
@@ -211,9 +203,10 @@
 						var arr = []
 						for (let i in res.data.msg) {
 							res.data.msg[i].coverImg = this.$Url + res.data.msg[i].coverImg
+							res.data.msg[i].label = res.data.msg[i].label.split(",")
+							res.data.msg[i].score = res.data.msg[i].score == null ? 5 : res.data.msg[i].score
 							arr.push(res.data.msg[i]); //属性
 						}
-
 						this.listData = arr
 					} else {
 						uni.showToast({
@@ -236,13 +229,11 @@
 				},
 				success: (res) => {
 					if (res.data.code == 200) {
-						console.log(res.data)
 						let arr = []
 						for (let i in res.data.msg) {
 							res.data.msg[i].image = this.$Url + res.data.msg[i].image
 							arr.push(res.data.msg[i]);
 						}
-						console.log(arr)
 						this.adData = arr
 					} else {
 						uni.showToast({
@@ -256,9 +247,9 @@
 
 		},
 		onShow: function() {
-			
+
 		},
-		onReachBottomDistance(e){
+		onReachBottomDistance(e) {
 			console.log(e)
 		},
 		onPullDownRefresh() {
@@ -353,7 +344,6 @@
 		height: 266rpx;
 		border-radius: 16rpx;
 		overflow: hidden;
-		background: #c3c3c3;
 	}
 
 	.banner_box .pic {
@@ -608,7 +598,7 @@
 		border-radius: 4rpx;
 		font-size: 24rpx;
 		margin-right: 23rpx;
-		margin: 14rpx 14rpx 0 0;
+		margin: 14rpx 10rpx 0 0;
 	}
 
 	.service_list .item .bottom_item .activity_item {

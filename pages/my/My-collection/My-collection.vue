@@ -1,6 +1,6 @@
 <template>
 	<view class="main_container">
-		<view class="tabs_box">
+		<view class="tabs_box" v-if="listData.length > 0">
 			<view class="item active">
 				驾校
 			</view>
@@ -9,7 +9,7 @@
 			</view> -->
 		</view>
 		<!-- 驾校列表 -->
-		<view class="service_list">
+		<view class="service_list"  v-if="listData.length == 0">
 			<block v-for="(item,idx) in listData" :key='idx' v-if="item.schoolId != null">
 				<navigator :url="'../../signUp/school-details/school-details?id='+item.collection_of_school.id" class="item">
 					<view class="main_item">
@@ -42,6 +42,13 @@
 				</navigator>
 			</block>
 		</view>
+		
+		<block v-if="listData.length == 0">
+			<view class="none">
+				<image src="../../../static/picture/default.png" mode=""></image>
+				<text>暂无收藏数据</text>
+			</view>
+		</block>
 	</view>
 </template>
 
@@ -268,4 +275,18 @@
 		line-height: 1;
 	}
 
+	.none image {
+		display: block;
+		width: 406rpx;
+		height: 292rpx;
+		margin: 285rpx 0 32rpx 142rpx;
+	}
+
+	.none text {
+		display: block;
+		color: #929292;
+		font-size: 32rpx;
+		text-align: center;
+		line-height: 1.4;
+	}
 </style>

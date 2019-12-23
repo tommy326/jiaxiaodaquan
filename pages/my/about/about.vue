@@ -13,7 +13,7 @@
 			<navigator class="item" url="../../Privacy-policy/Privacy-policy">隐私政策</navigator>
 			<navigator class="item" url="../../Network-user-protocol/Network-user-protocol">用户协议</navigator>
 			<navigator class="item" url="../Business-license/Business-license">营业执照</navigator>
-			<view class="item" @click="tapVersion">检查新版本</view>
+			<view class="item" @click="tapVersion">注销账号</view>
 		</view>
 		<view class="footer_box">
 			<text class="text">版权所有 武汉四维文化传播有限公司</text>
@@ -36,12 +36,41 @@
 			// #endif
 		},
 		methods: {
-			tapVersion:function(e){
-				uni.showToast({
-					icon:'none',
-					mask:true,
-				    title: '当前已是最新版本',
-				    duration: 2000
+			tapVersion: function(e) {
+				uni.showModal({
+					title: '是否注销账号？',
+					content: '账号注销后，账号资料不可恢复！',
+					showCancel: true,
+					cancelColor: '#929292',
+					confirmColor: '#3860ff',
+					success: (res) => {
+						if (res.confirm) {
+							console.log('用户点击确认');
+							uni.request({
+								url: this.$Url + '/api/v1/cancellation',
+								method: 'POST',
+								data: {
+									token: uni.getStorageSync('token')
+								},
+								header: {
+									'content-type': 'application/x-www-form-urlencoded'
+								},
+								success: (res) => {
+									if (res.data.code == 200) {
+										console.log('注销成功')
+									}
+								}
+							});
+							uni.setStorageSync('userData', '');
+							uni.setStorageSync('logon_status', 0);
+							uni.setStorageSync('token', 0);
+							uni.redirectTo({
+								url: '../../login/login?form=1'
+							});
+						} else if (res.cancel) {
+							console.log('用户点击取消');
+						}
+					}
 				});
 			}
 		}
@@ -100,8 +129,8 @@
 		color: #222222;
 		font-size: 30rpx;
 	}
-	
-	.footer_box{
+
+	.footer_box {
 		display: flex;
 		width: 100%;
 		align-items: center;
