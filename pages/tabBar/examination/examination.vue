@@ -19,7 +19,7 @@
 		<!-- 内容 -->
 		<view class="main_wrap">
 			<view class="side_box">
-				<view class="link_box" @click="RandomPractice" hover-class="none">
+				<view class="link_box" @click="RandomPractice" :data-idx="tabs==0?'1':'4'">
 					<image src="../../../static/images/item/zxlx.png" class="img" mode=""></image>
 					<view class="text">
 						专项练习
