@@ -88,8 +88,8 @@
 							</view>
 						</view>
 						<view class="bottom_item">
-							<view class="tag_list" >
-								<block v-for="(items,idx) in item.label" :key='items' v-if="idx < 3">
+							<view class="tag_list">
+								<block v-for="(items) in item.label" :key='items'>
 									<view class="tag_item">
 										{{items}}
 									</view>
@@ -586,7 +586,9 @@
 	.service_list .item .bottom_item .tag_list {
 		display: flex;
 		width: 100%;
+		height: 46rpx;
 		flex-wrap: wrap;
+		overflow-x: hidden;
 	}
 
 	.service_list .item .bottom_item .tag_list .tag_item {
@@ -599,6 +601,7 @@
 		font-size: 24rpx;
 		margin-right: 23rpx;
 		margin: 14rpx 10rpx 0 0;
+
 	}
 
 	.service_list .item .bottom_item .activity_item {

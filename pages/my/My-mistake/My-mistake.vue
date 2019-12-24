@@ -75,7 +75,6 @@
 				},
 				success: (res) => {
 					if (res.data.code == 200) {
-						console.log(res.data.msg)
 						// this.Highest = res.data.msg.top.mark
 						// this.error = res.data.msg.error
 						// this.total = res.data.msg.total

@@ -66,7 +66,6 @@
 				},
 				success: (res) => {
 					if (res.data.code == 200) {
-						console.log(res)
 						var arr = []
 						for (let i in res.data.msg) {
 							res.data.msg[i].image = this.$Url + res.data.msg[i].image

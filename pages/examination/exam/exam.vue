@@ -93,9 +93,9 @@
 			<view class="item collect_off" :class="collect?'collect_on':''" @click="tapCollect">
 				<text class="text">{{collect?'已收藏':'收藏'}}</text>
 			</view>
-			<view class="item answer">
+			<!-- <view class="item answer">
 				<text class="text">解析</text>
-			</view>
+			</view> -->
 			<view class="btn_wrap" @click="CloseExam">
 				<text class="text">交卷</text>
 			</view>
@@ -611,7 +611,7 @@
 
 	.footer_box .item {
 		flex: 0 0 auto;
-		width: 20%;
+		width: 25%;
 		height: 120rpx;
 		position: relative;
 		color: #929292;

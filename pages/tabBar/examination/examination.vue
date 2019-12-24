@@ -31,12 +31,12 @@
 						VIP课程
 					</view>
 				</navigator> -->
-				<navigator url="../../my/My-collection/My-collection" class="link_box" hover-class="none">
+				<!-- <navigator url="../../my/My-collection/My-collection" class="link_box" hover-class="none">
 					<image src="../../../static/images/item/tmsc.png" class="img" mode=""></image>
 					<view class="text">
 						收藏
 					</view>
-				</navigator>
+				</navigator> -->
 			</view>
 
 			<view class="mid_box">
@@ -58,12 +58,12 @@
 				</view>
 			</view>
 			<view class="side_box">
-				<navigator url="../../my/My-mistake/My-mistake" class="link_box" hover-class="none">
+				<!-- <navigator url="../../my/My-mistake/My-mistake" class="link_box" hover-class="none">
 					<image src="../../../static/images/item/dct.png" class="img" mode=""></image>
 					<view class="text">
 						错题本
 					</view>
-				</navigator>
+				</navigator> -->
 				<!-- <navigator url="../../developing/developing?title=练习题" class="link_box" hover-class="none">
 					<image src="../../../static/images/item/lxt.png" class="img" mode=""></image>
 					<view class="text">
@@ -299,10 +299,10 @@
 		margin-bottom: 60rpx;
 	}
 
-	.main_wrap .side_box .link_box:last-child {
+	/* .main_wrap .side_box .link_box:last-child {
 		margin-top: 160rpx;
 		margin-bottom: 0;
-	}
+	} */
 
 	.main_wrap .side_box .link_box .img {
 		flex: 0 0 auto;

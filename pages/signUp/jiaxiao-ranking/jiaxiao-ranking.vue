@@ -15,7 +15,7 @@
 		<!-- 列表 -->
 		<view class="service_list">
 			<block v-for="(item,idx) in listData" :key='idx'>
-				<navigator :url="'../../signUp/school-details/school-details?id='+item.id"  class="item">
+				<navigator :url="'../../signUp/school-details/school-details?id='+item.id" class="item">
 					<view class="main_item">
 						<view class="eq" :class="idx < 3?'eq_on':''">
 							{{idx+1}}
@@ -47,8 +47,8 @@
 						</view>
 					</view>
 					<view class="bottom_item">
-						<view class="tag_list" >
-							<block v-for="(items,idx) in item.label" :key='items' v-if="idx < 3">
+						<view class="tag_list">
+							<block v-for="items in item.label" :key='items'>
 								<view class="tag_item">
 									{{items}}
 								</view>
@@ -299,8 +299,8 @@
 		font-size: 26rpx;
 		line-height: 1;
 	}
-	
-	.service_list .item .bottom_item{
+
+	.service_list .item .bottom_item {
 		display: block;
 		width: 100%;
 		padding-left: 250rpx;
@@ -310,7 +310,9 @@
 	.service_list .item .bottom_item .tag_list {
 		display: flex;
 		width: 100%;
+		height: 46rpx;
 		flex-wrap: wrap;
+		overflow-x: hidden;
 	}
 
 	.service_list .item .bottom_item .tag_list .tag_item {
@@ -323,25 +325,26 @@
 		font-size: 24rpx;
 		margin-right: 23rpx;
 		margin: 14rpx 14rpx 0 0;
+
 	}
-	
-	.service_list .item .bottom_item .activity_item{
+
+	.service_list .item .bottom_item .activity_item {
 		display: flex;
 		align-items: center;
 		width: 100%;
 		margin-top: 12rpx;
 		font-size: 22rpx;
 	}
-	
-	.service_list .item .bottom_item .activity_item .tag_info{
+
+	.service_list .item .bottom_item .activity_item .tag_info {
 		background: #3860ff;
 		color: #ffffff;
 		line-height: 1;
 		padding: 5rpx;
 		border: solid 1px #3860ff;
 	}
-	
-	.service_list .item .bottom_item .activity_item .tag_text{
+
+	.service_list .item .bottom_item .activity_item .tag_text {
 		color: #3860ff;
 		line-height: 1;
 		border: solid 1px #3860ff;

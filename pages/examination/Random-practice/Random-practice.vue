@@ -113,9 +113,9 @@
 			<view class="item collect_off" :class="collect?'collect_on':''" @click="tapCollect">
 				<text class="text">{{collect?'已收藏':'收藏'}}</text>
 			</view>
-			<view class="item answer">
+			<!-- <view class="item answer">
 				<text class="text">解答</text>
-			</view>
+			</view> -->
 			<view class="item scantron" @click="tapAnswer">
 				<text class="text">答题卡</text>
 			</view>
@@ -260,7 +260,6 @@
 							for (let i in res.data.msg) {
 								arr.push(res.data.msg[i]);
 							}
-							console.log(arr);
 							this.listData = arr
 							this.questionId = arr[0].questionId
 							if (arr[1] != null) {
@@ -268,8 +267,6 @@
 							} else {
 								this.collect = false
 							}
-							console.log(this.collect);
-
 						} else {
 							uni.showToast({
 								icon: 'none',
@@ -425,7 +422,7 @@
 					uni.showModal({
 						title: '温馨提示',
 						content: '恭喜您答对了',
-						cancelText: '解析',
+						showCancel: false,
 						confirmText: '下一题',
 						success: (res) => {
 							if (res.confirm) {
@@ -442,7 +439,7 @@
 					uni.showModal({
 						title: '温馨提示',
 						content: '很抱歉您答错了',
-						cancelText: '解析',
+						showCancel: false,
 						confirmText: '下一题',
 						success: (res) => {
 							if (res.confirm) {
@@ -505,7 +502,7 @@
 					uni.showModal({
 						title: '温馨提示',
 						content: '恭喜您答对了',
-						cancelText: '解析',
+						showCancel: false,
 						confirmText: '下一题',
 						success: (res) => {
 							if (res.confirm) {
@@ -522,7 +519,7 @@
 					uni.showModal({
 						title: '温馨提示',
 						content: '很抱歉您答错了',
-						cancelText: '解析',
+						showCancel: false,
 						confirmText: '下一题',
 						success: (res) => {
 							if (res.confirm) {
@@ -543,7 +540,7 @@
 					uni.showModal({
 						title: '温馨提示',
 						content: '恭喜您答对了',
-						cancelText: '解析',
+						showCancel: false,
 						confirmText: '下一题',
 						success: (res) => {
 							if (res.confirm) {
@@ -560,7 +557,7 @@
 					uni.showModal({
 						title: '温馨提示',
 						content: '很抱歉您答错了',
-						cancelText: '解析',
+						showCancel: false,
 						confirmText: '下一题',
 						success: (res) => {
 							if (res.confirm) {
@@ -686,7 +683,7 @@
 
 	.footer_box .item {
 		flex: 0 0 auto;
-		width: 20%;
+		width: 25%;
 		height: 120rpx;
 		position: relative;
 		color: #929292;

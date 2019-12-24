@@ -2,13 +2,7 @@
   "navigationBarTitleText": "驾校详情",
   "bounce": "none",
   "titleNView": {
-    "type": "transparent",
-    "buttons": [
-      {
-        "type": "menu",
-        "background": "rgba(0,0,0,0)"
-      }
-    ]
+    "type": "transparent"
   },
   "usingComponents": {}
 }

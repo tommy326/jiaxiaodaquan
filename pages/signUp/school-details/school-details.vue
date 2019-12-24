@@ -20,7 +20,7 @@
 						{{item.schoolName}}
 					</view>
 					<view class="label_list">
-						<block v-for="(items,idx) in item.label" :key='items' v-if="idx < 3">
+						<block v-for="items in item.label" :key='items'>
 							<view class="item">
 								{{items}}
 							</view>
@@ -269,7 +269,6 @@
 			}
 		},
 		onLoad: function(options) {
-			console.log(options.id);
 			this.schoolId = options.id
 			//驾校信息
 			uni.request({

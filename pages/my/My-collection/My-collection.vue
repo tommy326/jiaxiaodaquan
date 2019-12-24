@@ -9,8 +9,8 @@
 			</view> -->
 		</view>
 		<!-- 驾校列表 -->
-		<view class="service_list"  v-if="listData.length == 0">
-			<block v-for="(item,idx) in listData" :key='idx' v-if="item.schoolId != null">
+		<view class="service_list">
+			<block v-for="(item,idx) in listData" :key='idx'>
 				<navigator :url="'../../signUp/school-details/school-details?id='+item.collection_of_school.id" class="item">
 					<view class="main_item">
 						<image :src="'https://jkdq.521che.com'+item.collection_of_school.coverImg" mode="" class="photo"></image>
@@ -74,9 +74,13 @@
 					if (res.data.code == 200) {
 						var arr = []
 						for (let i in res.data.msg) {
-							res.data.msg[i].coverImg = this.$Url + res.data.msg[i].coverImg
-							arr.push(res.data.msg[i]); //属性
+							if(res.data.msg[i].schoolId != null){
+								res.data.msg[i].coverImg = this.$Url + res.data.msg[i].coverImg
+								arr.push(res.data.msg[i]); 
+							}
+							//属性
 						}
+						console.log(arr);
 						this.listData = arr
 					} else {
 						uni.showToast({
