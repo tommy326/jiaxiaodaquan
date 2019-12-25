@@ -3,10 +3,10 @@
 		<view class="head_wrap">
 			<view class="info_box">
 				<view class="num">
-					1320
+					2603
 				</view>
 				<view class="text">
-					错题数
+					总题数
 				</view>
 			</view>
 			<view class="list">
@@ -38,7 +38,7 @@
 						科目一错题数
 					</view>
 					<view class="num">
-						0
+						6
 					</view>
 				</view>
 			</view>
@@ -48,7 +48,7 @@
 						科目四错题数
 					</view>
 					<view class="num">
-						6
+						14
 					</view>
 				</view>
 			</view>

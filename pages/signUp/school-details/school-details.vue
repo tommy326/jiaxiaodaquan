@@ -30,8 +30,8 @@
 						<block v-for="n in item.score" :key='n'>
 							<image src="../../../static/images/icon/icon-stars-1.png" class="stars" mode=""></image>
 						</block>
-						<view class="score">{{item.score}}.0分 <text class="b">(1023人评）</text></view>
-						<view class="price">￥2100</view>
+						<view class="score">{{item.score}}.0分 <text class="b">({{num}}人评）</text></view>
+						<view class="price">￥2199</view>
 						<view class="class">C1班</view>
 					</view>
 					<view class="address" @click="openLocation">{{item.address}}</view>
@@ -51,14 +51,39 @@
 				<view class="tabs_content">
 					<!-- 班型 -->
 					<view class="class_list" v-if="tabs == 0">
-						<block v-for="item in classListData" :key='item.name'>
+						<!-- <block v-for="item in classListData" :key='item.name'> -->
 							<view class="item">
 								<view class="level c">
-									{{item.category}}
+									<!-- {{item.category}} -->C1 
 								</view>
 								<view class="class_info">
 									<view class="class_name">
-										{{item.name}}
+										<!-- {{item.name}} -->普通班
+									</view>
+									<view class="class_data">
+										<view class="label">
+											45天拿本
+										</view>
+										<view class="label">
+											班车接送
+										</view>
+										<view class="label">
+											多人一车
+										</view>
+									</view>
+								</view>
+								<view class="call_btn">
+									<image src="../../../static/images/icon/icon-hotline-1.png" class="img" mode=""></image>
+									<text class="text">免费咨询</text>
+								</view>
+							</view>
+							<view class="item">
+								<view class="level c">
+									<!-- {{item.category}} -->C1 
+								</view>
+								<view class="class_info">
+									<view class="class_name">
+										<!-- {{item.name}} -->其他
 									</view>
 									<view class="class_data">
 										<view class="label">
@@ -77,7 +102,82 @@
 									<text class="text">免费咨询</text>
 								</view>
 							</view>
-						</block>
+							<view class="item">
+								<view class="level c">
+									<!-- {{item.category}} -->C1 
+								</view>
+								<view class="class_info">
+									<view class="class_name">
+										<!-- {{item.name}} -->VIP班
+									</view>
+									<view class="class_data">
+										<view class="label">
+											班车接送
+										</view>
+										<view class="label">
+											多人一车
+										</view>
+										<view class="time">
+											周一到周日训练
+										</view>
+									</view>
+								</view>
+								<view class="call_btn">
+									<image src="../../../static/images/icon/icon-hotline-1.png" class="img" mode=""></image>
+									<text class="text">免费咨询</text>
+								</view>
+							</view>
+							<view class="item">
+								<view class="level b">
+									<!-- {{item.category}} -->C2 
+								</view>
+								<view class="class_info">
+									<view class="class_name">
+										<!-- {{item.name}} -->普通班
+									</view>
+									<view class="class_data">
+										<view class="label">
+											自行前往
+										</view>
+										<view class="label">
+											多人一车
+										</view>
+										<view class="time">
+											周一到周日训练
+										</view>
+									</view>
+								</view>
+								<view class="call_btn">
+									<image src="../../../static/images/icon/icon-hotline-1.png" class="img" mode=""></image>
+									<text class="text">免费咨询</text>
+								</view>
+							</view>
+							<view class="item">
+								<view class="level b">
+									<!-- {{item.category}} -->C2 
+								</view>
+								<view class="class_info">
+									<view class="class_name">
+										<!-- {{item.name}} -->VIP班
+									</view>
+									<view class="class_data">
+										<view class="label">
+											班车接送
+										</view>
+										<view class="label">
+											多人一车
+										</view>
+										<view class="time">
+											周一到周日训练
+										</view>
+									</view>
+								</view>
+								<view class="call_btn">
+									<image src="../../../static/images/icon/icon-hotline-1.png" class="img" mode=""></image>
+									<text class="text">免费咨询</text>
+								</view>
+							</view>
+						<!-- </block> -->
 					</view>
 					<!-- 教练 -->
 					<view class="coach_list" v-else-if="tabs == 1">

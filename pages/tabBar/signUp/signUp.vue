@@ -79,7 +79,7 @@
 								</view>
 								<view class="cost_box">
 									<view class="price">
-										￥<text class="num">2620</text>
+										￥<text class="num">{{idx == 0?'2600':'2199'}}</text>
 									</view>
 									<view class="cost_text">
 										C1 普通班
