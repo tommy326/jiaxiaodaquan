@@ -213,7 +213,7 @@
 	font-size: 26rpx;
 	line-height: 1;
 }
-.service_list .item .bottom_item{
+.service_list .item .bottom_item {
 	display: block;
 	width: 100%;
 	padding-left: 250rpx;
@@ -224,8 +224,10 @@
 	display: -webkit-flex;
 	display: flex;
 	width: 100%;
+	height: 46rpx;
 	-webkit-flex-wrap: wrap;
 	        flex-wrap: wrap;
+	overflow-x: hidden;
 }
 .service_list .item .bottom_item .tag_list .tag_item {
 	-webkit-box-flex: 0;
@@ -240,7 +242,7 @@
 	margin-right: 23rpx;
 	margin: 14rpx 14rpx 0 0;
 }
-.service_list .item .bottom_item .activity_item{
+.service_list .item .bottom_item .activity_item {
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: flex;
@@ -251,14 +253,14 @@
 	margin-top: 12rpx;
 	font-size: 22rpx;
 }
-.service_list .item .bottom_item .activity_item .tag_info{
+.service_list .item .bottom_item .activity_item .tag_info {
 	background: #3860ff;
 	color: #ffffff;
 	line-height: 1;
 	padding: 5rpx;
 	border: solid 1px #3860ff;
 }
-.service_list .item .bottom_item .activity_item .tag_text{
+.service_list .item .bottom_item .activity_item .tag_text {
 	color: #3860ff;
 	line-height: 1;
 	border: solid 1px #3860ff;

@@ -98,10 +98,11 @@
 	        flex-direction: column;
 	margin-bottom: 60rpx;
 }
-.main_wrap .side_box .link_box:last-child {
+
+/* .main_wrap .side_box .link_box:last-child {
 	margin-top: 160rpx;
 	margin-bottom: 0;
-}
+} */
 .main_wrap .side_box .link_box .img {
 	-webkit-box-flex: 0;
 	-webkit-flex: 0 0 auto;
